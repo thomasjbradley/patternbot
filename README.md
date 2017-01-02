@@ -15,14 +15,14 @@ Inspired by lots of other tools that exist.
 ```
 common/
   modules.css
-  grid.css
-  type.css
+  grid.css             Determine all sizes and create sample layouts.
+  type.css             Create a preview using the standard classes.
   theme.css            Use CSS variables inside `:root {}` to define colours & fonts.
 elements/
   buttons/
     index.html
     main.css
-    README.md          Could contain element info?
+    README.md          Could contain element info? Why? Rational?
   lists/
     unordered.html     Each file would be used to generate the examples.
     ordered.html
@@ -36,6 +36,7 @@ components/
     index.html
     main.css 
 images/
+  icons.svg            Parse all the <symbol> tags and generate icon previews.
   logo.svg
   banner.jpg
 pages/
