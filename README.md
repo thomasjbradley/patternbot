@@ -1,4 +1,6 @@
-# Patternbot
+# ![](.readme/patternbot-logo.png) Patternbot
+
+*Your pompous and persnickety patterning robot.*
 
 There are lots of fantastic tools for creating style guides and pattern libraries—but they all have a lot of embedded knowledge (command line, Gulp, Grunt, PHP, Handlebars, SASS, etc.)
 
