@@ -7,12 +7,15 @@ const {ipcRenderer, shell} = require('electron');
 
 const classify = require(__dirname + '/../../../shared/classify');
 const fileFinder = require(__dirname + '/../../lib/file-finder');
+const patternLibGenerator = require(__dirname + '/../../lib/pattern-lib-generator');
 
 const $body = document.body;
 
 const addFolder = function (folderpath) {
-  fileFinder.find(folderpath[0].path).then(function (patternLibFiles) {
-    console.log(patternLibFiles);
+  fileFinder.find(folderpath).then(function (patternLibFiles) {
+    patternLibGenerator.generate(patternLibFiles).then(function (patternLibString) {
+      console.log(patternLibString);
+    });
   });
 };
 
@@ -38,7 +41,7 @@ $body.addEventListener('dragleave', function (e) {
 $body.addEventListener('drop', function (e) {
   e.preventDefault();
 
-  addFolder(e.dataTransfer.files);
+  addFolder(e.dataTransfer.files[0].path);
 
   return false;
 }, true);
