@@ -1,0 +1,48 @@
+:root {
+  --control-font-size: .8125rem;
+  --control-font-size-smaller: .75rem;
+  --control-padding: .2rem 1rem;
+  --control-border-radius: .3125rem;
+  --control-border-color: #d2d2d2;
+  --control-border-color-darker: #b3b3b3;
+  --control-outline: 2px solid rgba(0, 0, 0, .8);
+  --control-outline-offset: 2px;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+
+  background-color: transparent;
+  cursor: default;
+  -webkit-user-select: none;
+  user-select: none;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  background-color: transparent;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+button * {
+  pointer-events: none;
+}

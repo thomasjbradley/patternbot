@@ -1,0 +1,8 @@
+.envrc
+
+npm-debug.log
+node_modules
+dist
+vendor/*.jar
+vendor/lib/*.jar
+build/background.tiff

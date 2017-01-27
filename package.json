@@ -1,0 +1,88 @@
+{
+  "name": "Patternbot",
+  "version": "0.1.0",
+  "license": "GPL",
+  "description": "A small GUI application for generating pattern libraries & style guides from a specific folder structure.",
+  "author": "Thomas J Bradley <hey@thomasjbradley.ca>",
+  "homepage": "https://github.com/thomasjbradley/patternbot",
+  "bugs": "https://github.com/thomasjbradley/patternbot/issues",
+  "private": true,
+  "main": "patternbot.js",
+  "config": {
+    "commonFolder": "/common",
+    "commonParsableFilenames": {
+      "modulifier": "modules.css",
+      "gridifier": "grid.css",
+      "typografier": "type.css",
+      "theme": "theme.css"
+    },
+    "imagesFolder": "/images",
+    "imagesParsableFilenames": {
+      "icons": "icons.svg"
+    },
+    "elementsFolder": "/elements",
+    "componentsFolder": "/components",
+    "pagesFolder": "/pages"
+  },
+  "dependencies": {
+    "electron-is": "^2.3.0",
+    "merge-objects": "^1.0.5",
+    "node-dir": "^0.1.16"
+  },
+  "devDependencies": {
+    "electron": "^1.4.15",
+    "electron-builder": "^11.7.0",
+    "es6-promisify": "^5.0.0"
+  },
+  "scripts": {
+    "debug": "NODE_ENV=development electron patternbot.js",
+    "start": "NODE_ENV=production electron patternbot.js",
+    "pack-mac": "build -m --dir",
+    "pack-win": "build -w --dir",
+    "pack": "build -mw --dir",
+    "pack-bg": "tiffutil -cathidpicheck ./build/background.png ./build/background@2x.png -out ./build/background.tiff",
+    "build-mac": "npm run pack-bg && build -m",
+    "build-win": "build -w",
+    "build": "npm run build-mac && npm run build-win"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomasjbradley/patternbot.git"
+  },
+  "build": {
+    "appId": "ca.thomasjbradley.patternbot",
+    "copyright": "© Thomas J Bradley",
+    "productName": "Patternbot",
+    "compression": "maximum",
+    "extend-info": "patternbot-extra.plist",
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "iconUrl": "https://raw.githubusercontent.com/thomasjbradley/patternbot/master/build/icon.ico",
+      "target": "nsis"
+    },
+    "dmg": {
+      "title": "Install Patternbot",
+      "iconSize": 100,
+      "window": {
+        "x": 200,
+        "y": 200
+      },
+      "contents": [
+        {
+          "x": 494,
+          "y": 270,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 210,
+          "y": 270,
+          "type": "file"
+        }
+      ]
+    }
+  }
+}
