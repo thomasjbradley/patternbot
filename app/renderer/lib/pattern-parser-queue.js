@@ -6,8 +6,8 @@ const renderAll = function (allPatterns) {
   return new Promise(function (resolve, reject) {
     Promise
       .all(allPatterns.map(patternParser))
-      .then(function (pattern) {
-        resolve(pattern);
+      .then(function (patterns) {
+        resolve(patterns);
       })
     ;
   });

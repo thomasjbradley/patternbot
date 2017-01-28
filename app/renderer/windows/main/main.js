@@ -9,12 +9,20 @@ const classify = require(__dirname + '/../../../shared/classify');
 const fileFinder = require(__dirname + '/../../lib/file-finder');
 const patternLibGenerator = require(__dirname + '/../../lib/pattern-lib-generator');
 
+let appPkg = require(__dirname + '/../../../../package.json');
+
 const $body = document.body;
+
+const savePatternLib = function (folderpath, patternLibString) {
+  fs.writeFile(folderpath + '/' + appPkg.config.patternLibFilename, patternLibString, function () {
+
+  });
+};
 
 const addFolder = function (folderpath) {
   fileFinder.find(folderpath).then(function (patternLibFiles) {
     patternLibGenerator.generate(patternLibFiles).then(function (patternLibString) {
-      console.log(patternLibString);
+      savePatternLib(folderpath, patternLibString);
     });
   });
 };

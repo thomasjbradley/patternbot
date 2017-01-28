@@ -1,13 +1,25 @@
-<li>
-  <h2>{{title}}</h2>
+<section>
+  <h2>{{namePretty}}</h2>
+
+  {{#if showSubHeadings}}
+    <ol>
+      {{#each patterns}}
+        <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
+      {{/each}}
+    </ol>
+  {{/if}}
+
   {{desc}}
+
   {{#each patterns}}
     <div>
       {{#if ../showSubHeadings}}
         <h3>{{namePretty}}</h3>
       {{/if}}
+
       <iframe src="{{localPath}}"></iframe>
       <code><pre>{{content}}</pre></code>
     </div>
   {{/each}}
-</li>
+
+</section>

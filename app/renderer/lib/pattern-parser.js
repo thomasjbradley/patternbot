@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const dir = require('node-dir');
 const S = require('string');
+const classify = require(__dirname + '/../../shared/classify');
 const htmlFileParser = require(__dirname + '/html-file-parser');
 const markdownFileParser = require(__dirname + '/markdown-file-parser');
 
@@ -29,7 +30,7 @@ const readFile = function (filepath) {
       let name = path.parse(filepath).name;
 
       resolve({
-        name: name,
+        name: classify(name),
         namePretty: S(name).humanize().s,
         path: filepath,
         content: data,
@@ -66,7 +67,7 @@ const getInfo = function (folderpath) {
   let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
   let name = getModuleNameFromPath(folderpath);
 
-  patternInfo.name = name;
+  patternInfo.name = classify(name);
   patternInfo.namePretty = S(name).humanize().s;
   patternInfo.path = folderpath;
 

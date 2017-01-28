@@ -9,6 +9,7 @@
   "private": true,
   "main": "patternbot.js",
   "config": {
+    "patternLibFilename": "pattern-library.html",
     "commonFolder": "/common",
     "commonParsableFilenames": {
       "modulifier": "modules.css",
@@ -33,6 +34,7 @@
     "electron-builder": "^11.7.0",
     "es6-promisify": "^5.0.0",
     "handlebars": "^4.0.6",
+    "js-beautify": "^1.6.8",
     "string": "^3.3.3",
     "strip-js": "^1.0.6"
   },

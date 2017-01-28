@@ -8,9 +8,19 @@
 </head>
 <body>
 
-  <ol>
-    {{all_patterns}}
-  </ol>
+  <nav>
+    <ul>
+    {{# each patterns}}
+      <li><a href="#{{name}}">{{namePretty}}</a></li>
+    {{/each}}
+    </ul>
+  </nav>
+
+  <main>
+    {{# each patterns}}
+      {{{content}}}
+    {{/each}}
+  </main>
 
   <script>{{optimiezd_js}}</script>
 </body>
