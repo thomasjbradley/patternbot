@@ -1,9 +1,8 @@
 'use strict';
 
-const fs = require('fs');
-const handlebars = require('handlebars');
 const templateHelper = require(__dirname + '/template-helper');
 const moduleParserQueue = require(__dirname + '/module-parser-queue');
+const moduleRenderer = require(__dirname + '/module-renderer');
 
 const generate = function (patternLibFiles) {
   return new Promise(function (resolve, reject) {
@@ -11,7 +10,8 @@ const generate = function (patternLibFiles) {
       moduleParserQueue.renderAll(patternLibFiles.elements),
       moduleParserQueue.renderAll(patternLibFiles.components),
     ]).then(function (all) {
-      console.log(all);
+      let renderedElements = moduleRenderer.renderAll(all[0]);
+      let renderedComponents = moduleRenderer.renderAll(all[1]);
     });
   });
 };

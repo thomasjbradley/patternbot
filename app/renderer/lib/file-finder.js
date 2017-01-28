@@ -1,13 +1,13 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
 const promisify = require('es6-promisify');
-const dir = require('node-dir');
-const subdirs = promisify(dir.subdirs);
+const subfiles = promisify(fs.readdir);
 const fileExists = require(__dirname + '/../../shared/file-exists');
 
 const appPkg = require(__dirname + '/../../../package.json');
-
-let patternLibFiles = require(__dirname + '/pattern-lib-files.js');
+let patternLibFiles = require(__dirname + '/pattern-lib-files');
 
 const findParseableFile = function (folderpath, filepath, patternLibKey) {
   const keys = patternLibKey.split(/\./);
@@ -20,9 +20,16 @@ const findParseableFile = function (folderpath, filepath, patternLibKey) {
 
 const findSubDirectories = function (folderpath, subdir, patternLibKey) {
   return new Promise(function (resolve, reject) {
-    subdirs(folderpath + subdir)
+    subfiles(folderpath + subdir)
       .then(function (foundFiles) {
-        patternLibFiles[patternLibKey] = patternLibFiles[patternLibKey].concat(patternLibFiles[patternLibKey], foundFiles);
+        let subdirs = foundFiles.filter(function (file) {
+          return fs.statSync(path.join(folderpath + subdir, file)).isDirectory();
+        });
+
+        patternLibFiles[patternLibKey] = patternLibFiles[patternLibKey].concat(patternLibFiles[patternLibKey], subdirs.map(function (dir) {
+          return path.resolve(folderpath + subdir + '/' + dir);
+        }));
+
         resolve();
       })
       .catch(resolve)

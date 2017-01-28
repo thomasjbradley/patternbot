@@ -9,11 +9,9 @@ const TEMPLATE_FOLDER = path.resolve(__dirname + '/../templates');
 let templates = {};
 
 const get = function (id) {
-  let temp = fs.readFileSync(`${TEMPLATE_FOLDER}/${id}`, 'utf8');
+  if (!templates[id]) templates[id] = fs.readFileSync(`${TEMPLATE_FOLDER}/${id}`, 'utf8');
 
-  templates[id] = temp;
-
-  return temp;
+  return templates[id];
 };
 
 const render = function (id, obj, handlebarsOpts) {

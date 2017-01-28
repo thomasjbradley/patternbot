@@ -1,0 +1,13 @@
+<li>
+  <h2>{{title}}</h2>
+  {{desc}}
+  {{#each patterns}}
+    <div>
+      {{#if ../showSubHeadings}}
+        <h3>{{namePretty}}</h3>
+      {{/if}}
+      <iframe src="{{localPath}}"></iframe>
+      <code><pre>{{content}}</pre></code>
+    </div>
+  {{/each}}
+</li>
