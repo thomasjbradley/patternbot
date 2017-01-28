@@ -45,8 +45,7 @@ const find = function (folderpath) {
       findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.typografier, 'commonParsable.typografier'),
       findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.theme, 'commonParsable.theme'),
       findParseableFile(folderpath, appPkg.config.imagesFolder + '/' + appPkg.config.imagesParsableFilenames.icons, 'imagesParsable.icons'),
-      findSubDirectories(folderpath, appPkg.config.elementsFolder, 'elements'),
-      findSubDirectories(folderpath, appPkg.config.componentsFolder, 'components'),
+      findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
       findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
     ]).then(function () {
       resolve(patternLibFiles);

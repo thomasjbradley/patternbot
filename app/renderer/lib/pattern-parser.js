@@ -7,7 +7,7 @@ const S = require('string');
 const htmlFileParser = require(__dirname + '/html-file-parser');
 const markdownFileParser = require(__dirname + '/markdown-file-parser');
 
-const moduleInfoDefaults = {
+const patternInfoDefaults = {
   name: '',
   namePretty: '',
   path: '',
@@ -39,7 +39,7 @@ const readFile = function (filepath) {
   });
 };
 
-const parseFilesWithExtension = function (folderpath, moduleInfo, ext, parser) {
+const parseFilesWithExtension = function (folderpath, patternInfo, ext, parser) {
   return new Promise(function (resolve, reject) {
     dir.files(folderpath, function (err, everyFile) {
       let files = everyFile.filter(function (item) {
@@ -52,10 +52,10 @@ const parseFilesWithExtension = function (folderpath, moduleInfo, ext, parser) {
           allFiles.forEach(function (item) {
             item.content = parser(item.content);
             item.localPath = getLocalPath(folderpath, item.path);
-            moduleInfo[ext.replace(/\./g, '')][item.name] = item;
+            patternInfo[ext.replace(/\./g, '')][item.name] = item;
           });
 
-          resolve(moduleInfo);
+          resolve(patternInfo);
         })
       ;
     });
@@ -63,19 +63,19 @@ const parseFilesWithExtension = function (folderpath, moduleInfo, ext, parser) {
 };
 
 const getInfo = function (folderpath) {
-  let moduleInfo = JSON.parse(JSON.stringify(moduleInfoDefaults));
+  let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
   let name = getModuleNameFromPath(folderpath);
 
-  moduleInfo.name = name;
-  moduleInfo.namePretty = S(name).humanize().s;
-  moduleInfo.path = folderpath;
+  patternInfo.name = name;
+  patternInfo.namePretty = S(name).humanize().s;
+  patternInfo.path = folderpath;
 
   return new Promise(function (resolve, reject) {
     Promise.all([
-      parseFilesWithExtension(folderpath, moduleInfo, '.html', htmlFileParser),
-      parseFilesWithExtension(folderpath, moduleInfo, '.md', markdownFileParser),
+      parseFilesWithExtension(folderpath, patternInfo, '.html', htmlFileParser),
+      parseFilesWithExtension(folderpath, patternInfo, '.md', markdownFileParser),
     ]).then(function () {
-      resolve(moduleInfo);
+      resolve(patternInfo);
     });
   });
 };

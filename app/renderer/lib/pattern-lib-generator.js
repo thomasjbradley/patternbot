@@ -1,17 +1,16 @@
 'use strict';
 
 const templateHelper = require(__dirname + '/template-helper');
-const moduleParserQueue = require(__dirname + '/module-parser-queue');
-const moduleRenderer = require(__dirname + '/module-renderer');
+const patternParserQueue = require(__dirname + '/pattern-parser-queue');
+const patternRenderer = require(__dirname + '/pattern-renderer');
 
 const generate = function (patternLibFiles) {
   return new Promise(function (resolve, reject) {
     Promise.all([
-      moduleParserQueue.renderAll(patternLibFiles.elements),
-      moduleParserQueue.renderAll(patternLibFiles.components),
+      patternParserQueue.renderAll(patternLibFiles.patterns),
     ]).then(function (all) {
-      let renderedElements = moduleRenderer.renderAll(all[0]);
-      let renderedComponents = moduleRenderer.renderAll(all[1]);
+      let renderedPatterns = patternRenderer.renderAll(all[0]);
+      console.log(renderedPatterns);
     });
   });
 };

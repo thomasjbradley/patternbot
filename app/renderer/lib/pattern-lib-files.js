@@ -10,7 +10,6 @@ module.exports = {
   imagesParsable: {
     icons: false,
   },
-  elements: [],
-  components: [],
+  patterns: [],
   pages: [],
 };

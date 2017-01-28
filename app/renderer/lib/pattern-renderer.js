@@ -3,21 +3,21 @@
 const S = require('string');
 const templateHelper = require(__dirname + '/template-helper');
 
-const render = function (moduleInfo) {
+const render = function (patternInfo) {
   return templateHelper.render('pattern-single.html', {
-    title: moduleInfo.namePretty,
-    showSubHeadings: (Object.keys(moduleInfo.html).length > 1),
-    patterns: moduleInfo.html,
+    title: patternInfo.namePretty,
+    showSubHeadings: (Object.keys(patternInfo.html).length > 1),
+    patterns: patternInfo.html,
   });
 };
 
-const renderAll = function (modules) {
+const renderAll = function (patterns) {
   let renders = [];
 
-  modules.forEach(function (mod) {
+  patterns.forEach(function (mod) {
     renders.push(render(mod));
   });
-console.log(renders);
+
   return renders;
 };
 
