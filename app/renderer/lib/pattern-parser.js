@@ -16,6 +16,10 @@ const patternInfoDefaults = {
   md: {},
 };
 
+const formatName = function (name) {
+  return classify(name).replace(/^\d*-?/, '');
+};
+
 const getModuleNameFromPath = function (folderpath) {
   return path.parse(folderpath).name;
 };
@@ -27,10 +31,10 @@ const getLocalPath = function (folderpath, filepath) {
 const readFile = function (filepath) {
   return new Promise(function (resolve, reject) {
     fs.readFile(filepath, 'utf8', function (err, data) {
-      let name = path.parse(filepath).name;
+      let name = formatName(path.parse(filepath).name);
 
       resolve({
-        name: classify(name),
+        name: name,
         namePretty: S(name).humanize().s,
         path: filepath,
         content: data,
@@ -45,6 +49,8 @@ const parseFilesWithExtension = function (folderpath, patternInfo, ext, parser) 
     dir.files(folderpath, function (err, everyFile) {
       let files = everyFile.filter(function (item) {
         return (path.parse(item).ext === ext);
+      }).sort(function (a, b) {
+        return a.localeCompare(b);
       });
 
       Promise
@@ -67,7 +73,7 @@ const getInfo = function (folderpath) {
   let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
   let name = getModuleNameFromPath(folderpath);
 
-  patternInfo.name = classify(name);
+  patternInfo.name = formatName(name);
   patternInfo.namePretty = S(name).humanize().s;
   patternInfo.path = folderpath;
 

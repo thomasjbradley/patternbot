@@ -19,6 +19,7 @@ const render = function (id, obj, handlebarsOpts) {
 };
 
 module.exports = {
+  TEMPLATE_FOLDER: TEMPLATE_FOLDER,
   get: get,
   render: render,
 };

@@ -1,0 +1,3 @@
+DO NOT MODIFY THIS FOLDER.
+
+If you make any changes, they’ll be completely overwritten by Patternbot.

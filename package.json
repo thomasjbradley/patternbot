@@ -26,17 +26,18 @@
   },
   "dependencies": {
     "electron-is": "^2.3.0",
+    "es6-promisify": "^5.0.0",
+    "fs-extra": "^2.0.0",
+    "handlebars": "^4.0.6",
+    "js-beautify": "^1.6.8",
     "merge-objects": "^1.0.5",
-    "node-dir": "^0.1.16"
+    "node-dir": "^0.1.16",
+    "string": "^3.3.3",
+    "strip-js": "^1.0.6"
   },
   "devDependencies": {
     "electron": "^1.4.15",
-    "electron-builder": "^11.7.0",
-    "es6-promisify": "^5.0.0",
-    "handlebars": "^4.0.6",
-    "js-beautify": "^1.6.8",
-    "string": "^3.3.3",
-    "strip-js": "^1.0.6"
+    "electron-builder": "^11.7.0"
   },
   "scripts": {
     "debug": "NODE_ENV=development electron patternbot.js",

@@ -13,16 +13,10 @@ let appPkg = require(__dirname + '/../../../../package.json');
 
 const $body = document.body;
 
-const savePatternLib = function (folderpath, patternLibString) {
-  fs.writeFile(folderpath + '/' + appPkg.config.patternLibFilename, patternLibString, function () {
-
-  });
-};
-
 const addFolder = function (folderpath) {
   fileFinder.find(folderpath).then(function (patternLibFiles) {
-    patternLibGenerator.generate(patternLibFiles).then(function (patternLibString) {
-      savePatternLib(folderpath, patternLibString);
+    patternLibGenerator.generate(folderpath, patternLibFiles).then(function () {
+
     });
   });
 };

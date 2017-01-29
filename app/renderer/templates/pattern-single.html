@@ -1,4 +1,4 @@
-<section>
+<section id="{{name}}">
   <h2>{{namePretty}}</h2>
 
   {{#if showSubHeadings}}
@@ -12,13 +12,15 @@
   {{desc}}
 
   {{#each patterns}}
-    <div>
+    <div id="{{../name}}-{{name}}">
       {{#if ../showSubHeadings}}
         <h3>{{namePretty}}</h3>
       {{/if}}
 
       <iframe src="{{localPath}}"></iframe>
-      <code><pre>{{content}}</pre></code>
+      {{#unless ../hideCode}}
+        <code><pre>{{content}}</pre></code>
+      {{/unless}}
     </div>
   {{/each}}
 

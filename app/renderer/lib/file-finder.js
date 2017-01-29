@@ -9,6 +9,13 @@ const fileExists = require(__dirname + '/../../shared/file-exists');
 const appPkg = require(__dirname + '/../../../package.json');
 let patternLibFiles = require(__dirname + '/pattern-lib-files');
 
+const shouldIncludeDirectory = function (folderpath, file) {
+  return (
+    fs.statSync(path.join(folderpath, file)).isDirectory()
+    && ['colours-fonts', 'modules', 'grid', 'typography', 'icons'].indexOf(file) < 0
+  );
+};
+
 const findParseableFile = function (folderpath, filepath, patternLibKey) {
   const keys = patternLibKey.split(/\./);
 
@@ -23,7 +30,7 @@ const findSubDirectories = function (folderpath, subdir, patternLibKey) {
     subfiles(folderpath + subdir)
       .then(function (foundFiles) {
         let subdirs = foundFiles.filter(function (file) {
-          return fs.statSync(path.join(folderpath + subdir, file)).isDirectory();
+          return shouldIncludeDirectory(folderpath + subdir, file);
         });
 
         patternLibFiles[patternLibKey] = patternLibFiles[patternLibKey].concat(patternLibFiles[patternLibKey], subdirs.map(function (dir) {
