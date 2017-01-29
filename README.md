@@ -20,7 +20,7 @@ common/
   grid.css             Determine all sizes and create sample layouts.
   type.css             Create a preview using the standard classes.
   theme.css            Use CSS variables inside `:root {}` to define colours & fonts.
-elements/
+patterns/
   buttons/
     index.html
     main.css
@@ -30,21 +30,20 @@ elements/
     ordered.html
     main.css
     main.js            JS should also be supported.
-components/
   header/
     index.html
     main.css
-  footer/
-    index.html
-    main.css 
 images/
   icons.svg            Parse all the <symbol> tags and generate icon previews.
   logo.svg
+  logo-64.svg          Find all the images that start with `logo` and display them.
+  logo-32.svg
+  logo-16.svg
   banner.jpg
 pages/
   home.html
   about.html
-styleguide.html        The final output. A single HTML file with necessary CSS & JS embedded.
+pattern-library.html   The final output. A single HTML file with necessary CSS & JS embedded.
 ```
 
 ---
@@ -55,6 +54,59 @@ styleguide.html        The final output. A single HTML file with necessary CSS &
   - Link every file at the top?
   - Have Patternbot generate a concatenated file?
 - Should Patternbot include a web server? Browsersync?
+
+---
+
+## What will show for the parsable files
+
+Here’s a list of things that will show in the interface for the parsable files.
+
+### Colours
+
+- Show a grid of available colours with Hex & RGB
+- Show the name assigned to it from the `theme.css` file
+- Show the variable used to access it
+
+### Gridifier
+
+*This is completely automated.*
+
+- Available sizes, showing size boxes
+- Show media queries & sizes for each media query
+- Link to Gridifier cheat sheet
+- Some sample text
+
+### Typografier
+
+*All these things should be styled within the `theme.css` file.*
+
+- Grab font-families from `theme.css`, show different weights & styles
+- Use the large full alphabet display
+- Show font sizes & media queries
+- Show a waterfall of `<h#>` tags
+- Example paragraphs & columns?
+- Show all the different font sizes
+- Show all three list types
+- Show inline elements: `del`, `ins`, `abbr`, `sup`, `sub`, `dfn`, `b`, `strong`, `i`, `em`, `cite`
+- Show gutters, push, pad, islands
+- Show blockquote
+- Show links
+- Link to Typografier cheat sheet
+
+### Modulifier
+
+*These things should only be shown if they are enabled.*
+
+- List groups
+- Embed containers
+- Media objects
+- Skip links
+- Link to Typografier cheat sheet
+
+### Icons
+
+- Parse the SVG sprite sheet and find all the `<symbol>` tags
+- Show each symbol at a couple different sizes & colours?
 
 ---
 
@@ -76,8 +128,8 @@ After looking through tonnes of resources these are the things that stick out to
 
 ### Tools
 
-- https://fbrctr.github.io/
-- http://livingstyleguide.devbridge.com/
+- **https://fbrctr.github.io/**
+- **http://livingstyleguide.devbridge.com/**
 - https://github.com/cloudfour/drizzle
 - http://demo.patternlab.io/?p=all
 - https://hugeinc.github.io/styleguide/index.html
@@ -91,8 +143,11 @@ After looking through tonnes of resources these are the things that stick out to
 
 ### Examples
 
+- **http://ux.mailchimp.com/patterns**
+- **https://standards.usa.gov/**
+- **https://www.mapbox.com/base/**
+- **https://walmartlabs.github.io/web-style-guide/**
 - http://rizzo.lonelyplanet.com/styleguide/design-elements/colours
-- https://standards.usa.gov/
 - http://primercss.io/scaffolding/
 - http://www.bbc.co.uk/gel
 - http://clearleft.com/styleguide
@@ -101,10 +156,7 @@ After looking through tonnes of resources these are the things that stick out to
 - https://www.ibm.com/design/language/
 - https://www.yelp.com/styleguide
 - http://solid.buzzfeed.com/
-- http://ux.mailchimp.com/patterns/navigation
-- https://www.mapbox.com/base/
 - http://primercss.io/layout/
-- https://walmartlabs.github.io/web-style-guide/#icons
 - http://patterns.alistapart.com/
 - http://oli.jp/2011/style-guide/
 - https://projects.invisionapp.com/boards/MX1IZXSBQ3AY7
