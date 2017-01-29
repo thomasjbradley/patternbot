@@ -3,12 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const templateHelper = require(__dirname + '/template-helper');
-const patternParserQueue = require(__dirname + '/pattern-parser-queue');
-const patternRenderer = require(__dirname + '/pattern-renderer');
-const builtInHelper = require(__dirname + '/pattern-builtin-helper');
+const templateHelper = require(`${__dirname}/template-helper`);
+const cssCommonParser = require(`${__dirname}/css-common-parser`);
+const builtInHelper = require(`${__dirname}/pattern-builtin-helper`);
+const patternParserQueue = require(`${__dirname}/pattern-parser-queue`);
+const patternRenderer = require(`${__dirname}/pattern-renderer`);
 
-let appPkg = require(__dirname + '/../../../package.json');
+let appPkg = require(`${__dirname}/../../../package.json`);
 
 const getDefaultPatterLibInfo = function (patternLibFiles) {
   return {
@@ -36,20 +37,20 @@ const savePatternLib = function (folderpath, patternLibString) {
 const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     Promise.all([
-      // cssCommonParser.parseAll(patternLibFiles),
+      cssCommonParser.parseAll(patternLibFiles),
       patternParserQueue.parseAllBuiltins('typography'),
-      // imagesParser.parseAll(patterLibFiles),
+      // iconsParser.parseAll(patterLibFiles),
       patternParserQueue.parseAll(patternLibFiles.patterns),
     ]).then(function (all) {
       let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
       let builtinOpts = getBuiltinOpts(patternLibFiles);
 
-      if (all[0].length) {
-        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(all[0], {hideCode: true}));
+      if (all[1].length) {
+        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(all[1], {hideCode: true}));
         builtInHelper.copy(folderpath, 'typography', builtinOpts);
       }
 
-      if (all[1].length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(all[1]));
+      if (all[2].length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(all[2]));
 
       savePatternLib(folderpath, renderPatternLib(patternLibInfo));
       resolve();
