@@ -18,7 +18,7 @@ const getDefaultPatterLibInfo = function (patternLibFiles) {
 
 const getBuiltinOpts = function (patternLibFiles) {
   return {
-    modulifier: (patternLibFiles.commonParsable.moduifier),
+    modulifier: (patternLibFiles.commonParsable.modulifier),
     gridifier: (patternLibFiles.commonParsable.gridifier),
     typografier: (patternLibFiles.commonParsable.typografier),
     theme: (patternLibFiles.commonParsable.theme),
