@@ -36,7 +36,9 @@ const savePatternLib = function (folderpath, patternLibString) {
 const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     Promise.all([
+      // cssCommonParser.parseAll(patternLibFiles),
       patternParserQueue.parseAllBuiltins('typography'),
+      // imagesParser.parseAll(patterLibFiles),
       patternParserQueue.parseAll(patternLibFiles.patterns),
     ]).then(function (all) {
       let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);

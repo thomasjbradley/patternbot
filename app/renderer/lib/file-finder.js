@@ -12,7 +12,7 @@ let patternLibFiles = require(__dirname + '/pattern-lib-files');
 const shouldIncludeDirectory = function (folderpath, file) {
   return (
     fs.statSync(path.join(folderpath, file)).isDirectory()
-    && ['colours-fonts', 'modules', 'grid', 'typography', 'icons'].indexOf(file) < 0
+    && ['brand', 'modules', 'grid', 'typography', 'icons'].indexOf(file) < 0
   );
 };
 
