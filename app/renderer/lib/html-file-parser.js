@@ -2,7 +2,7 @@
 
 const stripJs = require('strip-js');
 const beautifier = require('js-beautify').html;
-const beautifierOptions = require(__dirname + '/beautifier.json');
+const beautifierOptions = require(`${__dirname}/beautifier.json`);
 
 // Work around for Beautifier’s wrap max limit of 32786
 // https://github.com/beautify-web/js-beautify/blob/master/js/lib/beautify-html.js#L118

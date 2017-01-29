@@ -2,7 +2,7 @@
 
 const S = require('string');
 const merge = require('merge-objects');
-const templateHelper = require(__dirname + '/template-helper');
+const templateHelper = require(`${__dirname}/template-helper`);
 
 const render = function (patternInfo, opts) {
   const obj = merge(opts, {

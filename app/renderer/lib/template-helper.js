@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
 
-const TEMPLATE_FOLDER = path.resolve(__dirname + '/../templates');
+const TEMPLATE_FOLDER = path.resolve(`${__dirname}/../templates`);
 
 let templates = {};
 

@@ -4,7 +4,7 @@ const {app, ipcMain, BrowserWindow, dialog, Menu} = require('electron');
 const is = require('electron-is');
 
 const env = process.env.NODE_ENV;
-const appPkg = require(__dirname + '/package.json');
+const appPkg = require(`${__dirname}/package.json`);
 
 let mainWindow;
 
@@ -18,7 +18,7 @@ const createMainWindow = function (next) {
     vibrancy: 'light',
   });
 
-  mainWindow.loadURL('file://' + __dirname + '/app/renderer/windows/main/main.html');
+  mainWindow.loadURL(`file://${__dirname}/app/renderer/windows/main/main.html`);
 
   if (env === 'development') mainWindow.webContents.openDevTools();
 

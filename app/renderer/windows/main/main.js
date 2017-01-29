@@ -5,11 +5,11 @@ const fs = require('fs');
 const path = require('path');
 const {ipcRenderer, shell} = require('electron');
 
-const classify = require(__dirname + '/../../../shared/classify');
-const fileFinder = require(__dirname + '/../../lib/file-finder');
-const patternLibGenerator = require(__dirname + '/../../lib/pattern-lib-generator');
+const classify = require(`${__dirname}/../../../shared/classify`);
+const fileFinder = require(`${__dirname}/../../lib/file-finder`);
+const patternLibGenerator = require(`${__dirname}/../../lib/pattern-lib-generator`);
 
-let appPkg = require(__dirname + '/../../../../package.json');
+let appPkg = require(`${__dirname}/../../../../package.json`);
 
 const $body = document.body;
 

@@ -4,9 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const dir = require('node-dir');
 const S = require('string');
-const classify = require(__dirname + '/../../shared/classify');
-const htmlFileParser = require(__dirname + '/html-file-parser');
-const markdownFileParser = require(__dirname + '/markdown-file-parser');
+const classify = require(`${__dirname}/../../shared/classify`);
+const htmlFileParser = require(`${__dirname}/html-file-parser`);
+const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
 
 const patternInfoDefaults = {
   name: '',

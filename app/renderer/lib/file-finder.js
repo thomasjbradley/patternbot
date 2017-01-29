@@ -4,10 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const promisify = require('es6-promisify');
 const subfiles = promisify(fs.readdir);
-const fileExists = require(__dirname + '/../../shared/file-exists');
+const fileExists = require(`${__dirname}/../../shared/file-exists`);
 
-const appPkg = require(__dirname + '/../../../package.json');
-let patternLibFiles = require(__dirname + '/pattern-lib-files');
+const appPkg = require(`${__dirname}/../../../package.json`);
+let patternLibFiles = require(`${__dirname}/pattern-lib-files`);
 
 const shouldIncludeDirectory = function (folderpath, file) {
   return (
@@ -34,7 +34,7 @@ const findSubDirectories = function (folderpath, subdir, patternLibKey) {
         });
 
         patternLibFiles[patternLibKey] = patternLibFiles[patternLibKey].concat(patternLibFiles[patternLibKey], subdirs.map(function (dir) {
-          return path.resolve(folderpath + subdir + '/' + dir);
+          return path.resolve(`${folderpath}${subdir}/${dir}`);
         }));
 
         resolve();
@@ -47,11 +47,11 @@ const findSubDirectories = function (folderpath, subdir, patternLibKey) {
 const find = function (folderpath) {
   return new Promise(function (resolve, reject) {
     Promise.all([
-      findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.modulifier, 'commonParsable.modulifier'),
-      findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.gridifier, 'commonParsable.gridifier'),
-      findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.typografier, 'commonParsable.typografier'),
-      findParseableFile(folderpath, appPkg.config.commonFolder + '/' + appPkg.config.commonParsableFilenames.theme, 'commonParsable.theme'),
-      findParseableFile(folderpath, appPkg.config.imagesFolder + '/' + appPkg.config.imagesParsableFilenames.icons, 'imagesParsable.icons'),
+      findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.modulifier}`, 'commonParsable.modulifier'),
+      findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.gridifier}`, 'commonParsable.gridifier'),
+      findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.typografier}`, 'commonParsable.typografier'),
+      findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.theme}`, 'commonParsable.theme'),
+      findParseableFile(folderpath, `${appPkg.config.imagesFolder}/${appPkg.config.imagesParsableFilenames.icons}`, 'imagesParsable.icons'),
       findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
       findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
     ]).then(function () {
