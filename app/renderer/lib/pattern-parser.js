@@ -30,13 +30,15 @@ const getLocalPath = function (folderpath, filepath) {
 
 const readFile = function (filepath) {
   return new Promise(function (resolve, reject) {
-    fs.readFile(filepath, 'utf8', function (err, data) {
-      let name = formatName(path.parse(filepath).name);
+    let theFilePath = filepath.slice(0);
+
+    fs.readFile(theFilePath, 'utf8', function (err, data) {
+      let name = formatName(path.parse(theFilePath).name);
 
       resolve({
         name: name,
         namePretty: S(name).humanize().s,
-        path: filepath,
+        path: theFilePath,
         content: data,
         metadata: {},
       });
@@ -44,7 +46,7 @@ const readFile = function (filepath) {
   });
 };
 
-const parseFilesWithExtension = function (folderpath, patternInfo, ext, parser) {
+const parseFilesWithExtension = function (folderpath, ext, parser) {
   return new Promise(function (resolve, reject) {
     dir.files(folderpath, function (err, everyFile) {
       let files = everyFile.filter(function (item) {
@@ -56,13 +58,15 @@ const parseFilesWithExtension = function (folderpath, patternInfo, ext, parser) 
       Promise
         .all(files.map(readFile))
         .then(function (allFiles) {
+          let patterns = [];
+
           allFiles.forEach(function (item) {
             item.content = parser(item.content);
             item.localPath = getLocalPath(folderpath, item.path);
-            patternInfo[ext.replace(/\./g, '')][item.name] = item;
+            patterns.push(item);
           });
 
-          resolve(patternInfo);
+          resolve(patterns);
         })
       ;
     });
@@ -70,18 +74,22 @@ const parseFilesWithExtension = function (folderpath, patternInfo, ext, parser) 
 };
 
 const getInfo = function (folderpath) {
-  let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
-  let name = getModuleNameFromPath(folderpath);
-
-  patternInfo.name = formatName(name);
-  patternInfo.namePretty = S(name).humanize().s;
-  patternInfo.path = folderpath;
-
   return new Promise(function (resolve, reject) {
+    let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
+    let theFolderPath = folderpath.slice(0);
+    let name = getModuleNameFromPath(theFolderPath);
+
+    patternInfo.name = formatName(name);
+    patternInfo.namePretty = S(name).humanize().s;
+    patternInfo.path = theFolderPath;
+
     Promise.all([
-      parseFilesWithExtension(folderpath, patternInfo, '.html', htmlFileParser),
-      parseFilesWithExtension(folderpath, patternInfo, '.md', markdownFileParser),
-    ]).then(function () {
+      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser),
+      parseFilesWithExtension(theFolderPath, '.md', markdownFileParser),
+    ]).then(function (all) {
+      patternInfo.html = all[0];
+      patternInfo.md = all[1];
+
       resolve(patternInfo);
     });
   });

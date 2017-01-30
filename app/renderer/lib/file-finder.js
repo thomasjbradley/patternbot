@@ -9,17 +9,31 @@ const fileExists = require(`${__dirname}/../../shared/file-exists`);
 const appPkg = require(`${__dirname}/../../../package.json`);
 let patternLibFiles = require(`${__dirname}/pattern-lib-files`);
 
+const getIgnorableFolders = function () {
+  let folders = [];
+
+  if (patternLibFiles.commonParsable.modulifier) folders.push('modules');
+  if (patternLibFiles.commonParsable.gridifier) folders.push('grids');
+  if (patternLibFiles.commonParsable.typografier) folders.push('typography');
+  if (patternLibFiles.commonParsable.theme) folders.push('brand');
+  if (patternLibFiles.imagesParsable.icons) folders.push('icons');
+
+  return folders;
+};
+
 const shouldIncludeDirectory = function (folderpath, file) {
+  const ignorables = getIgnorableFolders();
+
   return (
     fs.statSync(path.join(folderpath, file)).isDirectory()
-    && ['brand', 'modules', 'grid', 'typography', 'icons'].indexOf(file) < 0
+    && (ignorables.length < 1 || ignorables.indexOf(file) < 0)
   );
 };
 
 const findParseableFile = function (folderpath, filepath, patternLibKey) {
-  const keys = patternLibKey.split(/\./);
-
   return new Promise(function (resolve, reject) {
+    const keys = patternLibKey.split(/\./);
+
     patternLibFiles[keys[0]][keys[1]] = (fileExists.check(folderpath + filepath)) ? folderpath + filepath : false;
     resolve()
   });
@@ -52,10 +66,13 @@ const find = function (folderpath) {
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.typografier}`, 'commonParsable.typografier'),
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.theme}`, 'commonParsable.theme'),
       findParseableFile(folderpath, `${appPkg.config.imagesFolder}/${appPkg.config.imagesParsableFilenames.icons}`, 'imagesParsable.icons'),
-      findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
-      findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
     ]).then(function () {
-      resolve(patternLibFiles);
+      Promise.all([
+        findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
+        findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
+      ]).then(function () {
+        resolve(patternLibFiles);
+      });
     });
   });
 };

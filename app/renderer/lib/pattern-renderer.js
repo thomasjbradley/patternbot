@@ -5,7 +5,7 @@ const merge = require('merge-objects');
 const templateHelper = require(`${__dirname}/template-helper`);
 
 const render = function (patternInfo, opts) {
-  const obj = merge(opts, {
+  const obj = merge(JSON.parse(JSON.stringify(opts)), {
     name: patternInfo.name,
     namePretty: patternInfo.namePretty,
     showSubHeadings: (Object.keys(patternInfo.html).length > 1),

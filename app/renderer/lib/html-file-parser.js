@@ -3,6 +3,7 @@
 const stripJs = require('strip-js');
 const beautifier = require('js-beautify').html;
 const beautifierOptions = require(`${__dirname}/beautifier.json`);
+const htmlEscape = require(`${__dirname}/html-escape`);
 
 // Work around for Beautifier’s wrap max limit of 32786
 // https://github.com/beautify-web/js-beautify/blob/master/js/lib/beautify-html.js#L118
@@ -26,8 +27,12 @@ const beautifyHtml = function (data) {
   return beautifier(data, beautifierOptions);
 };
 
+const escapeTags = function (data) {
+  return htmlEscape(data);
+};
+
 module.exports = function (data) {
-  [stripHtmlWrapper, stripScriptTags, beautifyHtml].forEach(function (processor) {
+  [stripHtmlWrapper, stripScriptTags, beautifyHtml, escapeTags].forEach(function (processor) {
     data = processor(data);
   });
 
