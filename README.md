@@ -61,52 +61,52 @@ pattern-library.html   The final output. A single HTML file with necessary CSS &
 
 Here’s a list of things that will show in the interface for the parsable files.
 
-### Colours
+### Brand
 
-- Show a grid of available colours with Hex & RGB
-- Show the name assigned to it from the `theme.css` file
-- Show the variable used to access it
+- [ ] Grab font-families from `theme.css`, show different weights & styles
+- [ ] Use the large full alphabet display
+- [ ] Show a grid of available colours with Hex & RGB
+- [ ] Show the name assigned to it from the `theme.css` file
+- [ ] Show the variable used to access it
 
 ### Gridifier
 
 *This is completely automated.*
 
-- Available sizes, showing size boxes
-- Show media queries & sizes for each media query
-- Link to Gridifier cheat sheet
-- Some sample text
+- [ ] Available sizes, showing size boxes
+- [ ] Show media queries & sizes for each media query
+- [ ] Some sample text
+- [ ] Link to Gridifier cheat sheet
 
 ### Typografier
 
 *All these things should be styled within the `theme.css` file.*
 
-- Grab font-families from `theme.css`, show different weights & styles
-- Use the large full alphabet display
-- Show font sizes & media queries
-- Show a waterfall of `<h#>` tags
-- Example paragraphs & columns?
-- Show all the different font sizes
-- Show all three list types
-- Show inline elements: `del`, `ins`, `abbr`, `sup`, `sub`, `dfn`, `b`, `strong`, `i`, `em`, `cite`
-- Show gutters, push, pad, islands
-- Show blockquote
-- Show links
-- Link to Typografier cheat sheet
+- [x] Show font sizes & media queries
+- [x] Show a waterfall of `<h#>` tags
+- [ ] Example paragraphs & columns?
+- [x] Show all the different font sizes
+- [x] Show all three list types
+- [x] Show inline elements: `del`, `ins`, `abbr`, `sup`, `sub`, `dfn`, `b`, `strong`, `i`, `em`, `cite`
+- [ ] Show gutters, push, pad, islands
+- [x] Show blockquote
+- [x] Show links
+- [ ] Link to Typografier cheat sheet
 
 ### Modulifier
 
 *These things should only be shown if they are enabled.*
 
-- List groups
-- Embed containers
-- Media objects
-- Skip links
-- Link to Typografier cheat sheet
+- [ ] List groups
+- [ ] Embed containers
+- [ ] Media objects
+- [ ] Skip links
+- [ ] Link to Modulifier cheat sheet
 
 ### Icons
 
-- Parse the SVG sprite sheet and find all the `<symbol>` tags
-- Show each symbol at a couple different sizes & colours?
+- [ ] Parse the SVG sprite sheet and find all the `<symbol>` tags
+- [ ] Show each symbol at a couple different sizes & colours?
 
 ---
 
