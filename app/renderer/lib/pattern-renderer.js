@@ -17,6 +17,7 @@ const render = function (patternInfo, opts) {
     name: patternInfo.name,
     namePretty: patternInfo.namePretty,
     content: renderedTemplate,
+    opts: opts,
   };
 };
 

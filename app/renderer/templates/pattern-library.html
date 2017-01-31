@@ -24,7 +24,9 @@
         <li><a href="#icons">Icons</a></li>
       {{/if}}
       {{#each patterns}}
-        <li><a href="#{{name}}">{{namePretty}}</a></li>
+        {{#unless opts.hideNav}}
+          <li><a href="#{{name}}">{{namePretty}}</a></li>
+        {{/unless}}
       {{/each}}
     </ul>
   </nav>
