@@ -7,7 +7,9 @@ const subfiles = promisify(fs.readdir);
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
 
 const appPkg = require(`${__dirname}/../../../package.json`);
-let patternLibFiles = require(`${__dirname}/pattern-lib-files`);
+const patternLibFilesDefaults = require(`${__dirname}/pattern-lib-files`);
+
+let patternLibFiles = {};
 
 const getIgnorableFolders = function () {
   let folders = [];
@@ -59,6 +61,8 @@ const findSubDirectories = function (folderpath, subdir, patternLibKey) {
 };
 
 const find = function (folderpath) {
+  patternLibFiles = Object.assign({}, patternLibFilesDefaults);
+
   return new Promise(function (resolve, reject) {
     Promise.all([
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.modulifier}`, 'commonParsable.modulifier'),
