@@ -6,3 +6,6 @@ dist
 vendor/*.jar
 vendor/lib/*.jar
 build/background.tiff
+
+**/*.min.css
+**/*.min.js

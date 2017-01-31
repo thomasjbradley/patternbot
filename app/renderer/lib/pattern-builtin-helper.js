@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const fse = require('fs-extra');
+const glob = require('glob');
 const path = require('path');
 const merge = require('merge-objects');
 
@@ -19,16 +20,30 @@ const getPath = function (builtin, file) {
   }
 };
 
-const listAll = function (builtin) {
-  return fs.readdirSync(getPath(builtin)).filter(function (file) {
-    return !(file.match(/^\./));
+const listAll = function (builtin, extension) {
+  let inpath = getPath(builtin);
+  let ext = (typeof extension === 'undefined') ? '.html': extension;
+
+  return glob.sync(`${inpath}/*${ext}`);
+};
+
+const copyCssFiles = function (builtin, outpath) {
+  let inpath = getPath(builtin);
+  let files = listAll(builtin, '.min.css');
+
+  if (!files) return;
+
+  files.forEach(function (file) {
+    let filename = path.parse(file).base;
+
+    fse.copySync(file, `${outpath}/${filename}`)
   });
 };
 
-const copy = function (folderpath, builtin, opts) {
+const copy = function (folderpath, builtin, commonFiles, commonInfo) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
-  const templateDefaults = {
+  const commonFilesDefaults = {
     modulifier: false,
     gridifier: false,
     typografier: false,
@@ -36,17 +51,23 @@ const copy = function (folderpath, builtin, opts) {
     theme: false,
   };
 
-  if (typeof opts === 'undefined') opts = {};
+  if (typeof commonFiles === 'undefined') commonFiles = {};
 
   fse.emptyDirSync(folder);
 
   patterns.forEach(function (file) {
-    let templateData = merge(templateDefaults, opts);
+    let templateData = {
+      commonFiles: merge(commonFilesDefaults, commonFiles),
+      commonInfo: commonInfo,
+    };
+    let patternData = fs.readFileSync(file, 'utf8')
+    let filename = path.parse(file).base;
 
-    templateData.pattern = fs.readFileSync(getPath(builtin, file), 'utf8');
-    fse.outputFileSync(`${folder}/${file}`, templateHelper.render(`${builtin}.html`, templateData));
+    templateData.pattern = templateHelper.renderString(patternData, templateData);
+    fse.outputFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
   });
 
+  copyCssFiles(builtin, folder);
   fse.copySync(`${templateHelper.TEMPLATE_FOLDER}/${DO_NOT_CHANGE_FILENAME}`, `${folder}/${DO_NOT_CHANGE_FILENAME}`);
 };
 

@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   <title>Typography</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    {{{modulifierMin}}}
-    {{{gridifierMin}}}
-  </style>
-  {{#if typografier}}
+  <link href="modules.min.css" rel="stylesheet">
+  {{#if commonFiles.modulifier}}
+    <link href="../../common/modules.css" rel="stylesheet">
+  {{/if}}
+  <link href="grid.min.css" rel="stylesheet">
+  {{#if commonFiles.typografier}}
     <link href="../../common/type.css" rel="stylesheet">
   {{/if}}
-  {{#if theme}}
+  {{#if commonFiles.theme}}
     <link href="../../common/theme.css" rel="stylesheet">
   {{/if}}
-  {{#if fontUrl}}
+  {{#if commonFiles.fontUrl}}
     <link href="{{fontUrl}}" rel="stylesheet">
   {{/if}}
 </head>

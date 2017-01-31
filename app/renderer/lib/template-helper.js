@@ -14,12 +14,17 @@ const get = function (id) {
   return templates[id];
 };
 
+const renderString = function (str, obj, handlebarsOpts) {
+  return handlebars.compile(str, handlebarsOpts)(obj);
+};
+
 const render = function (id, obj, handlebarsOpts) {
-  return handlebars.compile(get(id), handlebarsOpts)(obj);
+  return renderString(get(id), obj, handlebarsOpts);
 };
 
 module.exports = {
   TEMPLATE_FOLDER: TEMPLATE_FOLDER,
   get: get,
+  renderString: renderString,
   render: render,
 };
