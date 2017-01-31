@@ -1,8 +1,12 @@
-<div class="mq-display">
-{{# each commonInfo.typografier}}
-  {{fontSize}}
-{{/each}}
-</div>
+<ol class="mq-display">
+  {{# each commonInfo.typografier}}
+    <li>
+      <strong>{{mq}}</strong>
+      <em>{{fontSize}} / {{lineHeight}}</em>
+      <span>{{scale}}</span>
+    </li>
+  {{/each}}
+</ol>
 
 <p class="yotta">Largest size</p>
 <p class="zetta">Second largest size</p>
