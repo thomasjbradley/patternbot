@@ -11,10 +11,18 @@
   <nav>
     <ul>
       <li><a href="#brand">Brand</a></li>
-      <li><a href="#typography">Typography</a></li>
-      <li><a href="#grid">Grid</a></li>
-      <li><a href="#modules">Modules</a></li>
-      <li><a href="#icons">Icons</a></li>
+      {{#if files.commonParsable.typografier}}
+        <li><a href="#typography">Typography</a></li>
+      {{/if}}
+      {{#if files.commonParsable.gridifier}}
+        <li><a href="#grid">Grid</a></li>
+      {{/if}}
+      {{#if files.commonParsable.modulifier}}
+        <li><a href="#modules">Modules</a></li>
+      {{/if}}
+      {{#if files.commonParsable.icons}}
+        <li><a href="#icons">Icons</a></li>
+      {{/if}}
       {{#each patterns}}
         <li><a href="#{{name}}">{{namePretty}}</a></li>
       {{/each}}

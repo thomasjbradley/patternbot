@@ -17,17 +17,11 @@ const getDefaultPatterLibInfo = function (patternLibFiles) {
   };
 };
 
-const getCommonFilepaths = function (patternLibFiles) {
-  return {
-    modulifier: (patternLibFiles.commonParsable.modulifier),
-    gridifier: (patternLibFiles.commonParsable.gridifier),
-    typografier: (patternLibFiles.commonParsable.typografier),
-    theme: (patternLibFiles.commonParsable.theme),
-  };
-};
-
-const renderPatternLib = function (patternLibInfo) {
-  return templateHelper.render('pattern-library.html', patternLibInfo);
+const renderPatternLib = function (patternLibFiles, patternLibInfo) {
+  return templateHelper.render('pattern-library.html', {
+    files: patternLibFiles,
+    patterns: patternLibInfo.patterns,
+  });
 };
 
 const savePatternLib = function (folderpath, patternLibString) {
@@ -43,20 +37,19 @@ const generate = function (folderpath, patternLibFiles) {
       patternParserQueue.parseAll(patternLibFiles.patterns),
     ]).then(function (all) {
       let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
-      let commonFilepaths = getCommonFilepaths(patternLibFiles);
 
       let commonInfo = all[0];
       let typographyPatterns = all[1];
       let userPatterns = all[2];
 
-      if (typographyPatterns.length && commonFilepaths.typografier) {
+      if (typographyPatterns.length && patternLibFiles.commonParsable.typografier) {
         patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typographyPatterns, {hideCode: true}));
-        builtInHelper.copy(folderpath, 'typography', commonFilepaths, commonInfo);
+        builtInHelper.copy(folderpath, 'typography', patternLibFiles.commonParsable, commonInfo);
       }
 
       if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
 
-      savePatternLib(folderpath, renderPatternLib(patternLibInfo));
+      savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo));
       resolve();
     });
   });
