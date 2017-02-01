@@ -8,8 +8,8 @@ const merge = require('merge-objects');
 
 const templateHelper = require(`${__dirname}/template-helper`);
 const patternsFolder = path.resolve(`${__dirname}/../patterns`);
+const patternsCommonFolder = path.resolve(`${__dirname}/../patterns-common`);
 
-const DO_NOT_CHANGE_FILENAME = 'DO-NOT-CHANGE.txt';
 let appPkg = require(`${__dirname}/../../../package.json`);
 
 const getPath = function (builtin, file) {
@@ -27,7 +27,7 @@ const listAll = function (builtin, extension) {
   return glob.sync(`${inpath}/*${ext}`);
 };
 
-const copyCssFiles = function (builtin, outpath) {
+const copyCssFiles = function (builtin, folderpath) {
   let inpath = getPath(builtin);
   let files = listAll(builtin, '.min.css');
 
@@ -36,7 +36,21 @@ const copyCssFiles = function (builtin, outpath) {
   files.forEach(function (file) {
     let filename = path.parse(file).base;
 
-    fse.copySync(file, `${outpath}/${filename}`)
+    fse.copySync(file, `${folderpath}/${filename}`)
+  });
+};
+
+const copyCommonFiles = function (builtin, folderpath) {
+  let files = glob.sync(`${patternsCommonFolder}/*`);
+
+  if (!files) return;
+
+  files.forEach(function (file) {
+    let filename = path.parse(file);
+
+    if(filename.ext === '.css' && !filename.base.match(/\.min\.css$/)) return;
+
+    fse.copySync(file, `${folderpath}/${filename.base}`);
   });
 };
 
@@ -68,7 +82,7 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo) {
   });
 
   copyCssFiles(builtin, folder);
-  fse.copySync(`${templateHelper.TEMPLATE_FOLDER}/${DO_NOT_CHANGE_FILENAME}`, `${folder}/${DO_NOT_CHANGE_FILENAME}`);
+  copyCommonFiles(builtin, folder);
 };
 
 module.exports = {

@@ -32,6 +32,7 @@ const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     Promise.all([
       cssCommonParser.parseAll(patternLibFiles),
+      patternParserQueue.parseAllBuiltins('brand'),
       patternParserQueue.parseAllBuiltins('typography'),
       // iconsParser.parseAll(patterLibFiles),
       patternParserQueue.parseAll(patternLibFiles.patterns),
@@ -39,8 +40,14 @@ const generate = function (folderpath, patternLibFiles) {
       let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
       let commonInfo = all[0];
-      let typographyPatterns = all[1];
-      let userPatterns = all[2];
+      let brandPatterns = all[2];
+      let typographyPatterns = all[2];
+      let userPatterns = all[3];
+
+      if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
+        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true}));
+        builtInHelper.copy(folderpath, 'brand', patternLibFiles.commonParsable, commonInfo);
+      }
 
       if (commonInfo.typografier && typographyPatterns.length && patternLibFiles.commonParsable.typografier) {
         patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typographyPatterns, {hideCode: true, hideNav: true}));
