@@ -84,11 +84,11 @@ Here’s a list of things that will show in the interface for the parsable files
 
 - [x] Show font sizes & media queries
 - [x] Show a waterfall of `<h#>` tags
-- [ ] Example paragraphs & columns?
+- [x] Example paragraphs & columns?
 - [x] Show all the different font sizes
 - [x] Show all three list types
 - [x] Show inline elements: `del`, `ins`, `abbr`, `sup`, `sub`, `dfn`, `b`, `strong`, `i`, `em`, `cite`
-- [ ] Show gutters, push, pad, islands
+- [x] Show gutters, push, pad, islands
 - [x] Show blockquote
 - [x] Show links
 - [ ] Link to Typografier cheat sheet
