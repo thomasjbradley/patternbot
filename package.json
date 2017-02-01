@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "css": "^2.2.1",
+    "cssnano": "^3.10.0",
     "electron-is": "^2.3.0",
     "es6-promisify": "^5.0.0",
     "fs-extra": "^2.0.0",
@@ -41,6 +42,10 @@
     "js-beautify": "^1.6.8",
     "merge-objects": "^1.0.5",
     "node-dir": "^0.1.16",
+    "onchange": "^3.2.1",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.6.0",
+    "postcss-cssnext": "^2.9.0",
     "string": "^3.3.3",
     "strip-js": "^1.0.6"
   },
@@ -51,6 +56,13 @@
   "scripts": {
     "debug": "NODE_ENV=development electron patternbot.js",
     "start": "NODE_ENV=production electron patternbot.js",
+    "postcss": "postcss -u postcss-cssnext --postcss-cssnext.browsers 'last 2 versions' -u cssnano",
+    "build-css-type-gridifier": "npm run postcss -- -o app/renderer/patterns/typography/gridifier.min.css app/renderer/patterns/typography/gridifier.css",
+    "build-css-type-modulifier": "npm run postcss -- -o app/renderer/patterns/typography/modulifier.min.css app/renderer/patterns/typography/modulifier.css",
+    "build-css-type-main": "npm run postcss -- -o app/renderer/patterns/typography/typography.min.css app/renderer/patterns/typography/typography.css",
+    "build-css-type": "parallelshell 'npm run build-css-type-main' 'npm run build-css-type-gridifier' 'npm run build-css-type-modulifier'",
+    "build-css": "parallelshell 'npm run build-css-type'",
+    "watch-css": "onchange '**/*.css' -e '**/*.min.css' -- npm run build-css",
     "pack-mac": "build -m --dir",
     "pack-win": "build -w --dir",
     "pack": "build -mw --dir",
