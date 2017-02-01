@@ -42,7 +42,7 @@ const generate = function (folderpath, patternLibFiles) {
       let typographyPatterns = all[1];
       let userPatterns = all[2];
 
-      if (typographyPatterns.length && patternLibFiles.commonParsable.typografier) {
+      if (commonInfo.typografier && typographyPatterns.length && patternLibFiles.commonParsable.typografier) {
         patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typographyPatterns, {hideCode: true, hideNav: true}));
         builtInHelper.copy(folderpath, 'typography', patternLibFiles.commonParsable, commonInfo);
       }

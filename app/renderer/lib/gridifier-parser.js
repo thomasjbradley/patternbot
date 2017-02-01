@@ -28,12 +28,12 @@ const parseSettings = function (settingsString) {
 
 const parse = function (filepath) {
   return new Promise(function (resolve, reject) {
-    if (!filepath) resolve({});
+    if (!filepath) resolve(false);
 
     fs.readFile(filepath, 'utf8', function (err, data) {
       let settingsString = webDevToolSettingsExtractor.extractFrom(data);
 
-      if (!settingsString) resolve({});
+      if (!settingsString) return resolve(false);
 
       resolve(parseSettings(settingsString));
     });
