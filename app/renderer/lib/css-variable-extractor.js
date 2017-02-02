@@ -26,6 +26,7 @@ const parseColour = function (declaration) {
   return {
     name: declaration.property,
     namePretty: S(declaration.property.replace(/\-\-color\-/, '')).humanize().s,
+    raw: declaration.value,
     hex: colourToHex(declaration.value),
     rgba: colourToRgba(declaration.value),
   }
@@ -56,6 +57,7 @@ const parseFont = function (declaration, comments) {
   return {
     name: declaration.property,
     namePretty: declaration.value.match(/[^\,\;]*/)[0].replace(/["']/g, ''),
+    raw: declaration.value,
     weights: (comments) ? comments.split(',').map(item => item.trim()) : false,
   };
 };
