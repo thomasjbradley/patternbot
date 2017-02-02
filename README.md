@@ -63,11 +63,11 @@ Here’s a list of things that will show in the interface for the parsable files
 
 ### Brand
 
-- [ ] Grab font-families from `theme.css`, show different weights & styles
-- [ ] Use the large full alphabet display
-- [ ] Show a grid of available colours with Hex & RGB
-- [ ] Show the name assigned to it from the `theme.css` file
-- [ ] Show the variable used to access it
+- [x] Grab font-families from `theme.css`, show different weights & styles
+- [x] Use the large full alphabet display
+- [x] Show a grid of available colours with Hex & RGB
+- [x] Show the name assigned to it from the `theme.css` file
+- [x] Show the variable used to access it
 
 ### Gridifier
 

@@ -17,10 +17,11 @@ const getDefaultPatterLibInfo = function (patternLibFiles) {
   };
 };
 
-const renderPatternLib = function (patternLibFiles, patternLibInfo) {
+const renderPatternLib = function (patternLibFiles, patternLibInfo, commonInfo) {
   return templateHelper.render('pattern-library.html', {
     files: patternLibFiles,
     patterns: patternLibInfo.patterns,
+    common: commonInfo,
   });
 };
 
@@ -40,7 +41,7 @@ const generate = function (folderpath, patternLibFiles) {
       let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
       let commonInfo = all[0];
-      let brandPatterns = all[2];
+      let brandPatterns = all[1];
       let typographyPatterns = all[2];
       let userPatterns = all[3];
 
@@ -56,7 +57,7 @@ const generate = function (folderpath, patternLibFiles) {
 
       if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
 
-      savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo));
+      savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo));
       resolve();
     });
   });
