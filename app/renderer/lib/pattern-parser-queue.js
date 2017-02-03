@@ -5,10 +5,10 @@ const path = require('path');
 const patternParser = require(`${__dirname}/pattern-parser`);
 const builtInHelper = require(`${__dirname}/pattern-builtin-helper`);
 
-const parseAll = function (allPatterns) {
+const parseAll = function (allPatterns, limiter) {
   return new Promise(function (resolve, reject) {
     Promise
-      .all(allPatterns.map(patternParser))
+      .all(allPatterns.map((folderpath) => patternParser(folderpath, limiter)))
       .then(function (patterns) {
         resolve(patterns.sort(function (a, b) {
           return a.name.localeCompare(b.name);
@@ -18,8 +18,8 @@ const parseAll = function (allPatterns) {
   });
 };
 
-const parseAllBuiltins = function (pattern) {
-  return parseAll([builtInHelper.getPath(pattern)]);
+const parseAllBuiltins = function (pattern, limiter) {
+  return parseAll([builtInHelper.getPath(pattern)], limiter);
 };
 
 module.exports = {

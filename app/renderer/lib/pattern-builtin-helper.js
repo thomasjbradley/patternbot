@@ -27,9 +27,9 @@ const listAll = function (builtin, extension) {
   return glob.sync(`${inpath}/*${ext}`);
 };
 
-const copyCssFiles = function (builtin, folderpath) {
+const copyFilesByExtension = function (builtin, folderpath, ext) {
   let inpath = getPath(builtin);
-  let files = listAll(builtin, '.min.css');
+  let files = listAll(builtin, ext);
 
   if (!files) return;
 
@@ -54,7 +54,7 @@ const copyCommonFiles = function (builtin, folderpath) {
   });
 };
 
-const copy = function (folderpath, builtin, commonFiles, commonInfo) {
+const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
   const commonFilesDefaults = {
@@ -74,14 +74,20 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo) {
       commonFiles: merge(commonFilesDefaults, commonFiles),
       commonInfo: commonInfo,
     };
-    let patternData = fs.readFileSync(file, 'utf8')
-    let filename = path.parse(file).base;
+    let patternData;
+    let filename;
+
+    if (limiter && limiter.indexOf(path.parse(file).name.replace(/^[\d-]*/, '')) <= -1) return;
+
+    patternData = fs.readFileSync(file, 'utf8');
+    filename = path.parse(file).base;
 
     templateData.pattern = templateHelper.renderString(patternData, templateData);
     fse.outputFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
   });
 
-  copyCssFiles(builtin, folder);
+  copyFilesByExtension(builtin, folder, '.min.css');
+  copyFilesByExtension(builtin, folder, '.svg');
   copyCommonFiles(builtin, folder);
 };
 

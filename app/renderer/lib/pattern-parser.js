@@ -46,11 +46,23 @@ const readFile = function (filepath) {
   });
 };
 
-const parseFilesWithExtension = function (folderpath, ext, parser) {
+const parseFilesWithExtension = function (folderpath, ext, parser, limiter) {
   return new Promise(function (resolve, reject) {
     dir.files(folderpath, function (err, everyFile) {
       let files = everyFile.filter(function (item) {
-        return (path.parse(item).ext === ext);
+        if (path.parse(item).ext === ext) {
+          if (limiter) {
+            if (limiter.indexOf(path.parse(item).name.replace(/^[\d-]*/, '')) > -1) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+
+          return true;
+        }
+
+        return false;
       }).sort(function (a, b) {
         return a.localeCompare(b);
       });
@@ -73,7 +85,7 @@ const parseFilesWithExtension = function (folderpath, ext, parser) {
   });
 };
 
-const getInfo = function (folderpath) {
+const getInfo = function (folderpath, limiter) {
   return new Promise(function (resolve, reject) {
     let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
     let theFolderPath = folderpath.slice(0);
@@ -84,7 +96,7 @@ const getInfo = function (folderpath) {
     patternInfo.path = theFolderPath;
 
     Promise.all([
-      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser),
+      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter),
       parseFilesWithExtension(theFolderPath, '.md', markdownFileParser),
     ]).then(function (all) {
       patternInfo.html = all[0];

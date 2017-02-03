@@ -73,9 +73,9 @@ Here’s a list of things that will show in the interface for the parsable files
 
 *This is completely automated.*
 
-- [ ] Available sizes, showing size boxes
-- [ ] Show media queries & sizes for each media query
-- [ ] Some sample text
+- [x] Available sizes, showing size boxes
+- [x] Show media queries & sizes for each media query
+- [x] Some sample text
 - [ ] Link to Gridifier cheat sheet
 
 ### Typografier

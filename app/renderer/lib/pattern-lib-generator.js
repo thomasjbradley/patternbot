@@ -31,41 +31,48 @@ const savePatternLib = function (folderpath, patternLibString) {
 
 const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
-    Promise.all([
-      cssCommonParser.parseAll(patternLibFiles),
-      patternParserQueue.parseAllBuiltins('brand'),
-      patternParserQueue.parseAllBuiltins('typography'),
-      patternParserQueue.parseAllBuiltins('grid'),
-      // iconsParser.parseAll(patterLibFiles),
-      patternParserQueue.parseAll(patternLibFiles.patterns),
-    ]).then(function (all) {
-      let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
+    cssCommonParser.parseAll(patternLibFiles).then(function (commonInfo) {
+      Promise.all([
+        patternParserQueue.parseAllBuiltins('brand'),
+        patternParserQueue.parseAllBuiltins('typography'),
+        patternParserQueue.parseAllBuiltins('grid'),
+        patternParserQueue.parseAllBuiltins('modules', commonInfo.modulifier),
+        // imageFinder.findAll(patterLibFiles),
+        patternParserQueue.parseAll(patternLibFiles.patterns),
+      ]).then(function (all) {
+        let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
-      let commonInfo = all[0];
-      let brandPatterns = all[1];
-      let typographyPatterns = all[2];
-      let gridPatterns = all[3];
-      let userPatterns = all[4];
+        let brandPatterns = all[0];
+        let typePatterns = all[1];
+        let gridPatterns = all[2];
+        let modulePatterns = all[3];
+        let userPatterns = all[4];
 
-      if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
-        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true}));
-        builtInHelper.copy(folderpath, 'brand', patternLibFiles.commonParsable, commonInfo);
-      }
+        if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
+          patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true}));
+          builtInHelper.copy(folderpath, 'brand', patternLibFiles.commonParsable, commonInfo);
+        }
 
-      if (commonInfo.typografier && typographyPatterns.length && patternLibFiles.commonParsable.typografier) {
-        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typographyPatterns, {hideCode: true, hideNav: true}));
-        builtInHelper.copy(folderpath, 'typography', patternLibFiles.commonParsable, commonInfo);
-      }
+        if (commonInfo.typografier && typePatterns.length && typePatterns[0].html.length && patternLibFiles.commonParsable.typografier) {
+          patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typePatterns, {hideCode: true, hideNav: true}));
+          builtInHelper.copy(folderpath, 'typography', patternLibFiles.commonParsable, commonInfo);
+        }
 
-      if (commonInfo.gridifier && gridPatterns.length && patternLibFiles.commonParsable.gridifier) {
-        patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(gridPatterns, {hideCode: true, hideNav: true}));
-        builtInHelper.copy(folderpath, 'grid', patternLibFiles.commonParsable, commonInfo);
-      }
+        if (commonInfo.gridifier && gridPatterns.length && gridPatterns[0].html.length && patternLibFiles.commonParsable.gridifier) {
+          patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(gridPatterns, {hideCode: true, hideNav: true}));
+          builtInHelper.copy(folderpath, 'grid', patternLibFiles.commonParsable, commonInfo);
+        }
 
-      if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
+        if (commonInfo.modulifier && modulePatterns.length && modulePatterns[0].html.length && patternLibFiles.commonParsable.modulifier) {
+          patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(modulePatterns, {hideNav: true}));
+          builtInHelper.copy(folderpath, 'modules', patternLibFiles.commonParsable, commonInfo, commonInfo.modulifier);
+        }
 
-      savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo));
-      resolve();
+        if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
+
+        savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo));
+        resolve();
+      });
     });
   });
 };

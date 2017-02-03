@@ -15,7 +15,7 @@ const getIgnorableFolders = function () {
   let folders = [];
 
   if (patternLibFiles.commonParsable.modulifier) folders.push('modules');
-  if (patternLibFiles.commonParsable.gridifier) folders.push('grids');
+  if (patternLibFiles.commonParsable.gridifier) folders.push('grid');
   if (patternLibFiles.commonParsable.typografier) folders.push('typography');
   if (patternLibFiles.commonParsable.theme) folders.push('brand');
   if (patternLibFiles.imagesParsable.icons) folders.push('icons');
