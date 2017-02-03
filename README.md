@@ -97,15 +97,15 @@ Here’s a list of things that will show in the interface for the parsable files
 
 *These things should only be shown if they are enabled.*
 
-- [ ] List groups
-- [ ] Embed containers
-- [ ] Media objects
-- [ ] Skip links
+- [x] List groups
+- [x] Embed containers
+- [x] Media objects
+- [x] Skip links
 - [ ] Link to Modulifier cheat sheet
 
 ### Icons
 
-- [ ] Parse the SVG sprite sheet and find all the `<symbol>` tags
+- [x] Parse the SVG sprite sheet and find all the `<symbol>` tags
 - [ ] Show each symbol at a couple different sizes & colours?
 
 ---
