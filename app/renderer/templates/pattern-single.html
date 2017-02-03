@@ -1,6 +1,10 @@
 <section id="{{name}}">
   <h2>{{namePretty}}</h2>
 
+  {{#if readme.content.body}}
+    {{{readme.content.body}}}
+  {{/if}}
+
   {{#if showSubHeadings}}
     <ol>
       {{#each patterns}}
@@ -15,6 +19,9 @@
     <div id="{{../name}}-{{name}}">
       {{#if ../showSubHeadings}}
         <h3>{{namePretty}}</h3>
+        {{#if readme}}
+          {{{readme}}}
+        {{/if}}
       {{/if}}
 
       <iframe src="{{localPath}}"></iframe>

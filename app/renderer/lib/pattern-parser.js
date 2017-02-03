@@ -60,7 +60,6 @@ const readFile = function (filepath) {
         namePretty: S(name).humanize().s,
         path: theFilePath,
         content: data,
-        metadata: {},
       });
     });
   });
@@ -100,11 +99,17 @@ const getInfo = function (folderpath, limiter) {
     patternInfo.path = theFolderPath;
 
     Promise.all([
-      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter),
       parseFilesWithExtension(theFolderPath, '.md', markdownFileParser),
+      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter),
     ]).then(function (all) {
-      patternInfo.html = all[0];
-      patternInfo.md = all[1];
+      patternInfo.md = all[0];
+      patternInfo.html = all[1];
+
+      patternInfo.html.forEach((html, i) => {
+        if (!(patternInfo.md && patternInfo.md[0] && patternInfo.md[0].content && patternInfo.md[0].content.attributes && patternInfo.md[0].content.attributes[html.name])) return;
+
+        patternInfo.html[i].readme = patternInfo.md[0].content.attributes[html.name];
+      });
 
       resolve(patternInfo);
     });

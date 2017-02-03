@@ -10,7 +10,9 @@ const render = function (patternInfo, opts) {
     namePretty: patternInfo.namePretty,
     showSubHeadings: (Object.keys(patternInfo.html).length > 1),
     patterns: patternInfo.html,
+    readme: (patternInfo.md && patternInfo.md.length) ? patternInfo.md[0] : false,
   });
+
   const renderedTemplate = templateHelper.render('pattern-single.html', obj);
 
   return {
