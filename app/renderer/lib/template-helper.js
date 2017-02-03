@@ -3,10 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
+const marked = require('marked');
 
 const TEMPLATE_FOLDER = path.resolve(`${__dirname}/../templates`);
 
 let templates = {};
+
+handlebars.registerHelper('markdown', marked);
 
 const get = function (id) {
   if (!templates[id]) templates[id] = fs.readFileSync(`${TEMPLATE_FOLDER}/${id}`, 'utf8');

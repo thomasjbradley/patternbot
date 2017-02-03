@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const readmeParser = require(`${__dirname}/readme-parser`);
 const templateHelper = require(`${__dirname}/template-helper`);
 const cssCommonParser = require(`${__dirname}/css-common-parser`);
 const builtInHelper = require(`${__dirname}/pattern-builtin-helper`);
@@ -34,6 +35,7 @@ const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     cssCommonParser.parseAll(patternLibFiles).then(function (commonInfo) {
       Promise.all([
+        readmeParser.parse(folderpath),
         patternParserQueue.parseAllBuiltins('brand'),
         patternParserQueue.parseAllBuiltins('typography'),
         patternParserQueue.parseAllBuiltins('grid'),
@@ -44,13 +46,14 @@ const generate = function (folderpath, patternLibFiles) {
       ]).then(function (all) {
         let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
-        let brandPatterns = all[0];
-        let typePatterns = all[1];
-        let gridPatterns = all[2];
-        let modulePatterns = all[3];
-        let icons = all[4];
-        let iconsPatterns = all[5];
-        let userPatterns = all[6];
+        commonInfo.readme = all[0];
+        let brandPatterns = all[1];
+        let typePatterns = all[2];
+        let gridPatterns = all[3];
+        let modulePatterns = all[4];
+        let icons = all[5];
+        let iconsPatterns = all[6];
+        let userPatterns = all[7];
 
         if (icons) commonInfo.icons = icons;
 
