@@ -8,6 +8,7 @@ const cssCommonParser = require(`${__dirname}/css-common-parser`);
 const builtInHelper = require(`${__dirname}/pattern-builtin-helper`);
 const patternParserQueue = require(`${__dirname}/pattern-parser-queue`);
 const patternRenderer = require(`${__dirname}/pattern-renderer`);
+const iconParser = require(`${__dirname}/icon-parser`);
 
 let appPkg = require(`${__dirname}/../../../package.json`);
 
@@ -37,7 +38,8 @@ const generate = function (folderpath, patternLibFiles) {
         patternParserQueue.parseAllBuiltins('typography'),
         patternParserQueue.parseAllBuiltins('grid'),
         patternParserQueue.parseAllBuiltins('modules', commonInfo.modulifier),
-        // imageFinder.findAll(patterLibFiles),
+        iconParser.parseAll(patternLibFiles.imagesParsable.icons),
+        patternParserQueue.parseAllBuiltins('icons'),
         patternParserQueue.parseAll(patternLibFiles.patterns),
       ]).then(function (all) {
         let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
@@ -46,26 +48,35 @@ const generate = function (folderpath, patternLibFiles) {
         let typePatterns = all[1];
         let gridPatterns = all[2];
         let modulePatterns = all[3];
-        let userPatterns = all[4];
+        let icons = all[4];
+        let iconsPatterns = all[5];
+        let userPatterns = all[6];
+
+        if (icons) commonInfo.icons = icons;
 
         if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
           patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true}));
-          builtInHelper.copy(folderpath, 'brand', patternLibFiles.commonParsable, commonInfo);
+          builtInHelper.copy(folderpath, 'brand', patternLibFiles, commonInfo);
         }
 
         if (commonInfo.typografier && typePatterns.length && typePatterns[0].html.length && patternLibFiles.commonParsable.typografier) {
           patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(typePatterns, {hideCode: true, hideNav: true}));
-          builtInHelper.copy(folderpath, 'typography', patternLibFiles.commonParsable, commonInfo);
+          builtInHelper.copy(folderpath, 'typography', patternLibFiles, commonInfo);
         }
 
         if (commonInfo.gridifier && gridPatterns.length && gridPatterns[0].html.length && patternLibFiles.commonParsable.gridifier) {
           patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(gridPatterns, {hideCode: true, hideNav: true}));
-          builtInHelper.copy(folderpath, 'grid', patternLibFiles.commonParsable, commonInfo);
+          builtInHelper.copy(folderpath, 'grid', patternLibFiles, commonInfo);
         }
 
         if (commonInfo.modulifier && modulePatterns.length && modulePatterns[0].html.length && patternLibFiles.commonParsable.modulifier) {
           patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(modulePatterns, {hideNav: true}));
-          builtInHelper.copy(folderpath, 'modules', patternLibFiles.commonParsable, commonInfo, commonInfo.modulifier);
+          builtInHelper.copy(folderpath, 'modules', patternLibFiles, commonInfo, commonInfo.modulifier);
+        }
+
+        if (icons.length && iconsPatterns.length && iconsPatterns[0].html.length && patternLibFiles.imagesParsable.icons) {
+          patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(iconsPatterns, {hideNav: true}));
+          builtInHelper.copy(folderpath, 'icons', patternLibFiles, commonInfo);
         }
 
         if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));

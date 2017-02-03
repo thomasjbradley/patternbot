@@ -12,7 +12,7 @@ if (beautifierOptions.wrap_line_length == 0) {
 }
 
 const stripHiddenCode = function (data) {
-  return data.replace(/<!--\s*patternbot:hide-start\s*-->[\s\S]*?\<!--\s*patternbot:hide-end\s*-->/, '');
+  return data.replace(/<!--\s*patternbot:hide-start\s*-->[\s\S]*?\<!--\s*patternbot:hide-end\s*-->/g, '');
 };
 
 const stripHtmlWrapper = function (data) {

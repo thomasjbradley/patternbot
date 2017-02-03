@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 const promisify = require('es6-promisify');
 const subfiles = promisify(fs.readdir);
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
@@ -41,6 +42,17 @@ const findParseableFile = function (folderpath, filepath, patternLibKey) {
   });
 };
 
+const findLogos = function (folderpath, imagesFolder) {
+  return new Promise(function (resolve, reject) {
+    glob(`${folderpath}${imagesFolder}/?(logo|logo-256|logo-64|logo-32|logo-16).svg`, function (err, logos) {
+      if (err) return resolve();
+
+      patternLibFiles.logos = logos;
+      resolve();
+    });
+  });
+};
+
 const findSubDirectories = function (folderpath, subdir, patternLibKey) {
   return new Promise(function (resolve, reject) {
     subfiles(folderpath + subdir)
@@ -72,6 +84,7 @@ const find = function (folderpath) {
       findParseableFile(folderpath, `${appPkg.config.imagesFolder}/${appPkg.config.imagesParsableFilenames.icons}`, 'imagesParsable.icons'),
     ]).then(function () {
       Promise.all([
+        findLogos(folderpath, appPkg.config.imagesFolder),
         findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
         findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
       ]).then(function () {

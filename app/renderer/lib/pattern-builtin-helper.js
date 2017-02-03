@@ -57,21 +57,12 @@ const copyCommonFiles = function (builtin, folderpath) {
 const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
-  const commonFilesDefaults = {
-    modulifier: false,
-    gridifier: false,
-    typografier: false,
-    fontUrl: false,
-    theme: false,
-  };
-
-  if (typeof commonFiles === 'undefined') commonFiles = {};
 
   fse.emptyDirSync(folder);
 
   patterns.forEach(function (file) {
     let templateData = {
-      commonFiles: merge(commonFilesDefaults, commonFiles),
+      commonFiles: commonFiles,
       commonInfo: commonInfo,
     };
     let patternData;
