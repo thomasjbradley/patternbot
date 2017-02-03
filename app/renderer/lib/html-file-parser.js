@@ -11,6 +11,10 @@ if (beautifierOptions.wrap_line_length == 0) {
   beautifierOptions.wrap_line_length = Number.MAX_SAFE_INTEGER;
 }
 
+const stripHiddenCode = function (data) {
+  return data.replace(/<!--\s*patternbot:hide-start\s*-->[\s\S]*?\<!--\s*patternbot:hide-end\s*-->/, '');
+};
+
 const stripHtmlWrapper = function (data) {
   let htmlBits = data.split(/\<body[^>]*\>/);
 
@@ -32,7 +36,7 @@ const escapeTags = function (data) {
 };
 
 module.exports = function (data) {
-  [stripHtmlWrapper, stripScriptTags, beautifyHtml, escapeTags].forEach(function (processor) {
+  [stripHiddenCode, stripHtmlWrapper, stripScriptTags, beautifyHtml, escapeTags].forEach(function (processor) {
     data = processor(data);
   });
 

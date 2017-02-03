@@ -28,6 +28,26 @@ const getLocalPath = function (folderpath, filepath) {
   return folderpath.split(/[\/\\]/).slice(-2).join('/') + '/' + path.parse(filepath).base;
 };
 
+const filterAndSortFiles = function (everyFile, ext, limiter) {
+  return everyFile.filter(function (item) {
+    if (path.parse(item).ext === ext) {
+      if (limiter) {
+        if (limiter.indexOf(path.parse(item).name.replace(/^[\d-]*/, '')) > -1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return false;
+  }).sort(function (a, b) {
+    return a.localeCompare(b);
+  });
+};
+
 const readFile = function (filepath) {
   return new Promise(function (resolve, reject) {
     let theFilePath = filepath.slice(0);
@@ -49,23 +69,7 @@ const readFile = function (filepath) {
 const parseFilesWithExtension = function (folderpath, ext, parser, limiter) {
   return new Promise(function (resolve, reject) {
     dir.files(folderpath, function (err, everyFile) {
-      let files = everyFile.filter(function (item) {
-        if (path.parse(item).ext === ext) {
-          if (limiter) {
-            if (limiter.indexOf(path.parse(item).name.replace(/^[\d-]*/, '')) > -1) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-
-          return true;
-        }
-
-        return false;
-      }).sort(function (a, b) {
-        return a.localeCompare(b);
-      });
+      let files = filterAndSortFiles(everyFile, ext, limiter);
 
       Promise
         .all(files.map(readFile))
