@@ -1,0 +1,75 @@
+.patternbot-font-primary {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+code,
+pre {
+  display: block;
+  margin: 0;
+  overflow-x: hidden;
+
+  font-family: "Source Code Pro", monospace;
+}
+
+code {
+  padding: 0 .4em .15em;
+
+  background-color: #f8f8f8;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+}
+
+.patternbot-hr {
+  border-width: 1px;
+  border-color: #e2e2e2;
+}
+
+.patternbot-hr:last-child {
+  display: none;
+}
+
+.patternbot-code-invisible {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.patternbot-pad-box {
+  background-color: #e2e2e2;
+  background-color: var(--color-primary);
+}
+
+.patternbot-pad-box-inner {
+  background-color: #fff;
+}
+
+.patternbot-mq-display-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  width: 100%;
+
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.patternbot-mq-display {
+  overflow: hidden;
+}
+
+.patternbot-mq-display > li:last-child {
+  padding-bottom: 6rem;
+}
+
+.patternbot-mq-inner {
+  min-height: 2rem;
+
+  background-color: #e2e2e2;
+  background-color: var(--color-primary);
+  border-top: 2px solid #fff;
+}
+
+.patternbot-mq-list {
+  min-width: 24em;
+  padding-top: 2.2rem;
+
+  border-left: 2px solid #e2e2e2;
+  border-left-color: var(--color-primary);
+}

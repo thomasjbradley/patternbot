@@ -15,7 +15,7 @@
 
     {{#if readme.content.body}}
       <div class="pattern-desc milli island">
-        {{{readme.content.body}}}
+        <div class="max-length">{{{readme.content.body}}}</div>
       </div>
     {{/if}}
   </div>
@@ -31,17 +31,19 @@
           </div>
           {{#if readme}}
             <div class="pattern-desc milli island">
-              {{{markdown readme}}}
+              <div class="max-length">{{{markdown readme}}}</div>
             </div>
           {{/if}}
         </div>
       {{/if}}
 
-      <div class="pattern-examples gutter">
+      <div class="pattern-examples">
         <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)"></iframe>
         {{#unless ../hideCode}}
-          <div class="pattern-code milli island-1-2">
-            <code><pre>{{{content}}}</pre></code>
+          <div class="gutter">
+            <div class="pattern-code milli island-1-2">
+              <code><pre>{{{content}}}</pre></code>
+            </div>
           </div>
         {{/unless}}
       </div>

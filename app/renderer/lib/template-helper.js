@@ -11,6 +11,29 @@ let templates = {};
 
 handlebars.registerHelper('markdown', marked);
 
+handlebars.registerHelper('times', function (n, block) {
+  let accum = '';
+
+  for(let i = 1; i <= n; ++i) {
+    block.data.index = i;
+    block.data.first = i === 1;
+    block.data.last = i === (n);
+    accum += block.fn(this);
+  }
+
+  return accum;
+});
+
+handlebars.registerHelper('loop', function (n, block) {
+  let accum = '';
+
+  for (let i = 1; i <= n; ++i) {
+    accum += block.fn(i);
+  }
+
+  return accum;
+});
+
 const get = function (id) {
   if (!templates[id]) templates[id] = fs.readFileSync(`${TEMPLATE_FOLDER}/${id}`, 'utf8');
 
