@@ -15,6 +15,7 @@ const $body = document.body;
 const $header = document.getElementById('header');
 const $main = document.getElementById('main');
 const $gears = document.querySelector('.gears');
+const $check = document.querySelector('.check');
 const $foldername = document.getElementById('folder-name');
 const $btnGenerate = document.getElementById('btn-generate');
 
@@ -24,6 +25,7 @@ const resetInterface = function () {
   $header.removeAttribute('hidden');
   $main.setAttribute('hidden', true);
   $gears.removeAttribute('hidden');
+  $check.setAttribute('hidden', true);
   $foldername.innerText = 'pattern-library';
   $btnGenerate.setAttribute('disabled', true);
   ipcRenderer.send('menu:disable-file-items');
@@ -33,6 +35,7 @@ const showFolderInterface = function () {
   $header.setAttribute('hidden', true);
   $main.removeAttribute('hidden');
   $gears.removeAttribute('hidden');
+  $check.setAttribute('hidden', true);
   $foldername.innerText = path.parse(currentFolderPath).base;
   $btnGenerate.setAttribute('disabled', true);
   ipcRenderer.send('menu:enable-file-items');
@@ -40,6 +43,7 @@ const showFolderInterface = function () {
 
 const showFinishedLoading = function () {
   $gears.setAttribute('hidden', true);
+  $check.removeAttribute('hidden');
   $btnGenerate.removeAttribute('disabled');
 };
 

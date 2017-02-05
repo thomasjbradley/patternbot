@@ -177,3 +177,14 @@ main {
     transform: rotate(360deg);
   }
 }
+
+.check {
+  left: 50%;
+  height: 54px;
+  position: absolute;
+  top: 50%;
+  width: 72px;
+
+  transform: translate(-50%, -50%);
+  opacity: .3;
+}
