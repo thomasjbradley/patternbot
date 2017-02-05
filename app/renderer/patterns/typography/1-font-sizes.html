@@ -1,22 +1,77 @@
-<ol class="mq-display">
-  {{# each commonInfo.typografier}}
-    <li>
-      <strong>{{mq}}</strong>
-      <em>{{fontSize}} / {{lineHeight}}</em>
-      <span>{{scale}}</span>
-    </li>
-  {{/each}}
-</ol>
+<div class="patternbot-mq-display-wrap push">
+  <ol class="patternbot-mq-display list-group push-0 pad-b" style="{{# each commonInfo.typografier}}width: calc({{mq}}em + 40em); {{/each}}">
+    {{# each commonInfo.typografier}}
+      <li style="padding-left: {{mq}}em">
+        <div class="patternbot-mq-inner">
+          <dl class="patternbot-mq-list list-group-inline push-0 gutter-1-2 left micro">
+            <dt class="push-0">Media query</dt>
+            <dd class="push-0">{{#if mq}}{{mq}}em{{else}}∞{{/if}}</dd>
+            <dt class="push-0">Size &amp; line height</dt>
+            <dd class="push-0">{{fontSize}}% / {{lineHeight}}rem</dd>
+            <dt class="push-0">Type scale</dt>
+            <dd class="push-0">{{scale}}</dd>
+          </dl>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+</div>
 
-<p class="yotta">Largest size</p>
-<p class="zetta">Second largest size</p>
-<p class="exa">Heading level 1</p>
-<p class="peta">Heading level 2</p>
-<p class="tera">Heading level 3</p>
-<p class="giga">Heading level 4</p>
-<p class="mega">Heading level 5</p>
-<p class="kilo">This is some text</p>
-<p>This is some more text</p>
-<p class="milli">Second smallest size</p>
-<small>Second smallest size</small>
-<p class="micro">Smallest size</p>
+<p class="yotta push-0">Largest size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.yotta</code></li>
+</ul>
+
+<p class="zetta push-0">Second largest size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.zetta</code></li>
+</ul>
+
+<p class="exa push-0">Heading level 1 size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.exa</code></li>
+  <li><code>&lt;h1&gt;</code></li>
+</ul>
+
+<p class="peta push-0">Heading level 2 size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.peta</code></li>
+  <li><code>&lt;h2&gt;</code></li>
+</ul>
+
+<p class="tera push-0">Heading level 3 size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.tera</code></li>
+  <li><code>&lt;h3&gt;</code></li>
+</ul>
+
+<p class="giga push-0">Heading level 4 size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.giga</code></li>
+  <li><code>&lt;h4&gt;</code></li>
+</ul>
+
+<p class="mega push-0">Heading level 5 size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.mega</code></li>
+  <li><code>&lt;h5&gt;</code></li>
+</ul>
+
+<p class="push-0">Default body size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.kilo</code></li>
+  <li><code>&lt;h6&gt;</code></li>
+  <li><code>&lt;p&gt;</code></li>
+  <li><code class="patternbot-code-invisible">default</code></li>
+</ul>
+
+<p class="milli push-0">Second smallest size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.milli</code></li>
+  <li><code>&lt;small&gt;</code></li>
+</ul>
+
+<p class="micro push-0">Smallest size</p>
+<ul class="patternbot-code-details list-group-inline micro">
+  <li><code>.micro</code></li>
+</ul>

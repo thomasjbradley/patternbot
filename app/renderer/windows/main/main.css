@@ -43,6 +43,137 @@ body {
   display: none !important;
 }
 
+img,
+svg {
+  pointer-events: none;
+}
+
 button * {
   pointer-events: none;
+}
+
+button {
+  padding: var(--control-padding);
+
+  background-color: #f8f8f8;
+  background-image: linear-gradient(to bottom, #fefefe, #f3f3f3);
+  border: 1px solid var(--control-border-color);
+  border-bottom-color: var(--control-border-color-darker);
+  border-radius: var(--control-border-radius);
+  box-shadow: 0px 1px 0px rgba(100, 100, 100, .1);
+
+  font-size: var(--control-font-size);
+}
+
+button:focus {
+  outline: var(--control-outline);
+  outline-offset: var(--control-outline-offset);
+}
+
+button:active {
+  background-image: linear-gradient(to bottom, #4e98fa, #136be1);
+  border-color: #2a81fb;
+  border-bottom-color: #0546da;
+  box-shadow: 0px 1px 0px rgba(100, 100, 100, .3);
+  outline: 0;
+
+  color: #fff;
+}
+
+.window-blurred button,
+button[disabled] {
+  opacity: .5;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  text-align: center;
+}
+
+.drop-arrow {
+  width: 128px;
+
+  opacity: .3;
+}
+
+h1 {
+  margin-top: 1.4rem;
+  margin-bottom: 0;
+
+  opacity: .4;
+
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+[title="and"] {
+  font-family: Baskerville, Palatino, "Book Antiqua", serif;
+  font-style: italic;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  text-align: center;
+}
+
+.folder {
+  height: 105px;
+  width: 128px;
+
+  opacity: .3;
+}
+
+.folder-name {
+  margin-top: .2rem;
+  margin-bottom: 1.8rem;
+
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.folder-wrap {
+  position: relative;
+}
+
+.gears {
+  left: 50%;
+  height: 72px;
+  position: absolute;
+  top: 50%;
+  width: 72px;
+
+  transform: translate(-50%, -50%);
+}
+
+.gears-top {
+  opacity: .2;
+  animation: spin 2s linear infinite;
+  transform-origin: 80.8px 80.8px;
+}
+
+.gears-bottom {
+  opacity: .3;
+  animation: spin 2s linear reverse infinite;
+  transform-origin: 176.3px 176.3px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

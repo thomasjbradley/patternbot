@@ -12,11 +12,39 @@ const patternLibGenerator = require(`${__dirname}/../../lib/pattern-lib-generato
 let appPkg = require(`${__dirname}/../../../../package.json`);
 
 const $body = document.body;
+const $header = document.getElementById('header');
+const $main = document.getElementById('main');
+const $gears = document.querySelector('.gears');
+const $foldername = document.getElementById('folder-name');
+const $btnGenerate = document.getElementById('btn-generate');
+
+const resetInterface = function () {
+  $header.removeAttribute('hidden');
+  $main.setAttribute('hidden', true);
+  $gears.removeAttribute('hidden');
+  $foldername.innerText = 'pattern-library';
+  $btnGenerate.setAttribute('disabled', true);
+};
+
+const showFolderInterface = function (foldername) {
+  $header.setAttribute('hidden', true);
+  $main.removeAttribute('hidden');
+  $gears.removeAttribute('hidden');
+  $foldername.innerText = foldername;
+  $btnGenerate.setAttribute('disabled', true);
+};
+
+const showFinishedLoading = function () {
+  $gears.setAttribute('hidden', true);
+  $btnGenerate.removeAttribute('disabled');
+};
 
 const addFolder = function (folderpath) {
+  showFolderInterface(path.parse(folderpath).base);
+
   fileFinder.find(folderpath).then(function (patternLibFiles) {
     patternLibGenerator.generate(folderpath, patternLibFiles).then(function () {
-
+      showFinishedLoading();
     });
   });
 };

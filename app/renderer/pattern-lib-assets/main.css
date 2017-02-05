@@ -1,0 +1,121 @@
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: #444;
+}
+
+a {
+  border-bottom: .1em solid rgba(0, 0, 0, .4);
+
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom-color: #000;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  max-width: 100vw;
+  width: 100vw;
+}
+
+.masthead {
+  min-width: 12em;
+  width: 12em;
+
+  background-color: #333;
+
+  color: #fff;
+}
+
+.masthead-inner {
+  position: fixed;
+  width: 12em;
+}
+
+.nav a {
+  color: #e2e2e2;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background-color: #e2e2e2;
+  color: #333;
+}
+
+.nav .current {
+  background-color: #999;
+  color: #000;
+}
+
+.main {
+  flex-grow: 1;
+  width: calc(100% - 12em);
+}
+
+.main iframe {
+  overflow: hidden;
+  width: 100%;
+
+  border: 0;
+}
+
+.pattern {
+
+}
+
+.pattern-toolbar {
+  background-color: #e2e2e2;
+
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.pattern:first-child .pattern-toolbar {
+  border-top: 0;
+}
+
+.pattern-toolbar-inner {
+  background-color: #f6f6f6;
+}
+
+.btn-rounded {
+  border-radius: 50em;
+  border-color: #999;
+}
+
+.btn-rounded:hover {
+  background-color: #ccc;
+  border-color: #333;
+}
+
+.pattern-desc {
+  background-color: #fafafa;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.pattern-desc :last-child {
+  margin-bottom: 0;
+}
+
+.pattern-code,
+.pattern-code code,
+.pattern-code pre {
+  font-family: "Source Code Pro", monospace;
+}
+
+.pattern-code {
+  overflow-x: hidden;
+
+  background-color: #f8f8f8;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+}
+
+.pattern-code code,
+.pattern-code pre {
+  margin: 0;
+}

@@ -1,33 +1,50 @@
-<section id="{{name}}">
-  <h2>{{namePretty}}</h2>
+<section class="pattern" id="{{name}}">
+  <div class="push">
+    <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-4">
+      <h2 class="pattern-name peta push-1-8">{{namePretty}}</h2>
+      {{#if showSubHeadings}}
+        <nav class="pattern-nav milli">
+          <ol class="list-group-inline pad-t-1-4 push-0">
+            {{#each patterns}}
+              <li><a class="btn btn-ghost btn-rounded gutter push-1-4 pad-t-1-8 pad-b-1-8" href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
+            {{/each}}
+          </ol>
+        </nav>
+      {{/if}}
+    </div>
 
-  {{#if readme.content.body}}
-    {{{readme.content.body}}}
-  {{/if}}
-
-  {{#if showSubHeadings}}
-    <ol>
-      {{#each patterns}}
-        <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
-      {{/each}}
-    </ol>
-  {{/if}}
+    {{#if readme.content.body}}
+      <div class="pattern-desc milli island">
+        {{{readme.content.body}}}
+      </div>
+    {{/if}}
+  </div>
 
   {{desc}}
 
   {{#each patterns}}
-    <div id="{{../name}}-{{name}}">
+    <div class="pattern-details push" id="{{../name}}-{{name}}">
       {{#if ../showSubHeadings}}
-        <h3>{{namePretty}}</h3>
-        {{#if readme}}
-          {{{markdown readme}}}
-        {{/if}}
+        <div class="push">
+          <div class="pattern-toolbar pattern-toolbar-inner gutter pad-t-1-4 pad-b-1-4">
+            <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
+          </div>
+          {{#if readme}}
+            <div class="pattern-desc milli island">
+              {{{markdown readme}}}
+            </div>
+          {{/if}}
+        </div>
       {{/if}}
 
-      <iframe src="{{localPath}}"></iframe>
-      {{#unless ../hideCode}}
-        <code><pre>{{{content}}}</pre></code>
-      {{/unless}}
+      <div class="pattern-examples gutter">
+        <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)"></iframe>
+        {{#unless ../hideCode}}
+          <div class="pattern-code milli island-1-2">
+            <code><pre>{{{content}}}</pre></code>
+          </div>
+        {{/unless}}
+      </div>
     </div>
   {{/each}}
 

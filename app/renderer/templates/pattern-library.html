@@ -4,39 +4,49 @@
   <meta charset="utf-8">
   <title>Pattern library</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>{{optimized_css}}</style>
+  <style>{{{common.assets.css}}}</style>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
 </head>
 <body>
 
-  <nav>
-    <ul>
-      <li><a href="#brand">Brand</a></li>
-      {{#if files.commonParsable.typografier}}
-        <li><a href="#typography">Typography</a></li>
-      {{/if}}
-      {{#if files.commonParsable.gridifier}}
-        <li><a href="#grid">Grid</a></li>
-      {{/if}}
-      {{#if files.commonParsable.modulifier}}
-        <li><a href="#modules">Modules</a></li>
-      {{/if}}
-      {{#if files.imagesParsable.icons}}
-        <li><a href="#icons">Icons</a></li>
-      {{/if}}
+  <div class="wrapper">
+
+    <header class="masthead">
+      <div class="masthead-inner">
+        <h1 class="tera gutter pad-t pad-b push-0">Pattern Library</h1>
+        <nav class="nav mega">
+          <ul class="list-group">
+            <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#brand">Brand</a></li>
+            {{#if files.commonParsable.typografier}}
+              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#typography">Typography</a></li>
+            {{/if}}
+            {{#if files.commonParsable.gridifier}}
+              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#grid">Grid</a></li>
+            {{/if}}
+            {{#if files.commonParsable.modulifier}}
+              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#modules">Modules</a></li>
+            {{/if}}
+            {{#if files.imagesParsable.icons}}
+              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#icons">Icons</a></li>
+            {{/if}}
+            {{#each patterns}}
+              {{#unless opts.hideNav}}
+                <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#{{name}}">{{namePretty}}</a></li>
+              {{/unless}}
+            {{/each}}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
       {{#each patterns}}
-        {{#unless opts.hideNav}}
-          <li><a href="#{{name}}">{{namePretty}}</a></li>
-        {{/unless}}
+        {{{content}}}
       {{/each}}
-    </ul>
-  </nav>
+    </main>
 
-  <main>
-    {{#each patterns}}
-      {{{content}}}
-    {{/each}}
-  </main>
+  </div>
 
-  <script>{{optimiezd_js}}</script>
+  <script>{{{common.assets.js}}}</script>
 </body>
 </html>
