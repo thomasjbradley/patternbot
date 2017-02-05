@@ -1,0 +1,81 @@
+[
+  {
+    "label": "File",
+    "id": "file",
+    "submenu": [
+      {
+        "label": "Add Folder…",
+        "accelerator": "CmdOrCtrl+O",
+        "command": "app:add-folder"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Generate",
+        "id": "generate",
+        "enabled": false,
+        "accelerator": "CmdOrCtrl+R",
+        "command": "app:generate"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Quit",
+        "accelerator": "CmdOrCtrl+Q",
+        "command": "app:quit"
+      }
+    ]
+  },
+  {
+    "label": "Window",
+    "id": "window",
+    "role": "window",
+    "submenu": [
+      {
+        "label": "Minimize",
+        "accelerator": "CmdOrCtrl+M",
+        "role": "minimize"
+      },
+      {
+        "label": "Close",
+        "accelerator": "CmdOrCtrl+W",
+        "role": "close"
+      }
+    ]
+  },
+  {
+    "label": "Help",
+    "id": "help",
+    "role": "help",
+    "submenu": [
+      {
+        "label": "Version {{version}}",
+        "enabled": false
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Patternbot License",
+        "command": "app:patternbot-license"
+      },
+      {
+        "label": "Patternbot Website",
+        "command": "app:patternbot-website"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Patternbot Support",
+        "command": "app:patternbot-support"
+      },
+      {
+        "label": "Send Feedback…",
+        "command": "app:send-feedback"
+      }
+    ]
+  }
+]

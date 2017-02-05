@@ -18,20 +18,24 @@ const $gears = document.querySelector('.gears');
 const $foldername = document.getElementById('folder-name');
 const $btnGenerate = document.getElementById('btn-generate');
 
+let currentFolderPath;
+
 const resetInterface = function () {
   $header.removeAttribute('hidden');
   $main.setAttribute('hidden', true);
   $gears.removeAttribute('hidden');
   $foldername.innerText = 'pattern-library';
   $btnGenerate.setAttribute('disabled', true);
+  ipcRenderer.send('menu:disable-file-items');
 };
 
-const showFolderInterface = function (foldername) {
+const showFolderInterface = function () {
   $header.setAttribute('hidden', true);
   $main.removeAttribute('hidden');
   $gears.removeAttribute('hidden');
-  $foldername.innerText = foldername;
+  $foldername.innerText = path.parse(currentFolderPath).base;
   $btnGenerate.setAttribute('disabled', true);
+  ipcRenderer.send('menu:enable-file-items');
 };
 
 const showFinishedLoading = function () {
@@ -39,14 +43,19 @@ const showFinishedLoading = function () {
   $btnGenerate.removeAttribute('disabled');
 };
 
-const addFolder = function (folderpath) {
-  showFolderInterface(path.parse(folderpath).base);
+const generate = function () {
+  showFolderInterface();
 
-  fileFinder.find(folderpath).then(function (patternLibFiles) {
-    patternLibGenerator.generate(folderpath, patternLibFiles).then(function () {
+  fileFinder.find(currentFolderPath).then(function (patternLibFiles) {
+    patternLibGenerator.generate(currentFolderPath, patternLibFiles).then(function () {
       showFinishedLoading();
     });
   });
+};
+
+const addFolder = function (folderpath) {
+  currentFolderPath = folderpath;
+  showFolderInterface();
 };
 
 $body.classList.add(`os-${os.platform()}`);
@@ -72,10 +81,22 @@ $body.addEventListener('drop', function (e) {
   e.preventDefault();
 
   addFolder(e.dataTransfer.files[0].path);
+  generate();
 
   return false;
 }, true);
 
 window.addEventListener('will-navigate', function (e) {
   e.preventDefault();
+});
+
+ipcRenderer.on('app:add-folder', function (e, folder) {
+  if (typeof folder !== 'string') folder = folder[0];
+
+  addFolder(folder);
+  generate();
+});
+
+ipcRenderer.on('app:generate', function (e) {
+  generate();
 });

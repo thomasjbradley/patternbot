@@ -1,0 +1,108 @@
+[
+  {
+    "label": "Patternbot",
+    "id": "app",
+    "submenu": [
+      {
+        "label": "Version {{version}}",
+        "enabled": false
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Hide Patternbot",
+        "accelerator": "CmdOrCtrl+H",
+        "role": "hide"
+      },
+      {
+        "label": "Hide Others",
+        "accelerator": "CmdOrCtrl+Alt+H",
+        "role": "hideothers"
+      },
+      {
+        "label": "Show All",
+        "role": "unhide"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Quit",
+        "accelerator": "CmdOrCtrl+Q",
+        "command": "app:quit"
+      }
+    ]
+  },
+  {
+    "label": "File",
+    "id": "file",
+    "submenu": [
+      {
+        "label": "Add Folders",
+        "accelerator": "CmdOrCtrl+O",
+        "command": "app:add-folder"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Generate",
+        "id": "generate",
+        "enabled": false,
+        "accelerator": "CmdOrCtrl+R",
+        "command": "app:generate"
+      }
+    ]
+  },
+  {
+    "label": "Window",
+    "id": "window",
+    "role": "window",
+    "submenu": [
+      {
+        "label": "Minimize",
+        "accelerator": "CmdOrCtrl+M",
+        "role": "minimize"
+      },
+      {
+        "label": "Close",
+        "accelerator": "CmdOrCtrl+W",
+        "role": "close"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Bring All to Front",
+        "role": "front"
+      }
+    ]
+  },
+  {
+    "label": "Help",
+    "id": "help",
+    "role": "help",
+    "submenu": [
+      {
+        "label": "Patternbot License",
+        "command": "app:patternbot-license"
+      },
+      {
+        "label": "Patternbot Website",
+        "command": "app:patternbot-website"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Patternbot Support",
+        "command": "app:patternbot-support"
+      },
+      {
+        "label": "Send Feedback…",
+        "command": "app:send-feedback"
+      }
+    ]
+  }
+]

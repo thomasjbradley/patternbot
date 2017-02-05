@@ -3,10 +3,19 @@
 const {app, ipcMain, BrowserWindow, dialog, Menu} = require('electron');
 const is = require('electron-is');
 
+const appMenu = require(`${__dirname}/app/main/menu/app-menu`);
+const menuFile = require(`${__dirname}/app/main/menu/helpers/file`);
+const menuHelp = require(`${__dirname}/app/main/menu/helpers/help`);
+
 const env = process.env.NODE_ENV;
 const appPkg = require(`${__dirname}/package.json`);
 
 let mainWindow;
+
+const bindMenus = function () {
+  menuFile.bind(appMenu, mainWindow.id);
+  menuHelp.bind(appMenu, mainWindow.id);
+};
 
 const createMainWindow = function (next) {
   mainWindow = new BrowserWindow({
@@ -19,6 +28,7 @@ const createMainWindow = function (next) {
   });
 
   mainWindow.loadURL(`file://${__dirname}/app/renderer/windows/main/main.html`);
+  bindMenus();
 
   if (env === 'development') mainWindow.webContents.openDevTools();
 
@@ -43,7 +53,12 @@ const createMainWindow = function (next) {
   });
 };
 
+const updateAppMenu = function () {
+  Menu.setApplicationMenu(Menu.buildFromTemplate(appMenu.getMenuTemplate()));
+};
+
 app.on('ready', function () {
+  updateAppMenu();
   createMainWindow();
 });
 
@@ -62,9 +77,17 @@ app.on('open-file', function (e, filepath) {
 
   if (mainWindow === null) {
     createMainWindow(function () {
-      mainWindow.webContents.send('app:add-files', filepath);
+      mainWindow.webContents.send('app:add-folder', filepath);
     });
   } else {
-    mainWindow.webContents.send('app:add-files', filepath);
+    mainWindow.webContents.send('app:add-folder', filepath);
   }
+});
+
+ipcMain.on('menu:enable-file-items', function () {
+  appMenu.updateMenuItem('file,generate', { enabled: true });
+});
+
+ipcMain.on('menu:disable-file-items', function () {
+  appMenu.updateMenuItem('file,generate', { enabled: false });
 });
