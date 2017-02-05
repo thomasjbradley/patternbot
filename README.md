@@ -76,7 +76,7 @@ Here’s a list of things that will show in the interface for the parsable files
 - [x] Available sizes, showing size boxes
 - [x] Show media queries & sizes for each media query
 - [x] Some sample text
-- [ ] Link to Gridifier cheat sheet
+- [x] Link to Gridifier cheat sheet
 
 ### Typografier
 
@@ -91,7 +91,7 @@ Here’s a list of things that will show in the interface for the parsable files
 - [x] Show gutters, push, pad, islands
 - [x] Show blockquote
 - [x] Show links
-- [ ] Link to Typografier cheat sheet
+- [x] Link to Typografier cheat sheet
 
 ### Modulifier
 
@@ -101,12 +101,12 @@ Here’s a list of things that will show in the interface for the parsable files
 - [x] Embed containers
 - [x] Media objects
 - [x] Skip links
-- [ ] Link to Modulifier cheat sheet
+- [x] Link to Modulifier cheat sheet
 
 ### Icons
 
 - [x] Parse the SVG sprite sheet and find all the `<symbol>` tags
-- [ ] Show each symbol at a couple different sizes & colours?
+- [x] Show each symbol at a couple different sizes & colours?
 
 ---
 
