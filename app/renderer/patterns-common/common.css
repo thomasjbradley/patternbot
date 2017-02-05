@@ -13,6 +13,8 @@ pre {
   overflow-x: hidden;
 
   font-family: "Source Code Pro", monospace;
+  font-weight: normal;
+  font-style: normal;
   color: #444;
 }
 
@@ -77,4 +79,13 @@ code {
 
   border-left: 2px solid #e2e2e2;
   border-left-color: var(--color-primary);
+}
+
+.patternbot-mq-list > dt,
+.patternbot-mq-list > dd {
+  padding: 0;
+
+  font-weight: normal;
+  font-style: italic;
+  font-size: inherit;
 }
