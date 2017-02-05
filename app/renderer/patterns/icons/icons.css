@@ -1,0 +1,33 @@
+.patternbot-icon-display {
+  color: #333;
+}
+
+.patternbot-icon-display > li {
+
+}
+
+.patternbot-icon-display-left,
+.patternbot-icon-display-right {
+  box-sizing: content-box;
+  float: left;
+}
+
+.patternbot-icon-display-left {
+  width: 128px;
+}
+
+.patternbot-icon-display-right {
+  height: 128px;
+  width: 64px;
+}
+
+.patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-left,
+.patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-right .icon:nth-child(2) {
+  color: var(--color-primary);
+}
+
+.patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-left,
+.patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
+  color: var(--color-primary);
+  color: var(--color-secondary);
+}

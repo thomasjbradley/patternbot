@@ -9,4 +9,5 @@
 .patternbot-grid-display-inner {
   border: 2px solid #e2e2e2;
   border-color: var(--color-primary);
+  border-color: var(--color-secondary);
 }

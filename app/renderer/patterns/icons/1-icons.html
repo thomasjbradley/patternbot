@@ -1,17 +1,49 @@
 <!-- patternbot:hide-start -->
-<i class="icon i-192">
-  <svg><use xlink:href="../../images/icons.svg#{{commonInfo.icons.[0]}}" /></svg>
-</i>
-
-<ul class="list-group">
+<ul class="patternbot-icon-display list-group-inline {{#if commonFiles.commonParsable.modulifier}}push-2{{/if}}">
   {{#each commonInfo.icons}}
     <li>
-      <i class="icon i-64">
-        <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
-      </i>
+      <div class="clearfix">
+        <div class="patternbot-icon-display-left island-1-2">
+          <i class="icon i-128 block">
+            <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
+          </i>
+        </div>
+        <div class="patternbot-icon-display-right center-contents island-1-2">
+          <i class="icon i-64 block push-1-8">
+            <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
+          </i>
+          <i class="icon i-32 block push-1-8">
+            <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
+          </i>
+          <i class="icon i-18 block">
+            <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
+          </i>
+        </div>
+      </div>
+      <div class="text-center">
+        <i class="icon i-24">
+          <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
+        </i>
+        <span class="icon-label ib"><code class="micro">#{{this}}</code></span>
+      </div>
     </li>
   {{/each}}
 </ul>
+
+{{#if commonFiles.commonParsable.modulifier}}
+  <ul class="patternbot-code-details list-group-inline micro push-0">
+    <li><code>.i-16</code></li>
+    <li><code>.i-18</code></li>
+    <li><code>.i-24</code></li>
+    <li><code>.i-32</code></li>
+    <li><code>.i-48</code></li>
+    <li><code>.i-64</code></li>
+    <li><code>.i-96</code></li>
+    <li><code>.i-128</code></li>
+    <li><code>.i-192</code></li>
+    <li><code>.i-256</code></li>
+  </ul>
+{{/if}}
 <!-- patternbot:hide-end -->
 
 <!-- patternbot:hide-start --><aside hidden><!-- patternbot:hide-end -->

@@ -1,4 +1,4 @@
-<div class="patternbot-mq-display-wrap push patternbot-font-primary">
+<div class="patternbot-mq-display-wrap push patternbot-font-primary patternbot-color-body">
   <ol class="patternbot-mq-display list-group push-0 pad-b" style="{{# each commonInfo.gridifier}}width: calc({{mq}}em + 40em); {{/each}}">
     {{# each commonInfo.gridifier}}
       <li style="padding-left: {{mq}}em">
@@ -18,7 +18,7 @@
 </div>
 
 {{#each commonInfo.gridifier}}
-  <h2 class="patternbot-font-primary giga normal">Sizes available at “{{prefix}}”</h2>
+  <h2 class="patternbot-font-primary patternbot-color-body giga normal">Sizes available at “{{prefix}}”</h2>
   {{#times columns}}
     <ol class="patternbot-grid-display grid {{#if @last}}push{{/if}}" style="min-width: 320px; {{#if mq}}max-width: {{mq}}em{{else}}max-width: 320px{{/if}}">
       {{#if @first}}
