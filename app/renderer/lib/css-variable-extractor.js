@@ -53,21 +53,69 @@ const extractColours = function (cssProps) {
   return colours;
 };
 
-const parseFont = function (declaration, comments) {
+const extractFontWeights = function (fontUrlWeights) {
+  let weightBits = fontUrlWeights.split('|');
+  let weights = {};
+
+  weightBits.forEach((bit) => {
+    let nameWeights = bit.split(':');
+    let weightsAndStyles = {};
+
+    if (nameWeights[1]) {
+      let theWeights = nameWeights[1].split(',');
+
+      theWeights.forEach((weight) => {
+        let onlyNumber = weight.replace(/[^\d]*/g, '');
+
+        if (!weightsAndStyles[onlyNumber]) {
+          weightsAndStyles[onlyNumber] = {
+            weight: onlyNumber,
+            hasNormal: false,
+            hasItalic: false,
+          };
+        }
+
+        if (/^\d*$/.test(weight)) {
+          weightsAndStyles[onlyNumber].hasNormal = true;
+        } else {
+          weightsAndStyles[onlyNumber].hasItalic = true;
+        }
+      });
+    } else {
+      weightsAndStyles = {
+        '400': {
+          weight: 400,
+          hasNormal: false,
+          hasItalic: false,
+        },
+      };
+    }
+
+    weights[nameWeights[0].replace(/\+/g, ' ')] = weightsAndStyles;
+  });
+
+  return weights;
+};
+
+const parseFont = function (declaration, weightsAndStyles, comments) {
+  let namePretty = declaration.value.match(/[^\,\;]*/)[0].replace(/["']/g, '');
+
   return {
     name: declaration.property,
-    namePretty: declaration.value.match(/[^\,\;]*/)[0].replace(/["']/g, ''),
+    namePretty: namePretty,
     raw: declaration.value,
-    weights: (comments) ? comments.split(',').map(item => item.trim()) : false,
+    // weights: (comments) ? comments.split(',').map(item => item.trim()) : false,
+    weights: (weightsAndStyles[namePretty]) ? weightsAndStyles[namePretty] : false,
   };
 };
 
-const extractFonts = function (cssProps) {
+const extractFonts = function (cssProps, fontUrlWeights) {
   let fonts = {
     primary: {},
     secondary: {},
     accent: [],
   };
+  let availableWeights = extractFontWeights(fontUrlWeights);
 
   cssProps.forEach(function (dec, i) {
     let comments = false;
@@ -76,16 +124,18 @@ const extractFonts = function (cssProps) {
 
     if (cssProps[i + 1] && cssProps[i + 1].type === 'comment') comments = cssProps[i + 1].comment;
 
-    if (dec.property.match(/\-\-font\-primary/)) return fonts.primary = parseFont(dec, comments);
-    if (dec.property.match(/\-\-font\-secondary/)) return fonts.secondary = parseFont(dec, comments);
+    if (dec.property.match(/\-\-font\-primary/)) return fonts.primary = parseFont(dec, availableWeights, comments);
+    if (dec.property.match(/\-\-font\-secondary/)) return fonts.secondary = parseFont(dec, availableWeights, comments);
 
-    return fonts.accent.push(parseFont(dec));
+    return fonts.accent.push(parseFont(dec, availableWeights));
   });
 
   return fonts;
 };
 
-const parse = function (filepath) {
+const parse = function (filepath, readme) {
+  let fontUrlWeights = (readme && readme.attributes.fontUrl && /=/.test(readme.attributes.fontUrl)) ? readme.attributes.fontUrl.split(/=/)[1] : false;
+
   return new Promise(function (resolve, reject) {
     if (!filepath) resolve([]);
 
@@ -106,7 +156,7 @@ const parse = function (filepath) {
       if (!cssVarsObj && !cssVarsObj[0] && !cssVarsObj[0].declarations) resolve({});
 
       cssVars.colours = extractColours(cssVarsObj[0].declarations);
-      cssVars.fonts = extractFonts(cssVarsObj[0].declarations);
+      cssVars.fonts = extractFonts(cssVarsObj[0].declarations, fontUrlWeights);
 
       resolve(cssVars);
     });
