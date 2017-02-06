@@ -6,8 +6,12 @@ const S = require('string');
 const hexRgb = require('hex-rgb');
 const rgbHex = require('rgb-hex');
 
+const cssColorNames = require(`${__dirname}/css-colour-names.json`);
+
 const colourToHex = function (color) {
-  if (color.match(/^\#/)) return color;
+  if (/^\#/.test(color)) return color;
+  if (cssColorNames[color]) return cssColorNames[color];
+  if (!/^rgb/.test(color)) return false;
 
   return rgbHex(color).substr(0, 6);
 };
@@ -15,11 +19,19 @@ const colourToHex = function (color) {
 const colourToRgba = function (color) {
   let rgb;
 
-  if (color.match(/^rgb/)) return color;
+  if (/^rgb/.test(color)) return color;
 
-  rgb = hexRgb(color);
+  if (cssColorNames[color]) {
+    rgb = hexRgb(cssColorNames[color]);
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+  }
 
-  return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+  if (/^\#/.test(color)) {
+    rgb = hexRgb(color);
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+  }
+
+  return false;
 };
 
 const parseColour = function (declaration) {
