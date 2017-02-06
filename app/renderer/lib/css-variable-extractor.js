@@ -67,6 +67,9 @@ const extractFontWeights = function (fontUrlWeights) {
       theWeights.forEach((weight) => {
         let onlyNumber = weight.replace(/[^\d]*/g, '');
 
+        if (onlyNumber == '400') onlyNumber = 'normal';
+        if (onlyNumber == '700') onlyNumber = 'bold';
+
         if (!weightsAndStyles[onlyNumber]) {
           weightsAndStyles[onlyNumber] = {
             weight: onlyNumber,
@@ -83,8 +86,8 @@ const extractFontWeights = function (fontUrlWeights) {
       });
     } else {
       weightsAndStyles = {
-        '400': {
-          weight: 400,
+        normal: {
+          weight: 'normal',
           hasNormal: false,
           hasItalic: false,
         },

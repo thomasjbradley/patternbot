@@ -46,7 +46,6 @@ const findLogos = function (folderpath, imagesFolder) {
   return new Promise(function (resolve, reject) {
     let logoSizes = {
       sizeLarge: false,
-      size256: false,
       size64: false,
       size32: false,
       size16: false,
@@ -56,12 +55,25 @@ const findLogos = function (folderpath, imagesFolder) {
       if (err) return resolve();
 
       logos.forEach(function (logo) {
-        if (/logo\.svg/.test(logo)) logoSizes.sizeLarge = logo;
-        if (/256/.test(logo)) logoSizes.size256 = logo;
-        if (/64/.test(logo)) logoSizes.size64 = logo;
-        if (/32/.test(logo)) logoSizes.size32 = logo;
-        if (/16/.test(logo)) logoSizes.size16 = logo;
-        if (!logoSizes.sizeLarge) logoSizes.sizeLarge = logoSizes.size256;
+        if (/logo(-256)?\.svg/.test(logo)) {
+          logoSizes.sizeLarge = logo;
+          logoSizes.sizeLargeLocal = path.parse(logo).base;
+        }
+
+        if (/64/.test(logo)) {
+          logoSizes.size64 = logo;
+          logoSizes.size64Local = path.parse(logo).base;
+        }
+
+        if (/32/.test(logo)) {
+          logoSizes.size32 = logo;
+          logoSizes.size32Local = path.parse(logo).base;
+        }
+
+        if (/16/.test(logo)) {
+          logoSizes.size16 = logo;
+          logoSizes.size16Local = path.parse(logo).base;
+        }
       });
 
       patternLibFiles.logos = logoSizes;

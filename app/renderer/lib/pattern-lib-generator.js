@@ -51,7 +51,8 @@ const generate = function (folderpath, patternLibFiles) {
           patternParserQueue.parseAll(patternLibFiles.patterns),
         ]).then(function (all) {
           let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
-
+  console.log(commonInfo);
+  console.log(patternLibFiles);
           let assets = all[0];
           let brandPatterns = all[1];
           let typePatterns = all[2];

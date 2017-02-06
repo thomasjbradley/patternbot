@@ -81,10 +81,10 @@ a:hover {
   border-top: 1px solid #ccc;
 }
 
-.pattern:first-child .pattern-toolbar {
+/* .pattern:first-child .pattern-toolbar {
   border-top: 0;
 }
-
+ */
 .pattern-toolbar-inner {
   background-color: #f6f6f6;
 }

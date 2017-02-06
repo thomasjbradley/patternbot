@@ -1,0 +1,24 @@
+.patternbot-color-swatches {
+
+}
+
+.patternbot-color-swatches-primary {
+  min-height: 16em;
+}
+
+.patternbot-color-swatches-secondary {
+  min-height: 8em;
+}
+
+.patternbot-color-swatches-accent {
+  min-height: 3em;
+}
+
+.patternbot-color-swatches-fill {
+  display: flex;
+  flex-direction: column;
+}
+
+.patternbot-color-swatches-fill > div {
+  flex-grow: 1;
+}

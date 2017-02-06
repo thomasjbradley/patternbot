@@ -1,0 +1,142 @@
+{{#if commonInfo.theme.fonts.primary}}
+  <section>
+    <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+      <li><code>var({{commonInfo.theme.fonts.primary.name}})</code></li>
+    </ul>
+    <h1 class="patternbot-color-body yotta"><span style="color: var(--color-primary)">{{commonInfo.theme.fonts.primary.namePretty}}</span> is the primary typeface</h1>
+
+    {{#each commonInfo.theme.fonts.primary.weights}}
+      {{#if hasNormal}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: normal;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}};">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+      {{#if hasItalic}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: italic;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
+  </section>
+{{/if}}
+
+{{#if commonInfo.theme.fonts.secondary}}
+  <section {{#if commonInfo.theme.fonts.primary}}class="pad-t"{{/if}}>
+    {{#if commonInfo.theme.fonts.primary}}<hr class="patternbot-hr">{{/if}}
+
+    <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+      <li><code>var({{commonInfo.theme.fonts.secondary.name}})</code></li>
+    </ul>
+    <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{commonInfo.theme.fonts.secondary.namePretty}}</span> is the secondary typeface</h1>
+
+    {{#each commonInfo.theme.fonts.secondary.weights}}
+      {{#if hasNormal}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: normal;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}};">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+      {{#if hasItalic}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: italic;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
+  </section>
+{{/if}}
+
+{{#if commonInfo.theme.fonts.accent}}
+  <section {{#if commonInfo.theme.fonts.secondary}}class="pad-t"{{/if}}>
+    {{#if commonInfo.theme.fonts.secondary}}<hr class="patternbot-hr">{{/if}}
+
+    <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+      <li><code>var({{commonInfo.theme.fonts.accent.name}})</code></li>
+    </ul>
+    <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{commonInfo.theme.fonts.accent.namePretty}}</span> is an accent typeface</h1>
+
+    {{#each commonInfo.theme.fonts.accent.weights}}
+      {{#if hasNormal}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: normal;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}};">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+      {{#if hasItalic}}
+        <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
+          <li><code>font-weight: {{weight}};</code></li>
+          <li><code>font-style: italic;</code></li>
+        </ul>
+        <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
+          <div class="unit [ xs-1 m-1-5 ]">
+            <p class="yotta push-0">Aa</p>
+          </div>
+          <div class="unit [ xs-1 m-4-5 ]">
+            <p class="giga push-0">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+            <p class="giga push-0">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+            <p class="tera push-0">1 2 3 4 5 6 7 8 9 0</p>
+            <p class="exa push-0">&amp; % $ # @ ! * ? , . ; — – - ( ) “ ” ‘ ’ « »</p>
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
+  </section>
+{{/if}}
+
