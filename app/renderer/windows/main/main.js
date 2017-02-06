@@ -10,6 +10,9 @@ const classify = require(`${__dirname}/../../../shared/classify`);
 const fileFinder = require(`${__dirname}/../../lib/file-finder`);
 const patternLibGenerator = require(`${__dirname}/../../lib/pattern-lib-generator`);
 
+const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 let appPkg = require(`${__dirname}/../../../../package.json`);
 
 const $body = document.body;

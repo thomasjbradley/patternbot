@@ -12,6 +12,9 @@ const patternParserQueue = require(`${__dirname}/pattern-parser-queue`);
 const patternRenderer = require(`${__dirname}/pattern-renderer`);
 const iconParser = require(`${__dirname}/icon-parser`);
 
+const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 let appPkg = require(`${__dirname}/../../../package.json`);
 
 const getDefaultPatterLibInfo = function (patternLibFiles) {
@@ -51,8 +54,10 @@ const generate = function (folderpath, patternLibFiles) {
           patternParserQueue.parseAll(patternLibFiles.patterns),
         ]).then(function (all) {
           let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
-  console.log(commonInfo);
-  console.log(patternLibFiles);
+
+          if (DEBUG) console.log(commonInfo);
+          if (DEBUG) console.log(patternLibFiles);
+
           let assets = all[0];
           let brandPatterns = all[1];
           let typePatterns = all[2];

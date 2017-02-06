@@ -8,6 +8,8 @@ const menuFile = require(`${__dirname}/app/main/menu/helpers/file`);
 const menuHelp = require(`${__dirname}/app/main/menu/helpers/help`);
 
 const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 const appPkg = require(`${__dirname}/package.json`);
 
 let mainWindow;
