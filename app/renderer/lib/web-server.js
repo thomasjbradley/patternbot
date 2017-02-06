@@ -27,11 +27,7 @@ const setHost = function (port) {
 };
 
 const getHost = function () {
-  // if (is.renderer()) {
-    // return require('electron').remote.getGlobal('localWebServerHost');
-  // } else {
-    return global.localWebServerHost;
-  // }
+  return global.localWebServerHost;
 };
 
 const start = function (dir, next) {
