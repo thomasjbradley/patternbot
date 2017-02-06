@@ -14,6 +14,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - The secondary font faces were displaying in the primary font.
 - The accent font faces wouldn’t work properly because it was treated as a single item instead of an array.
 - Some interface typographic details were being overwritten by the CSS of the `theme.css`—they are now set with very specific sizes.
+- Made the font weight handling a little more fluid and forgiving.
 
 ---
 
