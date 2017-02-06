@@ -52,6 +52,16 @@
         "enabled": false,
         "accelerator": "CmdOrCtrl+R",
         "command": "app:generate"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "label": "Browse Pattern Library",
+        "id": "browse-pattern-library",
+        "enabled": false,
+        "accelerator": "CmdOrCtrl+B",
+        "command": "app:browse-pattern-library"
       }
     ]
   },

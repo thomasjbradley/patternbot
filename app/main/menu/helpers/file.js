@@ -24,6 +24,10 @@ const commands = {
   'app:generate': function (menuItem, win) {
     win.send('app:generate');
   },
+
+  'app:browse-pattern-library': function (menuItem, win) {
+    win.send('app:browse-pattern-library');
+  },
 };
 
 module.exports = require(__dirname + '/../menu-helper')(commands);

@@ -86,8 +86,10 @@ app.on('open-file', function (e, filepath) {
 
 ipcMain.on('menu:enable-file-items', function () {
   appMenu.updateMenuItem('file,generate', { enabled: true });
+  appMenu.updateMenuItem('file,browse-pattern-library', { enabled: true });
 });
 
 ipcMain.on('menu:disable-file-items', function () {
   appMenu.updateMenuItem('file,generate', { enabled: false });
+  appMenu.updateMenuItem('file,browse-pattern-library', { enabled: false });
 });

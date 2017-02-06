@@ -22,6 +22,16 @@
         "type": "separator"
       },
       {
+        "label": "Browse Pattern Library",
+        "id": "browser-pattern-library",
+        "enabled": false,
+        "accelerator": "CmdOrCtrl+B",
+        "command": "app:browser-pattern-library"
+      },
+      {
+        "type": "separator"
+      },
+      {
         "label": "Quit",
         "accelerator": "CmdOrCtrl+Q",
         "command": "app:quit"

@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const {ipcRenderer, shell} = require('electron');
 
+const webServer = require(`${__dirname}/../../lib/web-server`);
 const classify = require(`${__dirname}/../../../shared/classify`);
 const fileFinder = require(`${__dirname}/../../lib/file-finder`);
 const patternLibGenerator = require(`${__dirname}/../../lib/pattern-lib-generator`);
@@ -57,9 +58,11 @@ const generate = function () {
   });
 };
 
-const addFolder = function (folderpath) {
+const addFolder = function (folderpath, next) {
   currentFolderPath = folderpath;
   showFolderInterface();
+
+  webServer.start(currentFolderPath, next);
 };
 
 $body.classList.add(`os-${os.platform()}`);
@@ -84,8 +87,7 @@ $body.addEventListener('dragleave', function (e) {
 $body.addEventListener('drop', function (e) {
   e.preventDefault();
 
-  addFolder(e.dataTransfer.files[0].path);
-  generate();
+  addFolder(e.dataTransfer.files[0].path, generate);
 
   return false;
 }, true);
@@ -97,10 +99,13 @@ window.addEventListener('will-navigate', function (e) {
 ipcRenderer.on('app:add-folder', function (e, folder) {
   if (typeof folder !== 'string') folder = folder[0];
 
-  addFolder(folder);
-  generate();
+  addFolder(folder, generate);
 });
 
 ipcRenderer.on('app:generate', function (e) {
   generate();
+});
+
+ipcRenderer.on('app:browse-pattern-library', function (e) {
+  shell.openExternal(`${webServer.getHost()}/${appPkg.config.patternLibFilename}`);
 });
