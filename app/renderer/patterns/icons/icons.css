@@ -23,11 +23,10 @@
 
 .patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-left,
 .patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-right .icon:nth-child(2) {
-  color: var(--color-primary);
+  color: var(--color-primary, #333);
 }
 
 .patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-left,
 .patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
-  color: var(--color-primary);
-  color: var(--color-secondary);
+  color: var(--color-secondary, #333);
 }

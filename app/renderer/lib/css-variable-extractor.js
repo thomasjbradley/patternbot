@@ -100,7 +100,7 @@ const extractFontWeights = function (fontUrlWeights) {
       weightsAndStyles = {
         normal: {
           weight: 'normal',
-          hasNormal: false,
+          hasNormal: true,
           hasItalic: false,
         },
       };

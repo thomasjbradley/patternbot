@@ -1,5 +1,5 @@
 {{#if commonInfo.theme.fonts.primary}}
-  <section>
+  <section style="font-family:var(--font-primary);">
     <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
       <li><code>var({{commonInfo.theme.fonts.primary.name}})</code></li>
     </ul>
@@ -45,7 +45,7 @@
 {{/if}}
 
 {{#if commonInfo.theme.fonts.secondary}}
-  <section {{#if commonInfo.theme.fonts.primary}}class="pad-t"{{/if}}>
+  <section {{#if commonInfo.theme.fonts.primary}}class="pad-t"{{/if}} style="font-family:var(--font-secondary);">
     {{#if commonInfo.theme.fonts.primary}}<hr class="patternbot-hr">{{/if}}
 
     <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
@@ -92,16 +92,16 @@
   </section>
 {{/if}}
 
-{{#if commonInfo.theme.fonts.accent}}
-  <section {{#if commonInfo.theme.fonts.secondary}}class="pad-t"{{/if}}>
+{{#each commonInfo.theme.fonts.accent}}
+  <section {{#if commonInfo.theme.fonts.secondary}}class="pad-t"{{/if}} style="font-family:var({{name}});">
     {{#if commonInfo.theme.fonts.secondary}}<hr class="patternbot-hr">{{/if}}
 
     <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
-      <li><code>var({{commonInfo.theme.fonts.accent.name}})</code></li>
+      <li><code>var({{name}})</code></li>
     </ul>
-    <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{commonInfo.theme.fonts.accent.namePretty}}</span> is an accent typeface</h1>
+    <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{namePretty}}</span> is an accent typeface</h1>
 
-    {{#each commonInfo.theme.fonts.accent.weights}}
+    {{#each weights}}
       {{#if hasNormal}}
         <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
           <li><code>font-weight: {{weight}};</code></li>
@@ -138,5 +138,5 @@
       {{/if}}
     {{/each}}
   </section>
-{{/if}}
+{{/each}}
 
