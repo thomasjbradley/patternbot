@@ -38,7 +38,9 @@
       {{/if}}
 
       <div class="pattern-examples">
-        <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)"></iframe>
+        <div class="gutter">
+          <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)"></iframe>
+        </div>
         {{#unless ../hideCode}}
           <div class="gutter">
             <div class="pattern-code milli island-1-2">
