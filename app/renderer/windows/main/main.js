@@ -96,6 +96,10 @@ window.addEventListener('will-navigate', function (e) {
   e.preventDefault();
 });
 
+$btnGenerate.addEventListener('click', function () {
+  generate();
+});
+
 ipcRenderer.on('app:add-folder', function (e, folder) {
   if (typeof folder !== 'string') folder = folder[0];
 
