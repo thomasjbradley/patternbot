@@ -89,3 +89,11 @@ code {
   font-style: italic;
   font-size: inherit;
 }
+
+.patternbot-code-details {
+  border-bottom: 1px solid #efefef;
+}
+
+.patternbot-code-details-under {
+  border: 0;
+}

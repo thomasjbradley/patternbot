@@ -1,6 +1,5 @@
 var resizeIframe = function (iframe) {
   setTimeout(function () {
-    iframe.contentWindow.document.body.querySelector(':last-child').style.marginBottom = '0';
     iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
     iframe.contentWindow.document.body.style.overflow = 'hidden';
   }, 100);
