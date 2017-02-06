@@ -10,6 +10,15 @@ My aim is not to replace the wonderful tools that exist, but simplify them into 
 
 ---
 
+## Download
+
+Download the latest version of Patternbot below:
+
+### [⬇ Download for MacOS](https://github.com/thomasjbradley/patternbot/releases/download/v1.0.0/Patternbot-1.0.0.dmg)
+### [⬇ Download for Windows](https://github.com/thomasjbradley/patternbot/releases/download/v1.0.0/Patternbot-Setup-1.0.0.exe)
+
+---
+
 ## Ideas for folder structure
 
 Inspired by lots of other tools that exist.
