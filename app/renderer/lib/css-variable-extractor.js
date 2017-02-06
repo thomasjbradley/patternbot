@@ -65,9 +65,23 @@ const extractColours = function (cssProps) {
   return colours;
 };
 
+const getDefaultFontWeights = function () {
+  return {
+    normal: {
+      weight: 'normal',
+      hasNormal: true,
+      hasItalic: false,
+    },
+  };
+};
+
 const extractFontWeights = function (fontUrlWeights) {
-  let weightBits = fontUrlWeights.split('|');
+  let weightBits = [];
   let weights = {};
+
+  if (!fontUrlWeights) return weights;
+
+  weightBits = fontUrlWeights.split('|');
 
   weightBits.forEach((bit) => {
     let nameWeights = bit.split(':');
@@ -97,13 +111,7 @@ const extractFontWeights = function (fontUrlWeights) {
         }
       });
     } else {
-      weightsAndStyles = {
-        normal: {
-          weight: 'normal',
-          hasNormal: true,
-          hasItalic: false,
-        },
-      };
+      weightsAndStyles = getDefaultFontWeights();
     }
 
     weights[nameWeights[0].replace(/\+/g, ' ')] = weightsAndStyles;
@@ -120,7 +128,7 @@ const parseFont = function (declaration, weightsAndStyles, comments) {
     namePretty: namePretty,
     raw: declaration.value,
     // weights: (comments) ? comments.split(',').map(item => item.trim()) : false,
-    weights: (weightsAndStyles[namePretty]) ? weightsAndStyles[namePretty] : false,
+    weights: (weightsAndStyles[namePretty]) ? weightsAndStyles[namePretty] : getDefaultFontWeights(),
   };
 };
 
