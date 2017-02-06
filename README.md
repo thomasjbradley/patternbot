@@ -2,6 +2,8 @@
 
 *Your pompous and persnickety patterning robot.*
 
+![](.readme/screenshot.png)
+
 There are lots of fantastic tools for creating style guides and pattern libraries—but they all have a lot of embedded knowledge (command line, Gulp, Grunt, PHP, Handlebars, SASS, etc.)
 
 It’s just too much *stuff* for my students. I don’t want them to have to learn the tool, I want them to use a tool and get on with designing.
