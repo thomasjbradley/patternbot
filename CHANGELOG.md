@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [1.0.2] — 2017-02-07
+
+### Fixed
+
+- PostCSS & CSSNext were smushing away some important variables—change the `browsers` option to allow more variables in the CSS.
+
+---
+
 ## [1.0.1] — 2017-02-06
 
 ### Fixed
