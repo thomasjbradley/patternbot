@@ -1,6 +1,6 @@
 {
   "name": "Patternbot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "GPL",
   "description": "A small GUI application for generating pattern libraries & style guides from a specific folder structure.",
   "author": "Thomas J Bradley <hey@thomasjbradley.ca>",
