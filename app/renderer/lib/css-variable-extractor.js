@@ -160,7 +160,7 @@ const parse = function (filepath, readme) {
   let fontUrlWeights = (readme && readme.attributes.fontUrl && /=/.test(readme.attributes.fontUrl)) ? readme.attributes.fontUrl.split(/=/)[1] : false;
 
   return new Promise(function (resolve, reject) {
-    if (!filepath) resolve([]);
+    if (!filepath) return resolve([]);
 
     fs.readFile(filepath, 'utf8', function (err, data) {
       const code = css.parse(data);
@@ -170,13 +170,13 @@ const parse = function (filepath, readme) {
         fonts: {},
       };
 
-      if (!code || !code.stylesheet || !code.stylesheet.rules) resolve({});
+      if (!code || !code.stylesheet || !code.stylesheet.rules) return resolve({});
 
       cssVarsObj = code.stylesheet.rules.filter(function (item) {
         return (item.selectors && item.selectors[0] && item.selectors[0] === ':root');
       });
 
-      if (!cssVarsObj && !cssVarsObj[0] && !cssVarsObj[0].declarations) resolve({});
+      if (!cssVarsObj || !cssVarsObj[0] || !cssVarsObj[0].declarations) return resolve({});
 
       cssVars.colours = extractColours(cssVarsObj[0].declarations);
       cssVars.fonts = extractFonts(cssVarsObj[0].declarations, fontUrlWeights);

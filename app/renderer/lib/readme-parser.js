@@ -11,7 +11,7 @@ const parse = function (folderpath) {
   return new Promise((resolve, reject) => {
     const readmepath = `${folderpath}/${README_FILENAME}`;
 
-    if (!fileExists.check(readmepath)) resolve(false);
+    if (!fileExists.check(readmepath)) return resolve(false);
 
     fs.readFile(readmepath, 'utf8', (err, data) => {
       resolve(markdownFileParser(data));
