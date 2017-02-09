@@ -39,7 +39,7 @@
     "id": "file",
     "submenu": [
       {
-        "label": "Add Folders",
+        "label": "Add Folder…",
         "accelerator": "CmdOrCtrl+O",
         "command": "app:add-folder"
       },

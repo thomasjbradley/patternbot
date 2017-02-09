@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased] — 2017-02-09
+
+### Changed
+
+- Fixed the MacOS “Add Folder…” menu item to have consistent wording with Windows.
+
+---
+
 ## [1.0.3] — 2017-02-08
 
 ### Fixed
