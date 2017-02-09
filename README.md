@@ -127,6 +127,7 @@ After looking through tonnes of resources these are the things that stick out to
 
 ### Articles
 
+- **https://stuffandnonsense.co.uk/blog/about/designing-inspired-style-guides-presentation-slides-and-transcript**
 - **https://24ways.org/2016/designing-imaginative-style-guides/**
 - http://styleguides.io/articles.html
 - https://www.smashingmagazine.com/2015/04/an-in-depth-overview-of-living-style-guide-tools/
