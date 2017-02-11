@@ -5,11 +5,22 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [Unreleased] — 2017-02-09
+## [1.1.0] — 2017-02-11
+
+### Added
+
+- Added support for Typekit fonts with the ability to specify weights and styles.
+- Allow rationals for fonts & colours inside the main README file.
 
 ### Changed
 
-- Fixed the MacOS “Add Folder…” menu item to have consistent wording with Windows.
+- Changed the MacOS “Add Folder…” menu item to have consistent wording with Windows.
+- Added a few more large letter samples to the typeface displays.
+
+### Fixed
+
+- Fixed a bug when the wrong code was inside a Web Dev Tool URL it was still tried to parse.
+- Fixed a bug where the navigation menu showed the Web Dev Tools when they could not be parsed.
 
 ---
 
