@@ -31,7 +31,7 @@ const parse = function (filepath) {
     if (!filepath) return resolve(false);
 
     fs.readFile(filepath, 'utf8', function (err, data) {
-      let settingsString = webDevToolSettingsExtractor.extractFrom(data);
+      let settingsString = webDevToolSettingsExtractor.extractFrom(data, 'gridifier');
 
       if (!settingsString) return resolve(false);
 
