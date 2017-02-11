@@ -1,6 +1,11 @@
 {{#if commonInfo.theme.colours.primary}}
   <section>
-    <h2 class="patternbot-font-primary patternbot-color-body giga normal">Primary colours</h2>
+    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.primary}}push-1-4{{/if}}">Primary colours</h2>
+    {{# if commonInfo.readme.attributes.colours.primary}}
+      <div class="patternbot-max-length italic max-length">
+        {{{markdown commonInfo.readme.attributes.colours.primary}}}
+      </div>
+    {{/if}}
 
     <div class="patternbot-color-swatches patternbot-color-swatches-primary grid grid-stretch">
       <div class="unit xs-1-2" style="background-color:var(--color-primary)">&nbsp;</div>
@@ -33,7 +38,12 @@
   <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
     {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
-    <h2 class="patternbot-font-primary patternbot-color-body giga normal">Secondary colours</h2>
+    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.secondary}}push-1-4{{/if}}">Secondary colours</h2>
+    {{# if commonInfo.readme.attributes.colours.secondary}}
+      <div class="patternbot-max-length italic max-length">
+        {{{markdown commonInfo.readme.attributes.colours.secondary}}}
+      </div>
+    {{/if}}
 
     <div class="patternbot-color-swatches patternbot-color-swatches-secondary grid grid-stretch">
       <div class="unit xs-1-2" style="background-color:var(--color-secondary)">&nbsp;</div>
@@ -66,7 +76,12 @@
   <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
     {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
-    <h2 class="patternbot-font-primary patternbot-color-body giga normal">Accent colours</h2>
+    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.accent}}push-1-4{{/if}}">Accent colours</h2>
+    {{# if commonInfo.readme.attributes.colours.accent}}
+      <div class="patternbot-max-length italic max-length">
+        {{{markdown commonInfo.readme.attributes.colours.accent}}}
+      </div>
+    {{/if}}
     <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
       {{#each commonInfo.theme.colours.accent}}
         <li class="push-r-1-2 push">
@@ -90,7 +105,12 @@
   <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
     {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
-    <h2 class="patternbot-font-primary patternbot-color-body giga normal">Neutral colours</h2>
+    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.neutral}}push-1-4{{/if}}">Neutral colours</h2>
+    {{# if commonInfo.readme.attributes.colours.neutral}}
+      <div class="patternbot-max-length italic max-length">
+        {{{markdown commonInfo.readme.attributes.colours.neutral}}}
+      </div>
+    {{/if}}
     <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
       {{#each commonInfo.theme.colours.neutral}}
         <li class="push-r-1-2 push">

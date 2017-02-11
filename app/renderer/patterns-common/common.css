@@ -13,6 +13,11 @@
   color: var(--color-patternbot-primary);
 }
 
+.patternbot-max-length {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 code,
 pre {
   display: block;

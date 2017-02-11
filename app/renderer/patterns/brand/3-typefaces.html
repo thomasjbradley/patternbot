@@ -4,6 +4,11 @@
       <li><code>var({{commonInfo.theme.fonts.primary.name}})</code></li>
     </ul>
     <h1 class="patternbot-color-body yotta"><span style="color: var(--color-primary)">{{commonInfo.theme.fonts.primary.namePretty}}</span> is the primary typeface</h1>
+    {{# if commonInfo.readme.attributes.fonts.primary}}
+      <div class="patternbot-max-length tera max-length">
+        {{{markdown commonInfo.readme.attributes.fonts.primary}}}
+      </div>
+    {{/if}}
 
     {{#each commonInfo.theme.fonts.primary.weights}}
       {{#if hasNormal}}
@@ -52,6 +57,11 @@
       <li><code>var({{commonInfo.theme.fonts.secondary.name}})</code></li>
     </ul>
     <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{commonInfo.theme.fonts.secondary.namePretty}}</span> is the secondary typeface</h1>
+    {{# if commonInfo.readme.attributes.fonts.secondary}}
+      <div class="patternbot-max-length tera max-length">
+        {{{markdown commonInfo.readme.attributes.fonts.secondary}}}
+      </div>
+    {{/if}}
 
     {{#each commonInfo.theme.fonts.secondary.weights}}
       {{#if hasNormal}}
@@ -100,6 +110,11 @@
       <li><code>var({{name}})</code></li>
     </ul>
     <h1 class="patternbot-color-body yotta"><span style="color:var(--color-primary); color:var(--color-secondary);">{{namePretty}}</span> is an accent typeface</h1>
+    {{# if commonInfo.readme.attributes.fonts.accent}}
+      <div class="patternbot-max-length tera max-length">
+        {{{markdown commonInfo.readme.attributes.fonts.accent}}}
+      </div>
+    {{/if}}
 
     {{#each weights}}
       {{#if hasNormal}}

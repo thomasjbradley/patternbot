@@ -14,7 +14,12 @@ const parse = function (folderpath) {
     if (!fileExists.check(readmepath)) return resolve(false);
 
     fs.readFile(readmepath, 'utf8', (err, data) => {
-      resolve(markdownFileParser(data));
+      let readme = markdownFileParser(data);
+
+      // Allow both correct & American spelling
+      if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
+
+      resolve(readme);
     });
   });
 };
