@@ -23,5 +23,10 @@
 
   {{{pattern}}}
 
+  {{#if commonInfo.readme.attributes.typekitId}}
+    <script>
+      {{> typekit typekitId=commonInfo.readme.attributes.typekitId}}
+    </script>
+  {{/if}}
 </body>
 </html>

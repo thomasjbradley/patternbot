@@ -19,6 +19,8 @@ const parse = function (folderpath) {
       // Allow both correct & American spelling
       if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
 
+      if (readme.attributes.typekit && /=/.test(readme.attributes.typekit)) readme.attributes.typekitId = readme.attributes.typekit.split(/=/)[0];
+
       resolve(readme);
     });
   });

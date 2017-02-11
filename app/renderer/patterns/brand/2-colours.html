@@ -1,131 +1,135 @@
-{{#if commonInfo.theme.colours.primary}}
-  <section>
-    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.primary}}push-1-4{{/if}}">Primary colours</h2>
-    {{# if commonInfo.readme.attributes.colours.primary}}
-      <div class="patternbot-max-length italic max-length">
-        {{{markdown commonInfo.readme.attributes.colours.primary}}}
-      </div>
-    {{/if}}
+<div class="patternbot-font-primary">
 
-    <div class="patternbot-color-swatches patternbot-color-swatches-primary grid grid-stretch">
-      <div class="unit xs-1-2" style="background-color:var(--color-primary)">&nbsp;</div>
-      <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-primary)">
+  {{#if commonInfo.theme.colours.primary}}
+    <section>
+      <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.primary}}push-1-4{{/if}}">Primary colours</h2>
+      {{# if commonInfo.readme.attributes.colours.primary}}
+        <div class="patternbot-max-length italic max-length">
+          {{{markdown commonInfo.readme.attributes.colours.primary}}}
+        </div>
+      {{/if}}
+
+      <div class="patternbot-color-swatches patternbot-color-swatches-primary grid grid-stretch">
+        <div class="unit xs-1-2" style="background-color:var(--color-primary)">&nbsp;</div>
+        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-primary)">
+          {{#each commonInfo.theme.colours.primary}}
+            <div style="background-color:var({{name}});">&nbsp;</div>
+          {{/each}}
+        </div>
+      </div>
+
+      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.primary}}
-          <div style="background-color:var({{name}});">&nbsp;</div>
+          <li class="push-r-1-2">
+            <div class="push-1-2">
+              <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
+              <span class="icon-label">{{namePretty}}</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8"><code>{{hex}}</code></li>
+              <li><code>{{rgba}}</code></li>
+            </ul>
+          </li>
         {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+
+  {{#if commonInfo.theme.colours.secondary}}
+    <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
+      {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
+
+      <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.secondary}}push-1-4{{/if}}">Secondary colours</h2>
+      {{# if commonInfo.readme.attributes.colours.secondary}}
+        <div class="patternbot-max-length italic max-length">
+          {{{markdown commonInfo.readme.attributes.colours.secondary}}}
+        </div>
+      {{/if}}
+
+      <div class="patternbot-color-swatches patternbot-color-swatches-secondary grid grid-stretch">
+        <div class="unit xs-1-2" style="background-color:var(--color-secondary)">&nbsp;</div>
+        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-secondary)">
+          {{#each commonInfo.theme.colours.secondary}}
+            <div style="background-color:var({{name}});">&nbsp;</div>
+          {{/each}}
+        </div>
       </div>
-    </div>
 
-    <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
-      {{#each commonInfo.theme.colours.primary}}
-        <li class="push-r-1-2">
-          <div class="push-1-2">
-            <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
-            <span class="icon-label">{{namePretty}}</span>
-          </div>
-          <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
-            <li class="push-1-8"><code>var({{name}})</code></li>
-            <li class="push-1-8"><code>{{hex}}</code></li>
-            <li><code>{{rgba}}</code></li>
-          </ul>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
-
-{{#if commonInfo.theme.colours.secondary}}
-  <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
-    {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
-
-    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.secondary}}push-1-4{{/if}}">Secondary colours</h2>
-    {{# if commonInfo.readme.attributes.colours.secondary}}
-      <div class="patternbot-max-length italic max-length">
-        {{{markdown commonInfo.readme.attributes.colours.secondary}}}
-      </div>
-    {{/if}}
-
-    <div class="patternbot-color-swatches patternbot-color-swatches-secondary grid grid-stretch">
-      <div class="unit xs-1-2" style="background-color:var(--color-secondary)">&nbsp;</div>
-      <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-secondary)">
+      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.secondary}}
-          <div style="background-color:var({{name}});">&nbsp;</div>
+          <li class="push-r-1-2">
+            <div class="push-1-2">
+              <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
+              <span class="icon-label">{{namePretty}}</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8"><code>{{hex}}</code></li>
+              <li><code>{{rgba}}</code></li>
+            </ul>
+          </li>
         {{/each}}
-      </div>
-    </div>
+      </ul>
+    </section>
+  {{/if}}
 
-    <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
-      {{#each commonInfo.theme.colours.secondary}}
-        <li class="push-r-1-2">
-          <div class="push-1-2">
-            <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
-            <span class="icon-label">{{namePretty}}</span>
-          </div>
-          <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
-            <li class="push-1-8"><code>var({{name}})</code></li>
-            <li class="push-1-8"><code>{{hex}}</code></li>
-            <li><code>{{rgba}}</code></li>
-          </ul>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
+  {{#if commonInfo.theme.colours.accent}}
+    <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
+      {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
-{{#if commonInfo.theme.colours.accent}}
-  <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
-    {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
+      <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.accent}}push-1-4{{/if}}">Accent colours</h2>
+      {{# if commonInfo.readme.attributes.colours.accent}}
+        <div class="patternbot-max-length italic max-length">
+          {{{markdown commonInfo.readme.attributes.colours.accent}}}
+        </div>
+      {{/if}}
+      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
+        {{#each commonInfo.theme.colours.accent}}
+          <li class="push-r-1-2 push">
+            <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
+            <div class="push-1-2">
+              <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
+              <span class="icon-label">{{namePretty}}</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8"><code>{{hex}}</code></li>
+              <li><code>{{rgba}}</code></li>
+            </ul>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
 
-    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.accent}}push-1-4{{/if}}">Accent colours</h2>
-    {{# if commonInfo.readme.attributes.colours.accent}}
-      <div class="patternbot-max-length italic max-length">
-        {{{markdown commonInfo.readme.attributes.colours.accent}}}
-      </div>
-    {{/if}}
-    <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
-      {{#each commonInfo.theme.colours.accent}}
-        <li class="push-r-1-2 push">
-          <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
-          <div class="push-1-2">
-            <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
-            <span class="icon-label">{{namePretty}}</span>
-          </div>
-          <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
-            <li class="push-1-8"><code>var({{name}})</code></li>
-            <li class="push-1-8"><code>{{hex}}</code></li>
-            <li><code>{{rgba}}</code></li>
-          </ul>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
+  {{#if commonInfo.theme.colours.neutral}}
+    <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
+      {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
-{{#if commonInfo.theme.colours.neutral}}
-  <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
-    {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
+      <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.neutral}}push-1-4{{/if}}">Neutral colours</h2>
+      {{# if commonInfo.readme.attributes.colours.neutral}}
+        <div class="patternbot-max-length italic max-length">
+          {{{markdown commonInfo.readme.attributes.colours.neutral}}}
+        </div>
+      {{/if}}
+      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
+        {{#each commonInfo.theme.colours.neutral}}
+          <li class="push-r-1-2 push">
+            <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
+            <div class="push-1-2">
+              <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
+              <span class="icon-label">{{namePretty}}</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8"><code>{{hex}}</code></li>
+              <li><code>{{rgba}}</code></li>
+            </ul>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
 
-    <h2 class="patternbot-font-primary patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.neutral}}push-1-4{{/if}}">Neutral colours</h2>
-    {{# if commonInfo.readme.attributes.colours.neutral}}
-      <div class="patternbot-max-length italic max-length">
-        {{{markdown commonInfo.readme.attributes.colours.neutral}}}
-      </div>
-    {{/if}}
-    <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
-      {{#each commonInfo.theme.colours.neutral}}
-        <li class="push-r-1-2 push">
-          <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
-          <div class="push-1-2">
-            <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
-            <span class="icon-label">{{namePretty}}</span>
-          </div>
-          <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
-            <li class="push-1-8"><code>var({{name}})</code></li>
-            <li class="push-1-8"><code>{{hex}}</code></li>
-            <li><code>{{rgba}}</code></li>
-          </ul>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
+</div>

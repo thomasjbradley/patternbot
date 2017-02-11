@@ -157,7 +157,17 @@ const extractFonts = function (cssProps, fontUrlWeights) {
 };
 
 const parse = function (filepath, readme) {
-  let fontUrlWeights = (readme && readme.attributes.fontUrl && /=/.test(readme.attributes.fontUrl)) ? readme.attributes.fontUrl.split(/=/)[1] : false;
+  let fontUrlWeights = false;
+
+  if (readme) {
+    if (readme.attributes.fontUrl && /=/.test(readme.attributes.fontUrl)) {
+      fontUrlWeights = readme.attributes.fontUrl.split(/=/)[1];
+    }
+
+    if (readme.attributes.typekit && /=/.test(readme.attributes.typekit)) {
+      fontUrlWeights = readme.attributes.typekit.split(/=/)[1];
+    }
+  }
 
   return new Promise(function (resolve, reject) {
     if (!filepath) return resolve([]);
