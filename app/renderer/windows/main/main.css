@@ -44,10 +44,7 @@ body {
 }
 
 img,
-svg {
-  pointer-events: none;
-}
-
+svg,
 button * {
   pointer-events: none;
 }
