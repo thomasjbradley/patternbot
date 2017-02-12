@@ -5,6 +5,15 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [1.1.1] — 2017-02-11
+
+### Changed
+
+- Real small CSS reorganization in the app interface.
+- Signed the app with an Apple Developer Certificate.
+
+---
+
 ## [1.1.0] — 2017-02-11
 
 ### Added
