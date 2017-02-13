@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed some style collisions when designing typography and adding patterns.
+
+---
+
 ## [1.1.1] — 2017-02-11
 
 ### Changed
