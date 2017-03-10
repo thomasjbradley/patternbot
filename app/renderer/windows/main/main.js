@@ -23,6 +23,8 @@ const $check = document.querySelector('.check');
 const $foldername = document.getElementById('folder-name');
 const $btnGenerate = document.getElementById('btn-generate');
 
+let isGenerating = false;
+let browseTimeout = false;
 let currentFolderPath;
 
 const resetInterface = function () {
@@ -52,11 +54,15 @@ const showFinishedLoading = function () {
 };
 
 const generate = function () {
+  if (isGenerating) return;
+
+  isGenerating = true;
   showFolderInterface();
 
   fileFinder.find(currentFolderPath).then(function (patternLibFiles) {
     patternLibGenerator.generate(currentFolderPath, patternLibFiles).then(function () {
       showFinishedLoading();
+      isGenerating = false;
     });
   });
 };
@@ -114,5 +120,12 @@ ipcRenderer.on('app:generate', function (e) {
 });
 
 ipcRenderer.on('app:browse-pattern-library', function (e) {
+  if (browseTimeout) return;
+
+  browseTimeout = setTimeout(function () {
+    clearTimeout(browseTimeout);
+    browseTimeout = false;
+  }, 500);
+
   shell.openExternal(`${webServer.getHost()}/${appPkg.config.patternLibFilename}`);
 });
