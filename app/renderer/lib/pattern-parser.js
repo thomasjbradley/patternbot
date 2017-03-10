@@ -108,7 +108,13 @@ const getInfo = function (folderpath, limiter) {
       patternInfo.html.forEach((html, i) => {
         if (!(patternInfo.md && patternInfo.md[0] && patternInfo.md[0].content && patternInfo.md[0].content.attributes && patternInfo.md[0].content.attributes[html.name])) return;
 
-        patternInfo.html[i].readme = patternInfo.md[0].content.attributes[html.name];
+        if (typeof patternInfo.md[0].content.attributes[html.name] === 'string') {
+          patternInfo.html[i].readme = {
+            desc: patternInfo.md[0].content.attributes[html.name],
+          }
+        } else {
+          patternInfo.html[i].readme = patternInfo.md[0].content.attributes[html.name];
+        }
       });
 
       resolve(patternInfo);
