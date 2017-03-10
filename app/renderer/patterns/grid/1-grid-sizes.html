@@ -1,9 +1,9 @@
 <div class="patternbot-mq-display-wrap push patternbot-font-primary patternbot-color-body">
-  <ol class="patternbot-mq-display list-group push-0 pad-b" style="{{# each commonInfo.gridifier}}width: calc({{mq}}em + 40em); {{/each}}">
+  <ol class="patternbot-mq-display patternbot-list-group list-group push-0 pad-b" style="{{# each commonInfo.gridifier}}width: calc({{mq}}em + 40em); {{/each}}">
     {{# each commonInfo.gridifier}}
       <li style="padding-left: {{mq}}em">
         <div class="patternbot-mq-inner relative">
-          <dl class="patternbot-mq-list list-group-inline push-0 gutter-1-2 absolute micro">
+          <dl class="patternbot-mq-list patternbot-list-group list-group-inline push-0 gutter-1-2 absolute micro">
             <dt class="push-0">Media query</dt>
             <dd class="push-0">{{#if mq}}{{mq}}em{{else}}∞{{/if}}</dd>
             <dt class="push-0">Class prefix</dt>

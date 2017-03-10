@@ -130,3 +130,15 @@ a:hover {
 .pattern-code code {
   overflow-x: auto;
 }
+
+.pattern-pop {
+  border: 0;
+
+  opacity: .6;
+  stroke: currentcolor;
+}
+
+.pattern-pop:focus,
+.pattern-pop:hover {
+  opacity: 1;
+}

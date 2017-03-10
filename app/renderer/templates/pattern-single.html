@@ -1,6 +1,6 @@
 <section class="pattern" id="{{name}}">
   <div class="push">
-    <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-4">
+    <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-4 relative">
       <h2 class="pattern-name peta push-1-8">{{namePretty}}</h2>
       {{#if showSubHeadings}}
         <nav class="pattern-nav milli">
@@ -11,6 +11,17 @@
           </ol>
         </nav>
       {{/if}}
+      {{#unless showSubHeadings}}
+        {{#unless patterns.[0].readme.hidePopOutButton}}
+          <div class="gutter absolute pin-cr">
+            <a class="pattern-pop" href="{{patterns.[0].localPath}}" target="_blank" title="Open pattern in a new tab">
+              <i class="icon i-18">
+                <svg><use xlink:href="#pop-out" /></svg>
+              </i>
+            </a>
+          </div>
+        {{/unless}}
+      {{/unless}}
     </div>
 
     {{#if readme.content.body}}
@@ -26,8 +37,17 @@
     <div class="pattern-details push" id="{{../name}}-{{name}}">
       {{#if ../showSubHeadings}}
         <div class="push">
-          <div class="pattern-toolbar pattern-toolbar-inner gutter pad-t-1-4 pad-b-1-4">
+          <div class="pattern-toolbar pattern-toolbar-inner relative gutter pad-t-1-4 pad-b-1-4">
             <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
+            {{#unless readme.hidePopOutButton}}
+              <div class="gutter absolute pin-cr">
+                <a class="pattern-pop" href="{{localPath}}" target="_blank" title="Open pattern in a new tab">
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#pop-out" /></svg>
+                  </i>
+                </a>
+              </div>
+            {{/unless}}
           </div>
           {{#if readme}}
             <div class="pattern-desc milli island">

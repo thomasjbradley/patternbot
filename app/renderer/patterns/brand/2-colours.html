@@ -18,14 +18,14 @@
         </div>
       </div>
 
-      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
+      <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.primary}}
           <li class="push-r-1-2">
             <div class="push-1-2">
               <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
-            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
               <li class="push-1-8"><code>var({{name}})</code></li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
@@ -56,14 +56,14 @@
         </div>
       </div>
 
-      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli pad-t-1-2 push-0">
+      <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.secondary}}
           <li class="push-r-1-2">
             <div class="push-1-2">
               <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
-            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
               <li class="push-1-8"><code>var({{name}})</code></li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
@@ -84,7 +84,7 @@
           {{{markdown commonInfo.readme.attributes.colours.accent}}}
         </div>
       {{/if}}
-      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
+      <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli push-0">
         {{#each commonInfo.theme.colours.accent}}
           <li class="push-r-1-2 push">
             <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
@@ -92,7 +92,7 @@
               <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
-            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
               <li class="push-1-8"><code>var({{name}})</code></li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
@@ -113,7 +113,7 @@
           {{{markdown commonInfo.readme.attributes.colours.neutral}}}
         </div>
       {{/if}}
-      <ul class="patterbot-color-swatch-labels patternbot-color-body list-group-inline milli push-0">
+      <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli push-0">
         {{#each commonInfo.theme.colours.neutral}}
           <li class="push-r-1-2 push">
             <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
@@ -121,7 +121,7 @@
               <i class="icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
-            <ul class="patternbot-code-details patternbot-code-details-under list-group micro push-0">
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
               <li class="push-1-8"><code>var({{name}})</code></li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
