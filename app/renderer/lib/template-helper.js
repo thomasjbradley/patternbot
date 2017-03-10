@@ -23,7 +23,15 @@ const render = function (id, obj, handlebarsOpts) {
   return renderString(get(id), obj, handlebarsOpts);
 };
 
-handlebars.registerHelper('markdown', marked);
+handlebars.registerHelper('markdown', function (data) {
+  if (typeof data === 'string') {
+    return marked(data);
+  }
+
+  if (typeof data === 'object' && data.hasOwnProperty('desc')) {
+    return marked(data.desc);
+  }
+});
 
 handlebars.registerHelper('times', function (n, block) {
   let accum = '';
