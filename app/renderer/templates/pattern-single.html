@@ -1,12 +1,12 @@
 <section class="pattern" id="{{name}}">
   <div class="push">
     <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-4 relative">
-      <h2 class="pattern-name peta push-1-8">{{namePretty}}</h2>
+      <h2 class="pattern-name peta push-1-4">{{namePretty}}</h2>
       {{#if showSubHeadings}}
-        <nav class="pattern-nav milli">
-          <ol class="list-group-inline pad-t-1-4 push-0">
+        <nav class="pattern-nav">
+          <ol class="list-group-inline push-1-4">
             {{#each patterns}}
-              <li><a class="btn btn-ghost btn-rounded gutter push-1-4 pad-t-1-8 pad-b-1-8" href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
+              <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
             {{/each}}
           </ol>
         </nav>

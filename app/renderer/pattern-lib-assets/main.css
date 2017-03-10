@@ -89,6 +89,27 @@ a:hover {
   background-color: #f6f6f6;
 }
 
+.pattern-nav li::after {
+  content: "·";
+  display: inline-block;
+  margin-left: .3em;
+
+  opacity: .4;
+
+  color: currentcolor;
+}
+
+.pattern-nav li:last-child::after {
+  content: none;
+  display: none;
+}
+
+.pattern-nav a {
+  opacity: .8;
+
+  color: currentcolor;
+}
+
 .btn-rounded {
   border-radius: 50em;
   border-color: #999;
