@@ -59,7 +59,7 @@
 
       <div class="pattern-examples">
         <div class="gutter">
-          <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)"></iframe>
+          <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}"></iframe>
         </div>
         {{#unless ../hideCode}}
           <div class="gutter">
