@@ -5,6 +5,11 @@
   --font-patternbot-code: "Source Code Pro", monospace;
 }
 
+.patternbot-list-group > li::before {
+  content: "";
+  display: none;
+}
+
 .patternbot-font-primary {
   font-family: var(--font-patternbot-primary);
 }
