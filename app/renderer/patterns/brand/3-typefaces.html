@@ -1,6 +1,6 @@
 <div class="text-left">
 
-  {{#if commonInfo.theme.fonts.primary}}
+  {{#if commonInfo.theme.fonts.primary.name}}
     <section style="font-family:var(--font-primary);">
       <ul class="patternbot-code-details list-group-inline micro push-1-2 pad-t">
         <li><code>var({{commonInfo.theme.fonts.primary.name}})</code></li>
@@ -51,7 +51,7 @@
     </section>
   {{/if}}
 
-  {{#if commonInfo.theme.fonts.secondary}}
+  {{#if commonInfo.theme.fonts.secondary.name}}
     <section {{#if commonInfo.theme.fonts.primary}}class="pad-t"{{/if}} style="font-family:var(--font-secondary);">
       {{#if commonInfo.theme.fonts.primary}}<hr class="patternbot-hr">{{/if}}
 
