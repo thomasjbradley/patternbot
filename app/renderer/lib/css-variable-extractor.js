@@ -121,7 +121,7 @@ const extractFontWeights = function (fontUrlWeights) {
 };
 
 const parseFont = function (declaration, weightsAndStyles, comments) {
-  let namePretty = declaration.value.match(/[^\,\;]*/)[0].replace(/["']/g, '');
+  let namePretty = S(declaration.value.match(/[^\,\;]*/)[0].replace(/["']/g, '')).humanize().titleCase().s;
 
   return {
     name: declaration.property,
