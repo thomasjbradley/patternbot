@@ -1,7 +1,7 @@
 /*
  * Modulifier || Code released under the UNLICENSE
  * Code under other copyrights & licenses listed below.
- * https://modulifier.web-dev.tools/#responsive;images;list-group;icons;hidden;positioning;buttons;accessibility
+ * https://modulifier.web-dev.tools/#responsive;images;list-group;icons;hidden;positioning;nice-lists;buttons;accessibility
  */
 
 @-moz-viewport { width: device-width; scale: 1; }
@@ -209,6 +209,7 @@ svg.img-flex {
   position: absolute;
   top: 0;
   width: 100%;
+  fill: currentColor;
 }
 
 .icon-label {
@@ -464,6 +465,38 @@ svg.img-flex {
   height: 100%;
 }
 
+ul {
+  list-style-type: none;
+}
+
+ul > li::before {
+  content: "·";
+  float: left;
+  margin-left: -1.6em;
+  width: 1.3em;
+  text-align: right;
+}
+
+ol {
+  counter-reset: ol-simple-numbers;
+  list-style-type: none;
+}
+
+ol > li::before {
+  float: left;
+  margin-left: -1.6em;
+  width: 1.3em;
+  counter-increment: ol-simple-numbers;
+  content: counter(ol-simple-numbers);
+  text-align: right;
+}
+
+.list-group > li::before,
+.list-group-inline > li::before,
+.list-group--inline > li::before {
+  content: none;
+}
+
 .link-box {
   display: block;
   text-decoration: none;
@@ -565,6 +598,7 @@ textarea:focus,
 button:focus,
 select:focus {
   outline: 3px solid #000;
+  outline-offset: 0;
 }
 
 a:focus, [tabindex="0"]:focus {
