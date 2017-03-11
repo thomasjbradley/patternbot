@@ -58,9 +58,26 @@
       {{/if}}
 
       <div class="pattern-examples">
-        <div class="gutter">
-          <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" onload="resizeIframe(this)" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}"></iframe>
+        <div class="gutter{{#unless readme.notResizable}}-2{{/unless}}">
+          <div class="resizeable-pattern relative" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}">
+            <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" scrolling="no" onload="resizeIframe(this)"></iframe>
+            {{# unless readme.notResizable}}
+              <div class="resizeable-pattern-length">
+                <div class="resize-handle resize-handle-left">
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#resize-handle" /></svg>
+                  </i>
+                </div>
+                <div class="resize-handle resize-handle-right">
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#resize-handle" /></svg>
+                  </i>
+                </div>
+              </div>
+            {{/unless}}
+          </div>
         </div>
+
         {{#unless ../hideCode}}
           <div class="gutter">
             <div class="pattern-code milli island-1-2">

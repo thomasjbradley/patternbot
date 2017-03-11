@@ -5,6 +5,28 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- The ability to pop-out patterns into their own tab for easier styling.
+- Pattern READMEs can now set the width for individual patterns.
+- Patterns can now be resized with draggable handles.
+
+### Changed
+
+- Pattern READMEs now can be descriptions or also include meta data.
+- Simplified the pattern group sub-nav so it didn’t conflict design-wise with the patters themselves.
+
+### Fixed
+
+- Stopped the keyboard shortcuts from firing multiple times.
+- Humanized the Typekit font names.
+- When a secondary typeface isn’t used the information section disappears properly.
+- Customized `::before` bullets don’t show in Patternbot default styles now.
+
+---
+
 ## [1.1.2] — 2017-02-13
 
 ### Fixed

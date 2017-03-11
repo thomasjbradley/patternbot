@@ -50,7 +50,8 @@ code {
   border-color: #e2e2e2;
 }
 
-.patternbot-hr:last-child {
+.patternbot-hr:last-child,
+.patternbot-hr:last-of-type {
   display: none;
 }
 
@@ -86,8 +87,6 @@ code {
   max-width: 100%;
   overflow-x: auto;
   width: 100%;
-
-  border-bottom: 1px solid #e2e2e2;
 }
 
 .patternbot-mq-display-wrap,

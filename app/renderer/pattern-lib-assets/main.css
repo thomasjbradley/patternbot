@@ -166,3 +166,42 @@ a:hover {
 .pattern-pop:hover {
   opacity: 1;
 }
+
+.resizeable-pattern {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100% !important;
+}
+
+.resizeable-pattern-length {
+  width: 50%;
+}
+
+.resize-handle {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  left: -26px;
+  position: absolute;
+  top: calc(50% - 40px);
+  width: 20px;
+
+  border-right: 1px solid #e2e2e2;
+  cursor: ew-resize;
+
+  color: #999;
+  stroke: currentcolor;
+}
+
+.pattern-details:hover .resize-handle {
+  display: flex;
+}
+
+.resize-handle-right {
+  left: auto;
+  right: -26px;
+
+  border-left: 1px solid #ccc;
+  border-right: 0;
+}
