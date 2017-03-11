@@ -5,7 +5,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [Unreleased]
+## [1.2.0] — 2017-03-11
 
 ### Added
 
