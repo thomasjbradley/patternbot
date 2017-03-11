@@ -37,7 +37,16 @@
 
     <header class="masthead">
       <div class="masthead-inner">
-        <h1 class="tera gutter pad-t pad-b push-0">Pattern Library</h1>
+        <h1 class="tera gutter pad-t pad-b push-0">
+          {{#if common.readme.attributes.name}}
+            {{common.readme.attributes.name}}
+            <span class="block normal mega pad-t-1-4">Pattern Library</span>
+          {{else}}
+            Pattern Library
+          {{/if}}
+        </h1>
+        <hr>
+        <h2 class="italic kilo normal gutter push-1-4">Patterns</h2>
         <nav class="nav mega">
           <ul class="list-group">
             <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#brand">Brand</a></li>

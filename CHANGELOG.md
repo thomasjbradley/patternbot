@@ -13,11 +13,13 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - The ability to pop-out patterns into their own tab for easier styling.
 - Pattern READMEs can now set the width for individual patterns.
 - Patterns can now be resized with drag-to-resize handles.
+- Allow a background colour to be assigned for the whole pattern library that changes the interface to match.
 
 ### Changed
 
 - Pattern READMEs now can be descriptions or also include meta data.
 - Simplified the pattern group sub-nav so it didn’t conflict design-wise with the patters themselves.
+- The company’s name is now written at the top of the navigation.
 
 ### Fixed
 

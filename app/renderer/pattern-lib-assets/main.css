@@ -41,6 +41,11 @@ a:hover {
   width: 12em;
 }
 
+.masthead hr {
+  border-color: rgba(var(--color-patternbot-interface-opposite), var(--color-patternbot-interface-opposite), var(--color-patternbot-interface-opposite), .2);
+  border-width: 1px;
+}
+
 .nav a {
   border: 0;
 
