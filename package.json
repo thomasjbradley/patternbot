@@ -32,6 +32,8 @@
     "pagesFolder": "/pages"
   },
   "dependencies": {
+    "browser-sync": "^2.18.8",
+    "chokidar": "^1.6.1",
     "css": "^2.2.1",
     "cssnano": "^3.10.0",
     "electron-is": "^2.4.0",

@@ -9,9 +9,10 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Automatic regeneration and browser refreshing.
 - The ability to pop-out patterns into their own tab for easier styling.
 - Pattern READMEs can now set the width for individual patterns.
-- Patterns can now be resized with draggable handles.
+- Patterns can now be resized with drag-to-resize handles.
 
 ### Changed
 

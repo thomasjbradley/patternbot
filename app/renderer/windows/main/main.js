@@ -4,11 +4,13 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const {ipcRenderer, shell} = require('electron');
+const chokidar = require('chokidar');
+const browserSync = require('browser-sync').create();
 
-const webServer = require(`${__dirname}/../../lib/web-server`);
 const classify = require(`${__dirname}/../../../shared/classify`);
 const fileFinder = require(`${__dirname}/../../lib/file-finder`);
 const patternLibGenerator = require(`${__dirname}/../../lib/pattern-lib-generator`);
+const watcherIgnore = require(`${__dirname}/../../lib/watcher-ignore`);
 
 const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
@@ -21,11 +23,17 @@ const $main = document.getElementById('main');
 const $gears = document.querySelector('.gears');
 const $check = document.querySelector('.check');
 const $foldername = document.getElementById('folder-name');
-const $btnGenerate = document.getElementById('btn-generate');
+const $btnBrowse = document.getElementById('btn-browse');
 
 let isGenerating = false;
 let browseTimeout = false;
 let currentFolderPath;
+let watcher = false;
+let serverPort = 3000;
+
+const getHost = function () {
+  return `https://localhost:${serverPort}`;
+};
 
 const resetInterface = function () {
   $header.removeAttribute('hidden');
@@ -33,7 +41,7 @@ const resetInterface = function () {
   $gears.removeAttribute('hidden');
   $check.setAttribute('hidden', true);
   $foldername.innerText = 'pattern-library';
-  $btnGenerate.setAttribute('disabled', true);
+  $btnBrowse.setAttribute('disabled', true);
   ipcRenderer.send('menu:disable-file-items');
 };
 
@@ -43,17 +51,17 @@ const showFolderInterface = function () {
   $gears.removeAttribute('hidden');
   $check.setAttribute('hidden', true);
   $foldername.innerText = path.parse(currentFolderPath).base;
-  $btnGenerate.setAttribute('disabled', true);
+  $btnBrowse.setAttribute('disabled', true);
   ipcRenderer.send('menu:enable-file-items');
 };
 
 const showFinishedLoading = function () {
   $gears.setAttribute('hidden', true);
   $check.removeAttribute('hidden');
-  $btnGenerate.removeAttribute('disabled');
+  $btnBrowse.removeAttribute('disabled');
 };
 
-const generate = function () {
+const generate = function (next) {
   if (isGenerating) return;
 
   isGenerating = true;
@@ -63,6 +71,8 @@ const generate = function () {
     patternLibGenerator.generate(currentFolderPath, patternLibFiles).then(function () {
       showFinishedLoading();
       isGenerating = false;
+
+      if (next) next();
     });
   });
 };
@@ -71,7 +81,46 @@ const addFolder = function (folderpath, next) {
   currentFolderPath = folderpath;
   showFolderInterface();
 
-  webServer.start(currentFolderPath, next);
+  if (watcher) watcher.close();
+  if (browserSync.active) browserSync.exit();
+
+  watcher = chokidar.watch(folderpath, {
+    ignored: watcherIgnore,
+    ignoreInitial: true,
+    cwd: folderpath,
+  });
+
+  watcher.on('all', (evt, path) => {
+    generate(() => {
+      browserSync.reload();
+    });
+  });
+
+  watcher.on('ready', () => {
+    browserSync.init({
+      server: {
+        baseDir: folderpath,
+        directory: true,
+      },
+      https: true,
+      open: false,
+      notify: false,
+    }, (err, browserSyncApi) => {
+      serverPort = browserSyncApi.options.get('port');
+      next()
+    });
+  });
+};
+
+const browsePatternLibrary = function () {
+  if (browseTimeout) return;
+
+  browseTimeout = setTimeout(function () {
+    clearTimeout(browseTimeout);
+    browseTimeout = false;
+  }, 500);
+
+  shell.openExternal(`${getHost()}/${appPkg.config.patternLibFilename}`);
 };
 
 $body.classList.add(`os-${os.platform()}`);
@@ -105,8 +154,8 @@ window.addEventListener('will-navigate', function (e) {
   e.preventDefault();
 });
 
-$btnGenerate.addEventListener('click', function () {
-  generate();
+$btnBrowse.addEventListener('click', function () {
+  browsePatternLibrary();
 });
 
 ipcRenderer.on('app:add-folder', function (e, folder) {
@@ -120,12 +169,5 @@ ipcRenderer.on('app:generate', function (e) {
 });
 
 ipcRenderer.on('app:browse-pattern-library', function (e) {
-  if (browseTimeout) return;
-
-  browseTimeout = setTimeout(function () {
-    clearTimeout(browseTimeout);
-    browseTimeout = false;
-  }, 500);
-
-  shell.openExternal(`${webServer.getHost()}/${appPkg.config.patternLibFilename}`);
+  browsePatternLibrary();
 });
