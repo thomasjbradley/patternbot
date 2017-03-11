@@ -1,74 +1,70 @@
 <section class="pattern" id="{{name}}">
-  <div class="push">
-    <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-8 relative">
-      <h2 class="pattern-name peta push-1-4">{{namePretty}}</h2>
-      {{#if showSubHeadings}}
-        <nav class="pattern-nav">
-          <ol class="list-group-inline push-1-4">
-            {{#each patterns}}
-              <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
-            {{/each}}
-          </ol>
-        </nav>
-      {{/if}}
-      {{#unless showSubHeadings}}
-        {{#unless patterns.[0].readme.hidePopOutButton}}
-          <div class="gutter absolute pin-cr">
-            <a class="pattern-pop" href="{{patterns.[0].localPath}}" target="_blank" title="Open pattern in a new tab">
-              <i class="icon i-18">
-                <svg><use xlink:href="#pop-out" /></svg>
-              </i>
-            </a>
-          </div>
-        {{/unless}}
-      {{/unless}}
-    </div>
-
-    {{#if readme.content.body}}
-      <div class="pattern-desc milli island">
-        <div class="max-length">{{{readme.content.body}}}</div>
-      </div>
+  <div class="pattern-toolbar gutter pad-t-1-4 pad-b-1-8 relative">
+    <h2 class="pattern-name peta push-1-4">{{namePretty}}</h2>
+    {{#if showSubHeadings}}
+      <nav class="pattern-nav">
+        <ol class="list-group-inline push-1-4">
+          {{#each patterns}}
+            <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
+          {{/each}}
+        </ol>
+      </nav>
     {{/if}}
+    {{#unless showSubHeadings}}
+      {{#unless patterns.[0].readme.hidePopOutButton}}
+        <div class="gutter absolute pin-cr">
+          <a class="pattern-pop" href="{{patterns.[0].localPath}}" target="_blank" title="Open pattern in a new tab">
+            <i class="icon i-18">
+              <svg><use xlink:href="#pop-out" /></svg>
+            </i>
+          </a>
+        </div>
+      {{/unless}}
+    {{/unless}}
   </div>
+
+  {{#if readme.content.body}}
+    <div class="pattern-desc milli island">
+      <div class="max-length">{{{readme.content.body}}}</div>
+    </div>
+  {{/if}}
 
   {{desc}}
 
   {{#each patterns}}
-    <div class="pattern-details push" id="{{../name}}-{{name}}">
+    <div class="pattern-details" id="{{../name}}-{{name}}">
       {{#if ../showSubHeadings}}
-        <div class="push">
-          <div class="pattern-toolbar pattern-toolbar-inner relative gutter pad-t-1-4 pad-b-1-4">
-            <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
-            {{#unless readme.hidePopOutButton}}
-              <div class="gutter absolute pin-cr">
-                <a class="pattern-pop" href="{{localPath}}" target="_blank" title="Open pattern in a new tab">
-                  <i class="icon i-18">
-                    <svg><use xlink:href="#pop-out" /></svg>
-                  </i>
-                </a>
-              </div>
-            {{/unless}}
-          </div>
-          {{#if readme.desc}}
-            <div class="pattern-desc milli island">
-              <div class="max-length">{{{markdown readme}}}</div>
+        <div class="pattern-toolbar pattern-toolbar-inner relative gutter pad-t-1-4 pad-b-1-4">
+          <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
+          {{#unless readme.hidePopOutButton}}
+            <div class="gutter absolute pin-cr">
+              <a class="pattern-pop" href="{{localPath}}" target="_blank" title="Open pattern in a new tab">
+                <i class="icon i-18">
+                  <svg><use xlink:href="#pop-out" /></svg>
+                </i>
+              </a>
             </div>
-          {{/if}}
+          {{/unless}}
         </div>
+        {{#if readme.desc}}
+          <div class="pattern-desc milli island">
+            <div class="max-length">{{{markdown readme}}}</div>
+          </div>
+        {{/if}}
       {{/if}}
 
-      <div class="pattern-examples">
-        <div class="gutter{{#unless readme.notResizable}}-2{{/unless}}">
+      <div class="pattern-examples pad-t-1-2 pad-b{{#if ../hideCode}}-1-2{{/if}}">
+        <div class="gutter{{#unless readme.notResizable}}-2{{/unless}} pad-t-1-2 pad-b-1-2 push-1-2" style="{{#if readme.backgroundColour}}background-color:{{readme.backgroundColour}};{{/if}}">
           <div class="resizeable-pattern relative" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}">
-            <iframe {{#unless ../hideCode}}class="push"{{/unless}} src="{{localPath}}" scrolling="no" onload="resizeIframe(this)"></iframe>
+            <iframe src="{{localPath}}" scrolling="no" onload="resizeIframe(this)"></iframe>
             {{# unless readme.notResizable}}
               <div class="resizeable-pattern-length">
-                <div class="resize-handle resize-handle-left">
+                <div class="resize-handle resize-handle-left" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.3);{{/if}}">
                   <i class="icon i-18">
                     <svg><use xlink:href="#resize-handle" /></svg>
                   </i>
                 </div>
-                <div class="resize-handle resize-handle-right">
+                <div class="resize-handle resize-handle-right" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.3);{{/if}}">
                   <i class="icon i-18">
                     <svg><use xlink:href="#resize-handle" /></svg>
                   </i>

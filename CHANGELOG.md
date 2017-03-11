@@ -14,6 +14,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - Pattern READMEs can now set the width for individual patterns.
 - Patterns can now be resized with drag-to-resize handles.
 - Allow a background colour to be assigned for the whole pattern library that changes the interface to match.
+- Allow a background colour to be assigned for a single pattern.
 
 ### Changed
 

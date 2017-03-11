@@ -4,9 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const dir = require('node-dir');
 const S = require('string');
+const fontColorContrast = require('font-color-contrast');
 const classify = require(`${__dirname}/../../shared/classify`);
 const htmlFileParser = require(`${__dirname}/html-file-parser`);
 const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
+const hexFullLength = require(`${__dirname}/hex-full-length`);
 
 const patternInfoDefaults = {
   name: '',
@@ -114,6 +116,22 @@ const getInfo = function (folderpath, limiter) {
           }
         } else {
           patternInfo.html[i].readme = patternInfo.md[0].content.attributes[html.name];
+        }
+
+        if (patternInfo.html[i].readme.backgroundColor) patternInfo.html[i].readme.backgroundColour = patternInfo.html[i].readme.backgroundColor;
+
+        if (patternInfo.html[i].readme.backgroundColour) {
+          if (fontColorContrast(hexFullLength(patternInfo.html[i].readme.backgroundColour)) === '#000000') {
+            patternInfo.html[i].readme.interfaceColours = {
+              primary: 0,
+              opposite: 255,
+            };
+          } else {
+            patternInfo.html[i].readme.interfaceColours = {
+              primary: 255,
+              opposite: 0,
+            };
+          }
         }
       });
 
