@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>{{{common.assets.css}}}</style>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+  <style>
+    :root {
+      --color-patternbot-interface: {{common.interfaceColours.primary}};
+      --color-patternbot-interface-opposite: {{common.interfaceColours.opposite}};
+    }
+
+    body {
+      background-color: {{common.readme.attributes.backgroundColour}};
+    }
+  </style>
 </head>
 <body>
 
@@ -61,7 +71,7 @@
 
   </div>
 
-  <script id="iframe-resizer-content-window" type="text/x-template">
+  <script id="inject-js" type="text/x-template">
     /*! iFrame Resizer (iframeSizer.contentWindow.min.js) - v3.5.10 - 2017-02-22
      *  Desc: Include this file in any page being loaded into an iframe
      *        to force the iframe to resize to the content size.
@@ -95,6 +105,21 @@
     exports.interact=nt):"function"==typeof define&&define.amd?define("interact",function(){return nt}):t.interact=nt}}("undefined"==typeof window?void 0:window);
   </script>
 
+  <script id="inject-css" type="text/x-template">
+    :root {
+      --color-patternbot-interface: {{common.interfaceColours.primary}};
+      --color-patternbot-interface-opposite: {{common.interfaceColours.opposite}};
+      --color-patternbot-background: {{common.readme.attributes.backgroundColour}};
+    }
+  </script>
+
+  <script>
+    var patternbotInterfaceColours = {
+      primary: {{common.interfaceColours.primary}},
+      opposite: {{common.interfaceColours.opposite}},
+      background: '{{common.readme.attributes.backgroundColour}}',
+    };
+  </script>
   <script>{{{common.assets.js}}}</script>
 </body>
 </html>

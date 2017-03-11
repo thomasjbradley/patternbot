@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const fontColorContrast = require('font-color-contrast');
 
 const readmeParser = require(`${__dirname}/readme-parser`);
 const optimizedAssetsReader = require(`${__dirname}/optimized-assets-reader`);
@@ -11,6 +12,7 @@ const builtInHelper = require(`${__dirname}/pattern-builtin-helper`);
 const patternParserQueue = require(`${__dirname}/pattern-parser-queue`);
 const patternRenderer = require(`${__dirname}/pattern-renderer`);
 const iconParser = require(`${__dirname}/icon-parser`);
+const hexFullLength = require(`${__dirname}/hex-full-length`);
 
 const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
@@ -70,6 +72,18 @@ const generate = function (folderpath, patternLibFiles) {
           if (readme) commonInfo.readme = readme;
           if (assets) commonInfo.assets = assets;
           if (icons) commonInfo.icons = icons;
+
+          if (fontColorContrast(hexFullLength(readme.attributes.backgroundColour)) === '#000000') {
+            commonInfo.interfaceColours = {
+              primary: 0,
+              opposite: 255,
+            };
+          } else {
+            commonInfo.interfaceColours = {
+              primary: 255,
+              opposite: 0,
+            };
+          }
 
           if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
             patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true}));

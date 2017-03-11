@@ -1,10 +1,23 @@
-var injectScript = document.querySelector('#iframe-resizer-content-window').innerHTML;
+var jsToInject = document.getElementById('inject-js').innerHTML;
+var cssToInject = document.getElementById('inject-css').innerHTML;
 
-var resizeIframe = function (iframe) {
+var injectJs = function (iframe) {
   var script = document.createElement('script');
 
-  script.innerHTML = injectScript;
+  script.innerHTML = jsToInject;
   iframe.contentWindow.document.body.appendChild(script);
+};
+
+var injectCss = function (iframe) {
+  var style = document.createElement('style');
+
+  style.innerHTML = cssToInject;
+  iframe.contentWindow.document.head.appendChild(style);
+};
+
+var resizeIframe = function (iframe) {
+  injectJs(iframe);
+  injectCss(iframe);
 };
 
 iFrameResize();

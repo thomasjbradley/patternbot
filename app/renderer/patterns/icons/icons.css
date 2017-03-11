@@ -1,5 +1,5 @@
 .patternbot-icon-display {
-  color: #333;
+  color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
 }
 
 .patternbot-icon-display > li {
@@ -23,10 +23,10 @@
 
 .patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-left,
 .patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-right .icon:nth-child(2) {
-  color: var(--color-primary, #333);
+  color: var(--color-primary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9));
 }
 
 .patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-left,
 .patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
-  color: var(--color-secondary, #333);
+  color: var(--color-secondary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9));
 }

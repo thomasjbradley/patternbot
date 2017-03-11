@@ -1331,6 +1331,10 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+font-color-contrast@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/font-color-contrast/-/font-color-contrast-1.0.3.tgz#77d88ff97c6bd095cfa9dfeb44624ba8ad717b6c"
+
 for-in@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.6.tgz#c9f96e89bfad18a545af5ec3ed352a1d9e5b4dc8"

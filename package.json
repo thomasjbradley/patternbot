@@ -39,6 +39,7 @@
     "electron-is": "^2.4.0",
     "es6-promisify": "^5.0.0",
     "finalhandler": "^1.0.0",
+    "font-color-contrast": "^1.0.3",
     "front-matter": "^2.1.2",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",

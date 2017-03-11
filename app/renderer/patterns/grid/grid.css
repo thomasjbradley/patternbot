@@ -3,9 +3,9 @@
 }
 
 .patternbot-grid-display > .unit {
-  border: 2px solid #fff;
+  border: 2px solid var(--color-patternbot-background);
 }
 
 .patternbot-grid-display-inner {
-  border: 2px solid var(--color-secondary, #e2e2e2);
+  border: 2px solid var(--color-secondary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .1));
 }
