@@ -28,6 +28,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - Humanized the Typekit font names.
 - When a secondary typeface isn’t used the information section disappears properly.
 - Customized `::before` bullets don’t show in Patternbot default styles now.
+- Fixed build process for the new version of Electron Builder.
 
 ---
 

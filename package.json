@@ -102,14 +102,25 @@
     "copyright": "© Thomas J Bradley",
     "productName": "Patternbot",
     "compression": "maximum",
-    "extend-info": "patternbot-extra.plist",
     "mac": {
       "target": "dmg",
-      "category": "public.app-category.developer-tools"
+      "category": "public.app-category.developer-tools",
+      "extendInfo": {
+        "CFBundleDocumentTypes": [
+          {
+            "CFBundleTypeRole": "Editor",
+            "LSHandlerRank": "Alternate",
+            "LSItemContentTypes": [
+              "public.directory",
+              "com.apple.bundle",
+              "com.apple.resolvable"
+            ]
+          }
+        ]
+      }
     },
     "win": {
-      "target": "nsis",
-      "license": "LICENSE"
+      "target": "nsis"
     },
     "dmg": {
       "title": "Install Patternbot",
