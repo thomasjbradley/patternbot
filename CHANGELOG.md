@@ -18,8 +18,8 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Pattern READMEs now can be descriptions or also include meta data.
-- Simplified the pattern group sub-nav so it didn’t conflict design-wise with the patters themselves.
+- Pattern READMEs now can be just the description (a string) or also include meta data (an object).
+- Simplified the pattern group sub-nav so it didn’t conflict design-wise with the patterns themselves.
 - The company’s name is now written at the top of the navigation.
 
 ### Fixed
