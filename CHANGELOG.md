@@ -5,6 +5,22 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Support for pages by looking for `*.html` in the `pages` folder.
+
+### Changed
+
+- Changed the button focus styles to be more nicely styled and not quite as abrasive.
+
+### Fixed
+
+- Fixed the `iframe` height calculations by using the maximum height value.
+
+---
+
 ## [1.2.0] — 2017-03-11
 
 ### Added
