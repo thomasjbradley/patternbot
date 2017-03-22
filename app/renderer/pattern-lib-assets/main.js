@@ -20,7 +20,9 @@ var resizeIframe = function (iframe) {
   injectCss(iframe);
 };
 
-iFrameResize();
+iFrameResize({
+  heightCalculationMethod: 'max',
+});
 
 /*
   ================================================
