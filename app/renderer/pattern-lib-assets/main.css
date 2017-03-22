@@ -37,8 +37,11 @@ a:hover {
 }
 
 .masthead-inner {
+  height: 100vh;
   position: fixed;
   width: 12em;
+
+  overflow-y: auto;
 }
 
 .masthead hr {
@@ -151,6 +154,16 @@ a:hover {
 
 .pattern-pop:focus,
 .pattern-pop:hover {
+  opacity: 1;
+}
+
+.page-pop .icon {
+  opacity: .6;
+  stroke: currentcolor;
+}
+
+.page-pop:focus .icon,
+.page-pop:hover .icon {
   opacity: 1;
 }
 

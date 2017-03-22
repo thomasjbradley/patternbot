@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const S = require('string');
 const glob = require('glob');
 const promisify = require('es6-promisify');
 const subfiles = promisify(fs.readdir);
@@ -101,6 +102,32 @@ const findSubDirectories = function (folderpath, subdir, patternLibKey) {
   });
 };
 
+const findSubFiles = function (folderpath, subdir, patternLibKey) {
+  return new Promise(function (resolve, reject) {
+    glob(`${folderpath}${subdir}/*.html`, function (err, files) {
+      let pages = [];
+
+      if (err) return resolve();
+
+      files.forEach(function (file) {
+        let filename = path.parse(file).base;
+        let namePretty = S(filename.replace(/\.html/, '')).humanize().titleCase().s;
+
+        if (namePretty.toLowerCase() == 'index') namePretty = 'Home';
+
+        pages.push({
+          name: filename,
+          namePretty: namePretty,
+          path: file,
+        });
+      });
+
+      patternLibFiles[patternLibKey] = pages;
+      resolve();
+    });
+  });
+};
+
 const find = function (folderpath) {
   patternLibFiles = Object.assign({}, patternLibFilesDefaults);
 
@@ -115,7 +142,7 @@ const find = function (folderpath) {
       Promise.all([
         findLogos(folderpath, appPkg.config.imagesFolder),
         findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
-        findSubDirectories(folderpath, appPkg.config.pagesFolder, 'pages'),
+        findSubFiles(folderpath, appPkg.config.pagesFolder, 'pages'),
       ]).then(function () {
         resolve(patternLibFiles);
       });

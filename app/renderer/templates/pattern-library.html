@@ -69,6 +69,26 @@
             {{/each}}
           </ul>
         </nav>
+        {{#if files.pages}}
+          <hr>
+          <h2 class="italic kilo normal gutter push-1-4">Pages</h2>
+          <nav class="nav mega">
+            <ul class="list-group">
+              {{#each files.pages}}
+                <li>
+                  <a class="gutter pad-t-1-4 pad-b-1-4 block page-pop" href="/pages/{{name}}" target="_blank">
+                    <div class="relative">
+                      <span>{{namePretty}}</span>
+                      <i class="icon i-18 absolute pin-cr">
+                        <svg><use xlink:href="#pop-out" /></svg>
+                      </i>
+                    </div>
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+          </nav>
+        {{/if}}
       </div>
     </header>
 
