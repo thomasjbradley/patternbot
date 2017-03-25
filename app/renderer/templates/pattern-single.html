@@ -27,6 +27,12 @@
     <div class="pattern-desc milli island">
       <div class="max-length">{{{readme.content.body}}}</div>
     </div>
+  {{else}}
+    {{#if patterns.[0].readme.desc}}
+      <div class="pattern-desc milli island">
+        <div class="max-length">{{{markdown patterns.[0].readme}}}</div>
+      </div>
+    {{/if}}
   {{/if}}
 
   {{desc}}

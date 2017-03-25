@@ -112,6 +112,9 @@ const generate = function (folderpath, patternLibFiles) {
 
           if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
 
+          if (DEBUG) console.log(userPatterns);
+          if (DEBUG) console.log(patternLibInfo);
+
           savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo));
           resolve();
         });
