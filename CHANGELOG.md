@@ -10,6 +10,8 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Support for pages by looking for `*.html` in the `pages` folder.
+- Allow for background colour customization of built-in sections & more in-depth background colour customization of patterns.
+- Allow multi-file pattern README (with YAML) when it’s a single-file pattern.
 
 ### Changed
 

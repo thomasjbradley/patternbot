@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const dir = require('node-dir');
+const merge = require('merge-objects');
 const S = require('string');
 const fontColorContrast = require('font-color-contrast');
 const classify = require(`${__dirname}/../../shared/classify`);
@@ -90,7 +91,39 @@ const parseFilesWithExtension = function (folderpath, ext, parser, limiter) {
   });
 };
 
-const getInfo = function (folderpath, limiter) {
+const setUpReadme = function (patternHtml, patternMd, html, readme) {
+  let finalReadme = {};
+
+  if (!(patternMd && patternMd.content && patternMd.content.attributes && patternMd.content.attributes[html.name])) return;
+
+  if (readme && readme[html.name]) finalReadme = readme[html.name];
+
+  if (typeof patternMd.content.attributes[html.name] === 'string') {
+    finalReadme.desc = patternMd.content.attributes[html.name];
+  } else {
+    finalReadme = merge(finalReadme, patternMd.content.attributes[html.name]);
+  }
+
+  if (finalReadme.backgroundColor) finalReadme.backgroundColour = finalReadme.backgroundColor;
+
+  if (finalReadme.backgroundColour) {
+    if (fontColorContrast(hexFullLength(finalReadme.backgroundColour)) === '#000000') {
+      finalReadme.interfaceColours = {
+        primary: 0,
+        opposite: 255,
+      };
+    } else {
+      finalReadme.interfaceColours = {
+        primary: 255,
+        opposite: 0,
+      };
+    }
+  }
+
+  return finalReadme;
+};
+
+const getInfo = function (folderpath, limiter, readme) {
   return new Promise(function (resolve, reject) {
     let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
     let theFolderPath = folderpath.slice(0);
@@ -108,31 +141,7 @@ const getInfo = function (folderpath, limiter) {
       patternInfo.html = all[1];
 
       patternInfo.html.forEach((html, i) => {
-        if (!(patternInfo.md && patternInfo.md[0] && patternInfo.md[0].content && patternInfo.md[0].content.attributes && patternInfo.md[0].content.attributes[html.name])) return;
-
-        if (typeof patternInfo.md[0].content.attributes[html.name] === 'string') {
-          patternInfo.html[i].readme = {
-            desc: patternInfo.md[0].content.attributes[html.name],
-          }
-        } else {
-          patternInfo.html[i].readme = patternInfo.md[0].content.attributes[html.name];
-        }
-
-        if (patternInfo.html[i].readme.backgroundColor) patternInfo.html[i].readme.backgroundColour = patternInfo.html[i].readme.backgroundColor;
-
-        if (patternInfo.html[i].readme.backgroundColour) {
-          if (fontColorContrast(hexFullLength(patternInfo.html[i].readme.backgroundColour)) === '#000000') {
-            patternInfo.html[i].readme.interfaceColours = {
-              primary: 0,
-              opposite: 255,
-            };
-          } else {
-            patternInfo.html[i].readme.interfaceColours = {
-              primary: 255,
-              opposite: 0,
-            };
-          }
-        }
+        patternInfo.html[i].readme = setUpReadme(patternInfo.html[i], (patternInfo.md[0]) ? patternInfo.md[0] : null, html, readme);
       });
 
       resolve(patternInfo);

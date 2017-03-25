@@ -1,9 +1,34 @@
+.patternbot-brand-desc * {
+  color: var(--color-patternbot-primary);
+}
+
 .patternbot-brand-desc :last-child {
   margin-bottom: 0;
 }
 
 .patternbot-color-swatches {
+  position: relative;
+}
 
+.patternbot-color-swatches::before,
+.patternbot-color-swatches::after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  border: 1px solid var(--color-patternbot-primary);
+}
+
+.patternbot-color-swatches::after {
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+  top: 1px;
+
+  border-color: var(--color-patternbot-opposite);
 }
 
 .patternbot-color-swatches-primary {

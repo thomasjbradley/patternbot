@@ -1,5 +1,6 @@
 :root {
   --color-patternbot-primary: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
+  --color-patternbot-opposite: rgba(var(--color-patternbot-interface-opposite), var(--color-patternbot-interface-opposite), var(--color-patternbot-interface-opposite), .9);
 
   --font-patternbot-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   --font-patternbot-code: "Source Code Pro", monospace;
@@ -16,6 +17,10 @@
 
 .patternbot-color-body {
   color: var(--color-patternbot-primary);
+}
+
+.custom-bg-colors-used .patternbot-color-user-or-body {
+  color: var(--color-patternbot-primary) !important;
 }
 
 .patternbot-max-length {

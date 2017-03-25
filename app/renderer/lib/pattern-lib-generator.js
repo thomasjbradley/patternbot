@@ -47,12 +47,12 @@ const generate = function (folderpath, patternLibFiles) {
 
         Promise.all([
           optimizedAssetsReader.readAll(),
-          patternParserQueue.parseAllBuiltins('brand'),
-          patternParserQueue.parseAllBuiltins('typography'),
-          patternParserQueue.parseAllBuiltins('grid'),
-          patternParserQueue.parseAllBuiltins('modules', commonInfo.modulifier),
+          patternParserQueue.parseAllBuiltins('brand', null, (readme.attributes.brand) ? readme.attributes.brand : null),
+          patternParserQueue.parseAllBuiltins('typography', null, (readme.attributes.typography) ? readme.attributes.typography : null),
+          patternParserQueue.parseAllBuiltins('grid', null, (readme.attributes.grid) ? readme.attributes.grid : null),
+          patternParserQueue.parseAllBuiltins('modules', commonInfo.modulifier, (readme.attributes.modules) ? readme.attributes.modules : null),
           iconParser.parseAll(patternLibFiles.imagesParsable.icons),
-          patternParserQueue.parseAllBuiltins('icons'),
+          patternParserQueue.parseAllBuiltins('icons', null, (readme.attributes.icons) ? readme.attributes.icons : null),
           patternParserQueue.parseAll(patternLibFiles.patterns),
         ]).then(function (all) {
           let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);

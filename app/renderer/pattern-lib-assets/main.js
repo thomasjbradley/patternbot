@@ -1,5 +1,5 @@
 var jsToInject = document.getElementById('inject-js').innerHTML;
-var cssToInject = document.getElementById('inject-css').innerHTML;
+var defaultCssToInject = document.getElementById('inject-css').innerHTML;
 
 var injectJs = function (iframe) {
   var script = document.createElement('script');
@@ -11,7 +11,13 @@ var injectJs = function (iframe) {
 var injectCss = function (iframe) {
   var style = document.createElement('style');
 
-  style.innerHTML = cssToInject;
+  if (iframe.dataset.injectCss) {
+    style.innerHTML = iframe.dataset.injectCss;
+    iframe.contentWindow.document.body.classList.add('custom-bg-colors-used');
+  } else {
+    style.innerHTML = defaultCssToInject;
+  }
+
   iframe.contentWindow.document.head.appendChild(style);
 };
 
