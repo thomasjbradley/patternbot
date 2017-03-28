@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [1.3.1] — 2017-03-28
+
+### Changed
+
+- Added a small robot illustration to the start screen to differentiate Patternbot from the other Toolbots.
+
+---
+
 ## [1.3.0] — 2017-03-25
 
 ### Added
