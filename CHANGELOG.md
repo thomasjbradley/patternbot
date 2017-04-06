@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Prevented horizontal scrolling in the pattern library.
+
+---
+
 ## [1.3.1] — 2017-03-28
 
 ### Changed

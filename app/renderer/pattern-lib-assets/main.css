@@ -1,6 +1,11 @@
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 a {
@@ -29,6 +34,7 @@ a:hover {
 
 .masthead {
   min-width: 12em;
+  overflow-x: hidden;
   width: 12em;
 
   background-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
