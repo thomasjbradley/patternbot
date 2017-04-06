@@ -7,6 +7,10 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- The output file can now be customized so it isn’t always named `pattern-library.html`. It can be changed to `index.html` for easier library loading.
+
 ### Fixed
 
 - Prevented horizontal scrolling in the pattern library.

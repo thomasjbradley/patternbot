@@ -18,11 +18,22 @@ const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
 
 let appPkg = require(`${__dirname}/../../../package.json`);
+let outputFile;
 
 const getDefaultPatterLibInfo = function (patternLibFiles) {
   return {
     patterns: [],
   };
+};
+
+const fixOutputFileName = function (filename) {
+  return classify(filename.trim().replace(/\.html?$/, '')) + '.html';
+};
+
+const getOutputFile = function () {
+  if (outputFile) return outputFile;
+
+  return appPkg.config.patternLibFilename;
 };
 
 const renderPatternLib = function (patternLibFiles, patternLibInfo, commonInfo) {
@@ -33,8 +44,10 @@ const renderPatternLib = function (patternLibFiles, patternLibInfo, commonInfo) 
   });
 };
 
-const savePatternLib = function (folderpath, patternLibString) {
-  fs.writeFileSync(`${folderpath}/${appPkg.config.patternLibFilename}`, patternLibString);
+const savePatternLib = function (folderpath, patternLibString, commonInfo) {
+  outputFile = (commonInfo.readme.attributes.outputFile) ? fixOutputFileName(commonInfo.readme.attributes.outputFile) : appPkg.config.patternLibFilename;
+
+  fs.writeFileSync(`${folderpath}/${outputFile}`, patternLibString);
 };
 
 const generate = function (folderpath, patternLibFiles) {
@@ -115,7 +128,7 @@ const generate = function (folderpath, patternLibFiles) {
           if (DEBUG) console.log(userPatterns);
           if (DEBUG) console.log(patternLibInfo);
 
-          savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo));
+          savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo), commonInfo);
           resolve();
         });
       });
@@ -124,5 +137,6 @@ const generate = function (folderpath, patternLibFiles) {
 };
 
 module.exports = {
+  getOutputFile: getOutputFile,
   generate: generate,
 };

@@ -1,6 +1,6 @@
 module.exports = [
   /(^|[\/\\])\../,
-  'pattern-library.html',
+  '*.html',
   'patterns/brand',
   'patterns/brand/*',
   'patterns/grid',

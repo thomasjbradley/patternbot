@@ -120,7 +120,7 @@ const browsePatternLibrary = function () {
     browseTimeout = false;
   }, 500);
 
-  shell.openExternal(`${getHost()}/${appPkg.config.patternLibFilename}`);
+  shell.openExternal(`${getHost()}/${patternLibGenerator.getOutputFile()}`);
 };
 
 $body.classList.add(`os-${os.platform()}`);
