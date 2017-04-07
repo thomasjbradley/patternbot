@@ -16,6 +16,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Prevented horizontal scrolling in the pattern library.
+- Fixed the weird jumping bug when pressing the left nav (also much worse when pressing the tool buttons)—it was caused by iFrameResizer’s `autoResize` property.
 
 ---
 
