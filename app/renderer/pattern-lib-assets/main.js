@@ -28,6 +28,7 @@ var resizeIframe = function (iframe) {
 
 iFrameResize({
   heightCalculationMethod: 'max',
+  autoResize: false,
 });
 
 /*
@@ -70,5 +71,40 @@ iFrameResize({
         iframe.iFrameResizer.resize();
       },
     });
+  });
+}());
+
+/*
+  ================================================
+  CODE TOGGLE BUTTON
+  ================================================
+*/
+(function () {
+  var codeBtns = document.querySelectorAll('.pattern-code-btn');
+
+  var toggleCodeSample = function (e) {
+    var theId, theCodeBlock;
+
+    e.preventDefault();
+
+    theId = this.getAttribute('aria-controls');
+    theCodeBlock = document.getElementById(theId);
+
+    if (this.getAttribute('aria-pressed') == 'true') {
+      this.setAttribute('aria-pressed', false);
+      theCodeBlock.setAttribute('hidden', true);
+      theCodeBlock.setAttribute('aria-hidden', true);
+    } else {
+      this.setAttribute('aria-pressed', true);
+      theCodeBlock.removeAttribute('hidden');
+      theCodeBlock.setAttribute('aria-hidden', false);
+      theCodeBlock.focus();
+    }
+  };
+
+  if (!codeBtns) return;
+
+  [].forEach.call(codeBtns, function (btn) {
+    btn.addEventListener('click', toggleCodeSample);
   });
 }());

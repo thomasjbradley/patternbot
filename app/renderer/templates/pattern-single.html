@@ -11,15 +11,26 @@
       </nav>
     {{/if}}
     {{#unless showSubHeadings}}
-      {{#unless patterns.[0].readme.hidePopOutButton}}
-        <div class="gutter absolute pin-cr">
-          <a class="pattern-pop" href="{{patterns.[0].localPath}}" target="_blank" title="Open pattern in a new tab">
-            <i class="icon i-18">
-              <svg><use xlink:href="#pop-out" /></svg>
-            </i>
-          </a>
-        </div>
-      {{/unless}}
+        <ul class="list-group-inline gutter absolute pin-cr">
+          {{#unless patterns.[0].readme.hideCode}}
+            <li>
+              <button class="center-contents-vertical pattern-tool-btn pattern-code-btn" title="Show code" aria-label="Show code" aria-pressed="false" aria-controls="{{name}}-{{patterns.[0].name}}-code-sample">
+                <i class="icon i-18">
+                  <svg><use xlink:href="#icon-code"></use></svg>
+                </i>
+              </button>
+            </li>
+          {{/unless}}
+          {{#unless patterns.[0].readme.hidePopOutButton}}
+            <li>
+              <a class="center-contents-vertical pattern-tool-btn pattern-pop-btn" href="{{patterns.[0].localPath}}" target="_blank" title="Open pattern in a new tab" aria-label="Open pattern in a new tab">
+                <i class="icon i-18">
+                  <svg><use xlink:href="#icon-pop-out"></use></svg>
+                </i>
+              </a>
+            </li>
+          {{/unless}}
+        </ul>
     {{/unless}}
   </div>
 
@@ -42,15 +53,26 @@
       {{#if ../showSubHeadings}}
         <div class="pattern-toolbar pattern-toolbar-inner relative gutter pad-t-1-4 pad-b-1-4" style="{{#if readme.backgroundColour}}background-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
           <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
-          {{#unless readme.hidePopOutButton}}
-            <div class="gutter absolute pin-cr">
-              <a class="pattern-pop" href="{{localPath}}" target="_blank" title="Open pattern in a new tab">
-                <i class="icon i-18">
-                  <svg><use xlink:href="#pop-out" /></svg>
-                </i>
-              </a>
-            </div>
-          {{/unless}}
+            <ul class="list-group-inline gutter absolute pin-cr">
+              {{#unless readme.hideCode}}
+                <li>
+                  <button class="center-contents-vertical pattern-tool-btn pattern-code-btn" title="Show code" aria-label="Show code" aria-pressed="false" aria-controls="{{../name}}-{{name}}-code-sample">
+                    <i class="icon i-18">
+                      <svg><use xlink:href="#icon-code"></use></svg>
+                    </i>
+                  </button>
+                </li>
+              {{/unless}}
+              {{#unless readme.hidePopOutButton}}
+                <li>
+                  <a class="btn center-contents-vertical pattern-tool-btn pattern-pop-btn" href="{{localPath}}" target="_blank" title="Open pattern in a new tab" aria-label="Open pattern in a new tab">
+                    <i class="icon i-18">
+                      <svg><use xlink:href="#icon-pop-out"></use></svg>
+                    </i>
+                  </a>
+                </li>
+              {{/unless}}
+            </ul>
         </div>
         {{#if readme.desc}}
           <div class="pattern-desc milli island" style="{{#if readme.backgroundColour}}background-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
@@ -59,20 +81,20 @@
         {{/if}}
       {{/if}}
 
-      <div class="pattern-examples pad-t-1-2 pad-b{{#if ../hideCode}}-1-2{{/if}}">
-        <div class="gutter{{#unless readme.notResizable}}-2{{/unless}} pad-t-1-2 pad-b-1-2 push-1-2">
+      <div class="pattern-examples pad-t-1-2 pad-b-1-2">
+        <div class="gutter{{#unless readme.notResizable}}-2{{/unless}} pad-t-1-2 pad-b-1-2">
           <div class="resizeable-pattern relative" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}">
             <iframe src="{{localPath}}" scrolling="no" onload="resizeIframe(this)" {{#if readme.backgroundColour}}data-inject-css=":root { --color-patternbot-interface:{{readme.interfaceColours.primary}}; --color-patternbot-interface-opposite:{{readme.interfaceColours.opposite}}; --color-patternbot-background:{{readme.backgroundColour}}; }"{{/if}}></iframe>
             {{# unless readme.notResizable}}
               <div class="resizeable-pattern-length">
                 <div class="resize-handle resize-handle-left" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.3);{{/if}}">
                   <i class="icon i-18">
-                    <svg><use xlink:href="#resize-handle" /></svg>
+                    <svg><use xlink:href="#icon-resize-handle" /></svg>
                   </i>
                 </div>
                 <div class="resize-handle resize-handle-right" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.3);{{/if}}">
                   <i class="icon i-18">
-                    <svg><use xlink:href="#resize-handle" /></svg>
+                    <svg><use xlink:href="#icon-resize-handle" /></svg>
                   </i>
                 </div>
               </div>
@@ -80,8 +102,8 @@
           </div>
         </div>
 
-        {{#unless ../hideCode}}
-          <div class="gutter">
+        {{#unless readme.hideCode}}
+          <div class="pattern-code-wrap gutter pad-t-1-2 pad-b-1-2" hidden aria-hidden="true" id="{{../name}}-{{name}}-code-sample" tabindex="-1">
             <div class="pattern-code milli island-1-2" style="{{#if readme.backgroundColour}}background-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
               <code><pre>{{{content}}}</pre></code>
             </div>
