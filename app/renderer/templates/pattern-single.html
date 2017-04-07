@@ -104,8 +104,13 @@
 
         {{#unless readme.hideCode}}
           <div class="pattern-code-wrap gutter pad-t-1-2 pad-b-1-2" hidden aria-hidden="true" id="{{../name}}-{{name}}-code-sample" tabindex="-1">
-            <div class="pattern-code milli island-1-2" style="{{#if readme.backgroundColour}}background-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
-              <code><pre>{{{content}}}</pre></code>
+            <div class="pattern-code relative milli island-1-2" style="{{#if readme.backgroundColour}}background-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.05); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
+              <button class="center-contents-vertical pattern-tool-btn pattern-copy-btn absolute pin-tr" title="Copy code" aria-label="Copy code" data-clipboard-target="#{{../name}}-{{name}}-code-sample-copy-chunk">
+                <i class="icon i-18">
+                  <svg><use xlink:href="#icon-copy"></use></svg>
+                </i>
+              </button>
+              <code><pre id="{{../name}}-{{name}}-code-sample-copy-chunk">{{{content}}}</pre></code>
             </div>
           </div>
         {{/unless}}

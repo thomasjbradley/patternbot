@@ -11,6 +11,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 - The output file can now be customized so it isn’t always named `pattern-library.html`. It can be changed to `index.html` for easier library loading.
 - Code blocks are now collapsed by default and can be expanded with a button.
+- A button to copy the code samples from each pattern.
 
 ### Fixed
 

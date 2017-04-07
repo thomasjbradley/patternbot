@@ -80,6 +80,8 @@ iFrameResize({
   ================================================
 */
 (function () {
+  'use strict';
+
   var codeBtns = document.querySelectorAll('.pattern-code-btn');
 
   var toggleCodeSample = function (e) {
@@ -107,4 +109,21 @@ iFrameResize({
   [].forEach.call(codeBtns, function (btn) {
     btn.addEventListener('click', toggleCodeSample);
   });
+}());
+
+/*
+  ================================================
+  CODE COPY BUTTON
+  ================================================
+*/
+(function () {
+  'use strict';
+
+  var copyBtns = document.querySelectorAll('.pattern-copy-btn');
+
+  if (!copyBtns) return;
+
+  if (Clipboard.isSupported()) {
+    new Clipboard('.pattern-copy-btn');
+  }
 }());
