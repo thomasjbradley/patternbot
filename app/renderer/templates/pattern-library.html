@@ -55,32 +55,37 @@
           {{/if}}
         </h1>
         <hr>
-        <h2 class="italic kilo normal gutter push-1-4">Patterns</h2>
+        <h2 class="italic kilo normal gutter push-1-2">Patterns</h2>
         <nav class="nav mega">
-          <ul class="list-group">
-            <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#brand">Brand</a></li>
+          <ul class="list-group" role="tablist">
+            <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="brand" href="#brand">Brand</a></li>
             {{#if common.typografier}}
-              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#typography">Typography</a></li>
+              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="typography" href="#typography">Typography</a></li>
             {{/if}}
             {{#if common.gridifier}}
-              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#grid">Grid</a></li>
+              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="grid" href="#grid">Grid</a></li>
             {{/if}}
             {{#if common.modulifier}}
-              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#modules">Modules</a></li>
+              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="modules" href="#modules">Modules</a></li>
             {{/if}}
             {{#if common.icons}}
-              <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#icons">Icons</a></li>
+              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="icons" href="#icons">Icons</a></li>
             {{/if}}
             {{#each patterns}}
               {{#unless opts.hideNav}}
-                <li><a class="gutter pad-t-1-4 pad-b-1-4 block" href="#{{name}}">{{namePretty}}</a></li>
+                <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="{{name}}" href="#{{name}}">{{namePretty}}</a></li>
               {{/unless}}
             {{/each}}
+            <li class="pad-t-1-2" role="presentation">
+              <button class="nav-show-all gutter pad-t-1-4 pad-b-1-4 block kilo" id="nav-show-all" aria-pressed="false" title="Show all patterns" aria-label="Show all patterns">
+                <span class="nav-show-all-wrap relative block">Show all</span>
+              </button>
+            </li>
           </ul>
         </nav>
         {{#if files.pages}}
           <hr>
-          <h2 class="italic kilo normal gutter push-1-4">Pages</h2>
+          <h2 class="italic kilo normal gutter push-1-2">Pages</h2>
           <nav class="nav mega">
             <ul class="list-group">
               {{#each files.pages}}

@@ -9,6 +9,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Performance improvements: not all the patterns are displayed by default, it acts more like tabs now. There is a “Show All” button to get back the older single-page style.
 - The output file can now be customized so it isn’t always named `pattern-library.html`. It can be changed to `index.html` for easier library loading.
 - Code blocks are now collapsed by default and can be expanded with a button.
 - A button to copy the code samples from each pattern.
