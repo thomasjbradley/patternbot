@@ -183,6 +183,7 @@ a:hover {
   color: currentcolor;
 }
 
+.pattern-tool-btn:focus,
 .pattern-tool-btn:active,
 .pattern-tool-btn[aria-pressed="true"] {
   border-color: currentcolor;
