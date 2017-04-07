@@ -20,13 +20,20 @@
 
       <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.primary}}
-          <li class="push-r-1-2">
+          <li class="push">
             <div class="push-1-2">
               <i class="patternbot-color-swatches icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
             <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
-              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8 relative">
+                <code>var({{name}})</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: {{name}}" aria-label="Copy color: {{name}}" data-clipboard-text="var({{name}})" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
             </ul>
@@ -58,13 +65,20 @@
 
       <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli pad-t-1-2 push-0">
         {{#each commonInfo.theme.colours.secondary}}
-          <li class="push-r-1-2">
+          <li class="push">
             <div class="push-1-2">
               <i class="patternbot-color-swatches icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
             <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
-              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8 relative">
+                <code>var({{name}})</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: {{name}}" aria-label="Copy color: {{name}}" data-clipboard-text="var({{name}})" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
             </ul>
@@ -86,14 +100,21 @@
       {{/if}}
       <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli push-0">
         {{#each commonInfo.theme.colours.accent}}
-          <li class="push-r-1-2 push">
+          <li class="push">
             <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
             <div class="push-1-2">
               <i class="patternbot-color-swatches icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
             <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
-              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8 relative">
+                <code>var({{name}})</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: {{name}}" aria-label="Copy color: {{name}}" data-clipboard-text="var({{name}})" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
             </ul>
@@ -115,14 +136,21 @@
       {{/if}}
       <ul class="patterbot-color-swatch-labels patternbot-color-body patternbot-list-group list-group-inline milli push-0">
         {{#each commonInfo.theme.colours.neutral}}
-          <li class="push-r-1-2 push">
+          <li class="push">
             <div class="patternbot-color-swatches patternbot-color-swatches-accent push-1-2" style="background-color:var({{name}});">&nbsp;</div>
             <div class="push-1-2">
               <i class="patternbot-color-swatches icon i-24" style="background-color:var({{name}});">&nbsp;</i>
               <span class="icon-label">{{namePretty}}</span>
             </div>
             <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
-              <li class="push-1-8"><code>var({{name}})</code></li>
+              <li class="push-1-8 relative">
+                <code>var({{name}})</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: {{name}}" aria-label="Copy color: {{name}}" data-clipboard-text="var({{name}})" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
               <li class="push-1-8"><code>{{hex}}</code></li>
               <li><code>{{rgba}}</code></li>
             </ul>

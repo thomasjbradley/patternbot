@@ -1,11 +1,16 @@
-var jsToInject = document.getElementById('inject-js').innerHTML;
+var jsToInject = document.querySelectorAll('.injectable-js');
 var defaultCssToInject = document.getElementById('inject-css').innerHTML;
 
 var injectJs = function (iframe) {
-  var script = document.createElement('script');
+  var script;
 
-  script.innerHTML = jsToInject;
-  iframe.contentWindow.document.body.appendChild(script);
+  if (!jsToInject) return;
+
+  [].forEach.call(jsToInject, function (js) {
+    script = document.createElement('script');
+    script.innerHTML = js.innerHTML;
+    iframe.contentWindow.document.body.appendChild(script);
+  });
 };
 
 var injectCss = function (iframe) {
@@ -109,21 +114,4 @@ iFrameResize({
   [].forEach.call(codeBtns, function (btn) {
     btn.addEventListener('click', toggleCodeSample);
   });
-}());
-
-/*
-  ================================================
-  CODE COPY BUTTON
-  ================================================
-*/
-(function () {
-  'use strict';
-
-  var copyBtns = document.querySelectorAll('.pattern-copy-btn');
-
-  if (!copyBtns) return;
-
-  if (Clipboard.isSupported()) {
-    new Clipboard('.pattern-copy-btn');
-  }
 }());

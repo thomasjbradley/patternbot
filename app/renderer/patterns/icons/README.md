@@ -1,6 +1,7 @@
 ---
 icons:
   hidePopOutButton: true
+  hideCode: true
   notResizable: true
 ---
 

@@ -3,7 +3,14 @@
   {{#if commonInfo.theme.fonts.primary.name}}
     <section style="font-family:var(--font-primary);">
       <ul class="patternbot-code-details patternbot-list-group list-group-inline micro push-1-2 pad-t">
-        <li><code>var({{commonInfo.theme.fonts.primary.name}})</code></li>
+        <li class="relative">
+          <code>var({{commonInfo.theme.fonts.primary.name}})</code>
+          <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy font: {{commonInfo.theme.fonts.primary.name}}" aria-label="Copy font: {{commonInfo.theme.fonts.primary.name}}" data-clipboard-text="var({{commonInfo.theme.fonts.primary.name}})" hidden>
+            <i class="icon i-18">
+              <svg><use xlink:href="#icon-copy"></use></svg>
+            </i>
+          </button>
+        </li>
       </ul>
       <h2 class="patternbot-color-body yotta" style="font-family:var(--font-primary);"><span style="color: var(--color-primary)">{{commonInfo.theme.fonts.primary.namePretty}}</span> is the primary typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.primary}}
@@ -56,7 +63,14 @@
       {{#if commonInfo.theme.fonts.primary}}<hr class="patternbot-hr">{{/if}}
 
       <ul class="patternbot-code-details patternbot-list-group list-group-inline micro push-1-2 pad-t">
-        <li><code>var({{commonInfo.theme.fonts.secondary.name}})</code></li>
+        <li class="relative">
+          <code>var({{commonInfo.theme.fonts.secondary.name}})</code>
+          <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy font: {{commonInfo.theme.fonts.secondary.name}}" aria-label="Copy font: {{commonInfo.theme.fonts.secondary.name}}" data-clipboard-text="var({{commonInfo.theme.fonts.secondary.name}})" hidden>
+            <i class="icon i-18">
+              <svg><use xlink:href="#icon-copy"></use></svg>
+            </i>
+          </button>
+        </li>
       </ul>
       <h2 class="patternbot-color-body yotta" style="font-family:var(--font-secondary);"><span style="color:var(--color-primary);">{{commonInfo.theme.fonts.secondary.namePretty}}</span> is the secondary typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.secondary}}
@@ -109,7 +123,14 @@
       {{#if commonInfo.theme.fonts.secondary}}<hr class="patternbot-hr">{{/if}}
 
       <ul class="patternbot-code-details patternbot-list-group list-group-inline micro push-1-2 pad-t">
-        <li><code>var({{name}})</code></li>
+        <li class="relative">
+          <code>var({{name}})</code>
+          <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy font: {{name}}" aria-label="Copy font: {{name}}" data-clipboard-text="var({{name}})" hidden>
+            <i class="icon i-18">
+              <svg><use xlink:href="#icon-copy"></use></svg>
+            </i>
+          </button>
+        </li>
       </ul>
       <h2 class="patternbot-color-body yotta" style="font-family:var({{name}});"><span style="color:var(--color-primary);">{{namePretty}}</span> is an accent typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.accent}}

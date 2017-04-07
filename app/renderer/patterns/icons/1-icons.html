@@ -1,8 +1,7 @@
-<!-- patternbot:hide-start -->
-<ul class="patternbot-icon-display patternbot-list-group list-group-inline {{#if commonFiles.commonParsable.modulifier}}push-2{{/if}}">
+<ul class="patternbot-icon-display patternbot-list-group list-group-inline">
   {{#each commonInfo.icons}}
     <li>
-      <div class="clearfix">
+      <div class="text-center">
         <div class="patternbot-icon-display-left island-1-2">
           <i class="icon i-128 block">
             <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
@@ -25,14 +24,13 @@
           <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
         </i>
         <span class="icon-label ib"><code class="micro">#{{this}}</code></span>
+        <span class="icon-label ib"><button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy icon: {{this}}" aria-label="Copy icon: {{this}}" data-clipboard-text="&lt;i class=&quot;icon i-18&quot;&gt;&lt;svg&gt;&lt;use xlink:href=&quot;images/icons.svg#{{this}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/i&gt;" hidden>
+            <i class="icon i-18">
+              <svg><use xlink:href="#icon-copy"></use></svg>
+            </i>
+          </button>
+        </span>
       </div>
     </li>
   {{/each}}
 </ul>
-<!-- patternbot:hide-end -->
-
-<!-- patternbot:hide-start --><aside hidden><!-- patternbot:hide-end -->
-<i class="icon i-192">
-  <svg><use xlink:href="images/icons.svg#ID-FROM-LIST" /></svg>
-</i>
-<!-- patternbot:hide-start --></aside><!-- patternbot:hide-end -->

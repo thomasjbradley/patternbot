@@ -109,7 +109,7 @@
 
   </div>
 
-  <script id="inject-js" type="text/x-template">
+  <script class="injectable-js" type="text/x-template">
     /*! iFrame Resizer (iframeSizer.contentWindow.min.js) - v3.5.10 - 2017-02-22
      *  Desc: Include this file in any page being loaded into an iframe
      *        to force the iframe to resize to the content size.
@@ -144,7 +144,7 @@
     exports.interact=nt):"function"==typeof define&&define.amd?define("interact",function(){return nt}):t.interact=nt}}("undefined"==typeof window?void 0:window);
   </script>
 
-  <script>
+  <script class="injectable-js">
     /*!
      * clipboard.js v1.6.1
      * https://zenorocha.github.io/clipboard.js
@@ -169,6 +169,31 @@
       background: '{{common.readme.attributes.backgroundColour}}',
     };
   </script>
+
+  <script class="injectable-js">
+    /*
+      ================================================
+      COPY BUTTONS
+      I'd prefer this in main.js, but putting it here allows me to inject it into the iframes
+      ================================================
+    */
+    (function () {
+      'use strict';
+
+      var copyBtns = document.querySelectorAll('.pattern-copy-btn');
+
+      if (!copyBtns) return;
+
+      if (Clipboard.isSupported()) {
+        [].forEach.call(copyBtns, function (btn) {
+          btn.removeAttribute('hidden');
+        });
+
+        new Clipboard('.pattern-copy-btn');
+      }
+    }());
+  </script>
+
   <script>{{{common.assets.js}}}</script>
 </body>
 </html>

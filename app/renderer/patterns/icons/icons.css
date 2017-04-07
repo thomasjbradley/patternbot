@@ -9,7 +9,7 @@
 .patternbot-icon-display-left,
 .patternbot-icon-display-right {
   box-sizing: content-box;
-  float: left;
+  display: inline-block;
 }
 
 .patternbot-icon-display-left {
@@ -29,4 +29,9 @@
 .patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-left,
 .patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
   color: var(--color-secondary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9));
+}
+
+.patternbot-icon-display .patternbot-tool-btn {
+  position: static;
+  transform: none;
 }

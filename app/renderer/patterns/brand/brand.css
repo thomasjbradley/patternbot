@@ -51,3 +51,7 @@
 .patternbot-color-swatches-fill > div {
   flex-grow: 1;
 }
+
+.patterbot-color-swatch-labels > li {
+  margin-right: calc(28px + 1.2em);
+}

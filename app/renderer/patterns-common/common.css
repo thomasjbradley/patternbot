@@ -147,10 +147,47 @@ code {
 
   font-size: 14px;
   line-height: 2;
+  text-align: left;
 }
 
 .patternbot-code-details-under {
   padding-top: 0;
 
   border: 0;
+}
+
+
+.patternbot-tool-btn {
+  display: flex;
+  min-height: 1.4em;
+  min-width: 1.2em;
+  padding: 1px 2px 2px;
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: .4;
+  stroke: currentcolor;
+
+  color: currentcolor;
+}
+
+.patternbot-tool-btn:focus,
+.patternbot-tool-btn:hover {
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  opacity: 1;
+  color: currentcolor;
+}
+
+.patternbot-tool-btn:focus,
+.patternbot-tool-btn:active,
+.patternbot-tool-btn[aria-pressed="true"] {
+  border-color: currentcolor;
 }
