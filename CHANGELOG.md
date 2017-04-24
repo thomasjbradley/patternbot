@@ -5,7 +5,15 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [1.4.0] — 2017-07-07
+## [1.4.1] — 2017-04-24
+
+### Fixed
+
+- The pages links don’t work when launched to GitHub Pages or within a folder.
+
+---
+
+## [1.4.0] — 2017-04-07
 
 ### Added
 
