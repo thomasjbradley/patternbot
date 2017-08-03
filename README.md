@@ -153,6 +153,8 @@ After looking through tonnes of resources these are the things that stick out to
 - http://brettjankord.com/projects/style-guide-boilerplate/
 - https://github.com/fbrctr/fabricator-assemble
 - https://browsersync.io/
+- http://astrum.nodividestudio.com/
+- http://fractal.build/
 
 ### Examples
 
