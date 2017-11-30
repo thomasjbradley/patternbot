@@ -11,4 +11,15 @@ module.exports = [
   'patterns/modules/*',
   'patterns/typography',
   'patterns/typography/*',
+  // Jekyll folders
+  '_site',
+  '_site/*',
+  '_layouts',
+  '_layouts/*',
+  '_includes',
+  '_includes/*',
+  '_data',
+  '_data/*',
+  '_posts',
+  '_posts/*',
 ];
