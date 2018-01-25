@@ -55,3 +55,8 @@
 .patterbot-color-swatch-labels > li {
   margin-right: calc(28px + 1.2em);
 }
+
+.patternbot-color-swatch-labels-hex,
+.patternbot-color-swatch-labels-rgba {
+  text-transform: lowercase;
+}
