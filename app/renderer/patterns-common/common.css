@@ -156,6 +156,9 @@ code {
   border: 0;
 }
 
+.patternbot-code-details-center {
+  text-align: center;
+}
 
 .patternbot-tool-btn {
   display: flex;
