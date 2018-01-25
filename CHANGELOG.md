@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- Ignore the common Jekyll-related folders (`_site`, `_includes`, `_layouts`, etc.) when watching to regenerate.
+
+---
+
 ## [1.4.1] — 2017-04-24
 
 ### Fixed
