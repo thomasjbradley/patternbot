@@ -23,12 +23,12 @@ const colourToRgba = function (color) {
 
   if (cssColorNames[color]) {
     rgb = hexRgb(cssColorNames[color]);
-    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+    return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, 1)`;
   }
 
   if (/^\#/.test(color)) {
     rgb = hexRgb(color);
-    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+    return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, 1)`;
   }
 
   return false;
