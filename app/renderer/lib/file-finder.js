@@ -111,7 +111,7 @@ const findSubFiles = function (folderpath, subdir, patternLibKey) {
 
       files.forEach(function (file) {
         let filename = path.parse(file).base;
-        let namePretty = S(filename.replace(/\.html/, '')).humanize().titleCase().s;
+        let namePretty = S(filename.replace(/\.html/, '')).humanize().s;
 
         if (namePretty.toLowerCase() == 'index') namePretty = 'Home';
 
