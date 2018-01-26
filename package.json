@@ -55,7 +55,6 @@
     "portfinder": "^1.0.13",
     "postcss-assets": "^5.0.0",
     "postcss-cli": "^4.1.1",
-    "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.0.0",
     "rgb-hex": "^2.1.0",
     "string": "^3.3.3",
@@ -69,8 +68,8 @@
   "scripts": {
     "debug": "NODE_ENV=development electron patternbot.js",
     "start": "NODE_ENV=production electron patternbot.js",
-    "postcss": "postcss -u postcss-import -u postcss-cssnext --postcss-cssnext.browsers 'last 2 versions' -u postcss-assets -u cssnano",
-    "postcss-patterns": "postcss -u postcss-import -u postcss-cssnext --postcss-cssnext.browsers 'last 2 Chrome versions' -u postcss-assets -u cssnano",
+    "postcss": "postcss --no-maps -u postcss-import -u postcss-assets -u cssnano --cssnano.safe",
+    "postcss-patterns": "postcss --no-maps -u postcss-import -u postcss-assets -u cssnano --cssnano.safe",
     "build-css-patterns-common-delete": "rm -rf app/renderer/patterns-common/*.min.css",
     "build-css-patterns-common-copy": "for i in app/renderer/patterns-common/*.css; do cp \"$i\" \"${i/.css/.min.css}\"; done",
     "build-css-patterns-common-minify": "npm run postcss-patterns -- -d app/renderer/patterns-common/ app/renderer/patterns-common/*.min.css",
