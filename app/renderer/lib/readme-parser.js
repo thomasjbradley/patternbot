@@ -24,6 +24,8 @@ const parse = function (folderpath) {
       if (readme.attributes.backgroundColor) readme.attributes.backgroundColour = readme.attributes.backgroundColor;
       if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
 
+      if (readme.attributes.accentColor) readme.attributes.accentColour = readme.attributes.accentColor;
+
       resolve(readme);
     });
   });

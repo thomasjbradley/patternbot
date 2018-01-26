@@ -12,7 +12,7 @@
           </button>
         </li>
       </ul>
-      <h2 class="patternbot-color-body yotta" style="font-family:var(--font-primary);"><span style="color: var(--color-primary)">{{commonInfo.theme.fonts.primary.namePretty}}</span> is the primary typeface</h2>
+      <h2 class="patternbot-color-body yotta" style="font-family:var(--font-primary);"><span style="color: {{#if commonInfo.readme.attributes.accentColour}}{{commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">{{commonInfo.theme.fonts.primary.namePretty}}</span> is the primary typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.primary}}
         <div class="patternbot-max-length tera max-length">
           {{{markdown commonInfo.readme.attributes.fonts.primary}}}
@@ -26,7 +26,7 @@
             <li><code>font-style: normal;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}};">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">
@@ -43,7 +43,7 @@
             <li><code>font-style: italic;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">
@@ -72,7 +72,7 @@
           </button>
         </li>
       </ul>
-      <h2 class="patternbot-color-body yotta" style="font-family:var(--font-secondary);"><span style="color:var(--color-primary);">{{commonInfo.theme.fonts.secondary.namePretty}}</span> is the secondary typeface</h2>
+      <h2 class="patternbot-color-body yotta" style="font-family:var(--font-secondary);"><span style="color: {{#if commonInfo.readme.attributes.accentColour}}{{commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">{{commonInfo.theme.fonts.secondary.namePretty}}</span> is the secondary typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.secondary}}
         <div class="patternbot-max-length tera max-length">
           {{{markdown commonInfo.readme.attributes.fonts.secondary}}}
@@ -86,7 +86,7 @@
             <li><code>font-style: normal;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}};">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">
@@ -103,7 +103,7 @@
             <li><code>font-style: italic;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">
@@ -132,7 +132,7 @@
           </button>
         </li>
       </ul>
-      <h2 class="patternbot-color-body yotta" style="font-family:var({{name}});"><span style="color:var(--color-primary);">{{namePretty}}</span> is an accent typeface</h2>
+      <h2 class="patternbot-color-body yotta" style="font-family:var({{name}});"><span style="color: {{#if commonInfo.readme.attributes.accentColour}}{{commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">{{namePretty}}</span> is an accent typeface</h2>
       {{# if commonInfo.readme.attributes.fonts.accent}}
         <div class="patternbot-max-length tera max-length">
           {{{markdown commonInfo.readme.attributes.fonts.accent}}}
@@ -146,7 +146,7 @@
             <li><code>font-style: normal;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}};">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">
@@ -163,7 +163,7 @@
             <li><code>font-style: italic;</code></li>
           </ul>
           <div class="grid grid-middle" style="font-weight:{{weight}}; font-style:italic;">
-            <div class="unit [ xs-1 m-1-5 ]" style="color: var(--color-primary)">
+            <div class="unit [ xs-1 m-1-5 ]" style="color: {{#if ../commonInfo.readme.attributes.accentColour}}{{../commonInfo.readme.attributes.accentColour}}{{else}}var(--color-primary){{/if}}">
               <p class="yotta push-0">Aa Gg<br>Ss Zz</p>
             </div>
             <div class="unit [ xs-1 m-4-5 ]">

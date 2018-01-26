@@ -2,8 +2,8 @@
   <ol class="patternbot-mq-display patternbot-list-group list-group push-0 pad-b" style="{{# each commonInfo.gridifier}}width: calc({{mq}}em + 40em); {{/each}}">
     {{# each commonInfo.gridifier}}
       <li style="padding-left: {{mq}}em">
-        <div class="patternbot-mq-inner relative">
-          <dl class="patternbot-mq-list patternbot-list-group list-group-inline push-0 gutter-1-2 absolute micro">
+        <div class="patternbot-mq-inner relative" {{#if ../commonInfo.readme.attributes.accentColour}}style="background-color: {{../commonInfo.readme.attributes.accentColour}}"{{/if}}>
+          <dl class="patternbot-mq-list patternbot-list-group list-group-inline push-0 gutter-1-2 absolute micro" {{#if ../commonInfo.readme.attributes.accentColour}}style="border-color: {{../commonInfo.readme.attributes.accentColour}}"{{/if}}>
             <dt class="push-0">Media query</dt>
             <dd class="push-0">{{#if mq}}{{mq}}em{{else}}∞{{/if}}</dd>
             <dt class="push-0">Class prefix</dt>
@@ -25,12 +25,16 @@
     <ol class="patternbot-grid-display grid {{#if @last}}push{{/if}}" style="min-width: 320px; {{#if mq}}max-width: {{mq}}em{{else}}max-width: 320px{{/if}}">
       {{#if @first}}
         <li class="unit {{prefix}}-1">
-          <div class="patternbot-grid-display-inner island-1-4"><code class="micro">.{{prefix}}-1</code></div>
+          <div class="patternbot-grid-display-inner island-1-4" {{#if ../commonInfo.readme.attributes.accentColour}}style="border-color: {{../commonInfo.readme.attributes.accentColour}}"{{/if}}>
+            <code class="micro">.{{prefix}}-1</code>
+          </div>
         </li>
       {{else}}
         {{#loop @index}}
           <li class="unit {{../prefix}}-1-{{@index}}">
-            <div class="patternbot-grid-display-inner island-1-4"><code class="micro">.{{../prefix}}-1-{{@index}}</code></div>
+            <div class="patternbot-grid-display-inner island-1-4" {{#if ../../commonInfo.readme.attributes.accentColour}}style="border-color: {{../../commonInfo.readme.attributes.accentColour}}"{{/if}}>
+              <code class="micro">.{{../prefix}}-1-{{@index}}</code>
+            </div>
           </li>
         {{/loop}}
       {{/if}}
