@@ -110,7 +110,12 @@ code {
 }
 
 .patternbot-mq-display {
+  background-color: transparent;
   overflow: hidden;
+}
+
+.patternbot-mq-display > li {
+  padding: 0;
 }
 
 .patternbot-mq-display > li:last-child {
