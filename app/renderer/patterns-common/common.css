@@ -6,6 +6,10 @@
   --font-patternbot-code: "Source Code Pro", monospace;
 }
 
+.patternbot-list-group {
+  text-align: left;
+}
+
 .patternbot-list-group > li::before {
   content: "";
   display: none;
