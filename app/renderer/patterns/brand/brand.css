@@ -52,11 +52,15 @@
   flex-grow: 1;
 }
 
-.patterbot-color-swatch-labels > li {
+.patternbot-color-swatch-labels > li {
   margin-right: calc(28px + 1.2em);
 }
 
 .patternbot-color-swatch-labels-hex,
 .patternbot-color-swatch-labels-rgba {
   text-transform: lowercase;
+}
+
+.patternbot-color-swatch-labels * {
+  color: var(--color-patternbot-primary);
 }

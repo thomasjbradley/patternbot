@@ -155,9 +155,14 @@ code {
 
   border-bottom: 1px solid rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .05);
 
+  color: var(--color-patternbot-primary);
   font-size: 14px;
   line-height: 2;
   text-align: left;
+}
+
+.patternbot-code-details * {
+  color: var(--color-patternbot-primary);
 }
 
 .patternbot-code-details-under {
@@ -185,9 +190,14 @@ code {
   border-radius: 4px;
   cursor: pointer;
   opacity: .4;
-  stroke: currentcolor;
+  stroke: var(--color-patternbot-primary);
 
-  color: currentcolor;
+  color: var(--color-patternbot-primary);
+}
+
+.patternbot-tool-btn * {
+  stroke: var(--color-patternbot-primary);
+  color: var(--color-patternbot-primary);
 }
 
 .patternbot-tool-btn:focus,
@@ -196,11 +206,11 @@ code {
   border-color: transparent;
   outline: none;
   opacity: 1;
-  color: currentcolor;
+  color: var(--color-patternbot-primary);
 }
 
 .patternbot-tool-btn:focus,
 .patternbot-tool-btn:active,
 .patternbot-tool-btn[aria-pressed="true"] {
-  border-color: currentcolor;
+  border-color: var(--color-patternbot-primary);
 }
