@@ -15,7 +15,10 @@ const parse = function (filepath) {
 
       if (!settingsString) return resolve(false);
 
-      resolve(parseSettings(settingsString));
+      resolve({
+        url: settingsString,
+        settings: parseSettings(settingsString),
+      });
     });
   });
 };

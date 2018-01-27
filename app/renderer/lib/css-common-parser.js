@@ -14,9 +14,12 @@ const parseAll = function (patternLibFiles, readme) {
       cssVariableExtractor.parse(patternLibFiles.commonParsable.theme, readme),
     ]).then(function (all) {
       resolve({
-        modulifier: all[0],
-        gridifier: all[1],
-        typografier: all[2],
+        modulifier: all[0].settings,
+        modulifierUrl: all[0].url,
+        gridifier: all[1].settings,
+        gridifierUrl: all[1].url,
+        typografier: all[2].settings,
+        typografierUrl: all[2].url,
         theme: all[3],
       });
     });

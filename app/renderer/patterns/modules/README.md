@@ -19,4 +19,4 @@ media-object:
     A simple pattern that provides and image beside some text—good for comments with avatars and many other situations. Will usually be combined into larger patterns.
 ---
 
-[Modulifier](https://modulifier.web-dev.tools) generates a series of simple, default CSS components that can be used throughout the site, or as basic building blocks for more complex patterns. [See the documentation for all available classes.](https://learn-the-web.algonquindesign.ca/topics/modulifier-cheat-sheet/)
+[Modulifier](https://modulifier.web-dev.tools/++modulifier-settings-url++) generates a series of simple, default CSS components that can be used throughout the site, or as basic building blocks for more complex patterns. [See the documentation for all available classes.](https://learn-the-web.algonquindesign.ca/topics/modulifier-cheat-sheet/)

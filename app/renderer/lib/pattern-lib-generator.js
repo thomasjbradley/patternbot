@@ -61,17 +61,54 @@ const generate = function (folderpath, patternLibFiles) {
         Promise.all([
           optimizedAssetsReader.readAll(),
           patternParserQueue.parseAllBuiltins('brand', null, (readme.attributes.brand) ? readme.attributes.brand : null),
-          patternParserQueue.parseAllBuiltins('typography', null, (readme.attributes.typography) ? readme.attributes.typography : null),
-          patternParserQueue.parseAllBuiltins('grid', null, (readme.attributes.grid) ? readme.attributes.grid : null),
-          patternParserQueue.parseAllBuiltins('modules', commonInfo.modulifier, (readme.attributes.modules) ? readme.attributes.modules : null),
+
+          patternParserQueue.parseAllBuiltins(
+            'typography',
+            null,
+            (readme.attributes.typography) ? readme.attributes.typography : null, {
+            readmeReplace: [{
+              search: /\+\+typografier-settings-url\+\+/g,
+              replace: `#${commonInfo.typografierUrl}`}]
+            }
+          ),
+          patternParserQueue.parseAllBuiltins(
+            'grid',
+            null,
+            (readme.attributes.grid) ? readme.attributes.grid : null, {
+            readmeReplace: [{
+              search: /\+\+gridifier-settings-url\+\+/g,
+              replace: `#${commonInfo.gridifierUrl}`}]
+            }
+          ),
+          patternParserQueue.parseAllBuiltins(
+            'modules',
+            commonInfo.modulifier,
+            (readme.attributes.modules) ? readme.attributes.modules : null, {
+            readmeReplace: [{
+              search: /\+\+modulifier-settings-url\+\+/g,
+              replace: `#${commonInfo.modulifierUrl}`}]
+            }
+          ),
+
           iconParser.parseAll(patternLibFiles.imagesParsable.icons),
           patternParserQueue.parseAllBuiltins('icons', null, (readme.attributes.icons) ? readme.attributes.icons : null),
           patternParserQueue.parseAll(patternLibFiles.patterns),
         ]).then(function (all) {
           let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
-          if (DEBUG) console.log(commonInfo);
-          if (DEBUG) console.log(patternLibFiles);
+          if (DEBUG) {
+            console.group()
+            console.log('%cCommon info', 'weight: bold; font-size: large');
+            console.log(commonInfo);
+            console.groupEnd();
+          }
+
+          if (DEBUG) {
+            console.group()
+            console.log('%cPattern library files', 'weight: bold; font-size: large');
+            console.log(patternLibFiles);
+            console.groupEnd();
+          }
 
           let assets = all[0];
           let brandPatterns = all[1];
@@ -125,8 +162,19 @@ const generate = function (folderpath, patternLibFiles) {
 
           if (userPatterns.length) patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(userPatterns));
 
-          if (DEBUG) console.log(userPatterns);
-          if (DEBUG) console.log(patternLibInfo);
+          if (DEBUG) {
+            console.group()
+            console.log('%cUser patterns', 'weight: bold; font-size: large');
+            console.log(userPatterns);
+            console.groupEnd();
+          }
+
+          if (DEBUG) {
+            console.group()
+            console.log('%cPattern library info', 'weight: bold; font-size: large');
+            console.log(patternLibInfo);
+            console.groupEnd();
+          }
 
           savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo), commonInfo);
           resolve();

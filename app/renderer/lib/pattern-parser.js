@@ -51,12 +51,18 @@ const filterAndSortFiles = function (everyFile, ext, limiter) {
   });
 };
 
-const readFile = function (filepath) {
+const readFile = function (filepath, options = {}) {
   return new Promise(function (resolve, reject) {
     let theFilePath = filepath.slice(0);
 
     fs.readFile(theFilePath, 'utf8', function (err, data) {
       let name = formatName(path.parse(theFilePath).name);
+
+      if (options.readmeReplace) {
+        options.readmeReplace.forEach((item) => {
+          data = data.replace(item.search, item.replace);
+        });
+      }
 
       resolve({
         name: name,
@@ -68,13 +74,13 @@ const readFile = function (filepath) {
   });
 };
 
-const parseFilesWithExtension = function (folderpath, ext, parser, limiter) {
+const parseFilesWithExtension = function (folderpath, ext, parser, limiter = null, options = {}) {
   return new Promise(function (resolve, reject) {
     dir.files(folderpath, function (err, everyFile) {
       let files = filterAndSortFiles(everyFile, ext, limiter);
 
       Promise
-        .all(files.map(readFile))
+        .all(files.map((file) => readFile(file, options)))
         .then(function (allFiles) {
           let patterns = [];
 
@@ -123,7 +129,7 @@ const setUpReadme = function (patternHtml, patternMd, html, readme) {
   return finalReadme;
 };
 
-const getInfo = function (folderpath, limiter, readme) {
+const getInfo = function (folderpath, limiter, readme, options = {}) {
   return new Promise(function (resolve, reject) {
     let patternInfo = JSON.parse(JSON.stringify(patternInfoDefaults));
     let theFolderPath = folderpath.slice(0);
@@ -134,7 +140,7 @@ const getInfo = function (folderpath, limiter, readme) {
     patternInfo.path = theFolderPath;
 
     Promise.all([
-      parseFilesWithExtension(theFolderPath, '.md', markdownFileParser),
+      parseFilesWithExtension(theFolderPath, '.md', markdownFileParser, null, options),
       parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter),
     ]).then(function (all) {
       patternInfo.md = all[0];
