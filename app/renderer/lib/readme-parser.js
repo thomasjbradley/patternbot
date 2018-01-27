@@ -7,7 +7,6 @@ const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
 
 const README_FILENAME = 'README.md';
 
-// Allow both correct & American spelling
 const normalizeSpelling = function (readme) {
   if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
 
@@ -17,6 +16,8 @@ const normalizeSpelling = function (readme) {
   if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
 
   if (readme.attributes.accentColor) readme.attributes.accentColour = readme.attributes.accentColor;
+
+  if (readme.attributes.fontURL) readme.attributes.fontUrl = readme.attributes.fontURL;
 
   return readme
 };

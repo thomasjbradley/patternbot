@@ -10,12 +10,27 @@
     :root {
       --color-patternbot-interface: {{common.interfaceColours.primary}};
       --color-patternbot-interface-opposite: {{common.interfaceColours.opposite}};
+      {{#if common.theme.fonts.primary}}
+        --font-patternbot-primary: {{{common.theme.fonts.primary.raw}}}, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      {{/if}}
     }
+
+    {{#if common.theme.fonts.primary}}
+      html {
+        font-family: {{{common.theme.fonts.primary.raw}}}, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      }
+    {{/if}}
 
     body {
       background-color: {{common.readme.attributes.backgroundColour}};
     }
   </style>
+  {{#if common.readme.attributes.fontUrl}}
+    <link href="{{common.readme.attributes.fontUrl}}" rel="stylesheet">
+  {{/if}}
+  {{#if common.readme.attributes.typekitId}}
+    <link rel="stylesheet" href="https://use.typekit.net/{{common.readme.attributes.typekitId}}.css">
+  {{/if}}
 </head>
 <body>
 
@@ -58,22 +73,76 @@
         <h2 class="italic kilo normal gutter push-1-2">Patterns</h2>
         <nav class="nav mega">
           <ul class="list-group" role="tablist">
-            <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="brand" href="#brand">Brand</a></li>
+            <li role="presentation">
+              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="brand" href="#brand">
+                <div class="relative">
+                  <span>Brand</span>
+                  <i class="icon i-18 absolute pin-cr">
+                    <svg><use xlink:href="#icon-pop-out" /></svg>
+                  </i>
+                </div>
+              </a>
+            </li>
             {{#if common.typografier}}
-              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="typography" href="#typography">Typography</a></li>
+              <li role="presentation">
+                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="typography" href="#typography">
+                  <div class="relative">
+                    <span>Typography</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-pop-out" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
             {{/if}}
             {{#if common.gridifier}}
-              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="grid" href="#grid">Grid</a></li>
+              <li role="presentation">
+                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="grid" href="#grid">
+                  <div class="relative">
+                    <span>Grid</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-pop-out" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
             {{/if}}
             {{#if common.modulifier}}
-              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="modules" href="#modules">Modules</a></li>
+              <li role="presentation">
+                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="modules" href="#modules">
+                  <div class="relative">
+                    <span>Modules</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-pop-out" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
             {{/if}}
             {{#if common.icons}}
-              <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="icons" href="#icons">Icons</a></li>
+              <li role="presentation">
+                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="icons" href="#icons">
+                  <div class="relative">
+                    <span>Icons</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-pop-out" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
             {{/if}}
             {{#each patterns}}
               {{#unless opts.hideNav}}
-                <li role="presentation"><a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="{{name}}" href="#{{name}}">{{namePretty}}</a></li>
+                <li role="presentation">
+                  <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="{{name}}" href="#{{name}}">
+                    <div class="relative">
+                      <span>{{namePretty}}</span>
+                      <i class="icon i-18 absolute pin-cr">
+                        <svg><use xlink:href="#icon-pop-out" /></svg>
+                      </i>
+                    </div>
+                  </a>
+                </li>
               {{/unless}}
             {{/each}}
             <li class="pad-t-1-2" role="presentation">
