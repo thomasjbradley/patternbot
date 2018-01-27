@@ -61,7 +61,7 @@ code {
 }
 
 .patternbot-hr:last-child,
-.patternbot-hr:last-of-type {
+.patternbot-hr:last-of-type:not(:first-child) {
   display: none;
 }
 
