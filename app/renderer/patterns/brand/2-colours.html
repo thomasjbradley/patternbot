@@ -10,8 +10,8 @@
       {{/if}}
 
       <div class="patternbot-color-swatches patternbot-color-swatches-primary grid grid-stretch">
-        <div class="unit xs-1-2" style="background-color:var(--color-primary)">&nbsp;</div>
-        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-primary)">
+        <div class="unit xs-1-2" style="background-color:var(--color-primary, var({{#with (lookup commonInfo.theme.colours.primary 0)}}{{name}}{{/with}}))">&nbsp;</div>
+        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-primary, var({{#with (lookup commonInfo.theme.colours.primary 0)}}{{name}}{{/with}}))">
           {{#each commonInfo.theme.colours.primary}}
             <div style="background-color:var({{name}});">&nbsp;</div>
           {{/each}}
@@ -44,7 +44,7 @@
   {{/if}}
 
   {{#if commonInfo.theme.colours.secondary}}
-    <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
+    <section>
       {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
       <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.secondary}}push-1-4{{/if}}">Secondary colours</h2>
@@ -55,8 +55,8 @@
       {{/if}}
 
       <div class="patternbot-color-swatches patternbot-color-swatches-secondary grid grid-stretch">
-        <div class="unit xs-1-2" style="background-color:var(--color-secondary)">&nbsp;</div>
-        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-secondary)">
+        <div class="unit xs-1-2" style="background-color:var(--color-secondary, var({{#with (lookup commonInfo.theme.colours.secondary 0)}}{{name}}{{/with}}))">&nbsp;</div>
+        <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-secondary, var({{#with (lookup commonInfo.theme.colours.secondary 0)}}{{name}}{{/with}}))">
           {{#each commonInfo.theme.colours.secondary}}
             <div style="background-color:var({{name}});">&nbsp;</div>
           {{/each}}
@@ -89,7 +89,7 @@
   {{/if}}
 
   {{#if commonInfo.theme.colours.accent}}
-    <section {{#if commonInfo.theme.colours.primary}}class="pad-t"{{/if}}>
+    <section>
       {{#if commonInfo.theme.colours.primary}}<hr class="patternbot-hr">{{/if}}
 
       <h2 class="patternbot-color-body giga {{# if commonInfo.readme.attributes.colours.accent}}push-1-4{{/if}}">Accent colours</h2>
