@@ -1,0 +1,13 @@
+inherit:
+  - html
+  - css-order-modules-grid-type-theme
+  - css
+
+naming: true
+restrictFileTypes: true
+
+allFiles:
+  html:
+    outline: false
+  md:
+    valid: true

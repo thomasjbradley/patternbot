@@ -1,0 +1,12 @@
+naming: true
+restrictFileTypes: true
+
+allFiles:
+  files:
+    maxSize: 250
+    maxWidth: 2500
+    maxHeight: 2500
+    smushed: true
+
+files:
+  - directory: '.'

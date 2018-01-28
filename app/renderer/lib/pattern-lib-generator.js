@@ -13,6 +13,7 @@ const patternParserQueue = require(`${__dirname}/pattern-parser-queue`);
 const patternRenderer = require(`${__dirname}/pattern-renderer`);
 const iconParser = require(`${__dirname}/icon-parser`);
 const hexFullLength = require(`${__dirname}/hex-full-length`);
+const markbotHelper = require(`${__dirname}/markbot-helper`);
 
 const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
@@ -177,7 +178,8 @@ const generate = function (folderpath, patternLibFiles) {
           }
 
           savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo), commonInfo);
-          resolve();
+
+          markbotHelper.copyAll(folderpath, patternLibFiles).then(resolve);
         });
       });
     });

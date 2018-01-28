@@ -1,0 +1,9 @@
+inherit:
+  - html
+
+naming: true
+restrictFileTypes: true
+
+allFiles:
+  html:
+    outline: false
