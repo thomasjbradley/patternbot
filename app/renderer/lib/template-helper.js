@@ -56,8 +56,6 @@ handlebars.registerHelper('loop', function (n, block) {
   return accum;
 });
 
-handlebars.registerPartial('typekit', get('typekit.js'));
-
 module.exports = {
   TEMPLATE_FOLDER: TEMPLATE_FOLDER,
   get: get,
