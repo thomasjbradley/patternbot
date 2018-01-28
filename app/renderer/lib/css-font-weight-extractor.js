@@ -63,6 +63,7 @@ const parseCssWeights = function (data) {
 
 module.exports = function (fontUrl) {
   return new Promise((resolve, reject) => {
+    if (!fontUrl) return resolve({});
 
     if (cachedFontUrls[fontUrl]) {
       console.log('Using cached font CSS file…');
@@ -72,8 +73,8 @@ module.exports = function (fontUrl) {
       https.get(fontUrl, (res) => {
         let rawData = '';
 
-        if (res.statusCode !== 200) return resolve(weights);
-        if (!/text\/css/i.test(res.headers['content-type'])) return resolve(weights);
+        if (res.statusCode !== 200) return resolve({});
+        if (!/text\/css/i.test(res.headers['content-type'])) return resolve({});
 
         res.on('data', (d) => { rawData += d });
 
@@ -85,7 +86,7 @@ module.exports = function (fontUrl) {
         });
       }).on('error', (e) => {
         console.log('Font CSS download error', e);
-        resolve(weights);
+        resolve({});
       });
     }
   });
