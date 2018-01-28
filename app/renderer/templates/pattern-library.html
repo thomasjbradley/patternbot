@@ -61,7 +61,7 @@
 
     <header class="masthead">
       <div class="masthead-inner">
-        <h1 class="tera gutter pad-t pad-b push-0">
+        <h1 class="tera gutter pad-t pad-b push-0" style="color: {{#if common.readme.attributes.accentColour}}{{common.readme.attributes.accentColour}}{{else}}{{#with (lookup common.theme.colours.primary 0)}}{{hex}}{{/with}}{{/if}};">
           {{#if common.readme.attributes.name}}
             {{common.readme.attributes.name}}
             <span class="block normal mega pad-t-1-4">Pattern Library</span>
