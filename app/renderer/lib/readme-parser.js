@@ -10,8 +10,6 @@ const README_FILENAME = 'README.md';
 const normalizeSpelling = function (readme) {
   if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
 
-  if (readme.attributes.typekit && /=/.test(readme.attributes.typekit)) readme.attributes.typekitId = readme.attributes.typekit.split(/=/)[0];
-
   if (readme.attributes.backgroundColor) readme.attributes.backgroundColour = readme.attributes.backgroundColor;
   if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
 
