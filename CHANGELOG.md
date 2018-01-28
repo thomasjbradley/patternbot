@@ -7,9 +7,34 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Patternbot’s interface now takes more cues from the colours and fonts to configure the design to better match the brand.
+- Added a new `accentColour` option inside the README.md to help prevent color conflicts with the primary colour and the background colour.
+- Added Typografier’s new, extra large font sizes to the display.
+- The links to the Web Dev tools now link to the correct configuration URL.
+- Patternbot will now generate proper `.markbot.yml` & `.markbotignore` files into each directory for easier Markbot testing.
+- Typekit now works with the `fontUrl` entry inside the main `README.md` instead of a separate entry.
+
 ### Changed
 
-- Ignore the common Jekyll-related folders (`_site`, `_includes`, `_layouts`, etc.) when watching to regenerate.
+- Patternbot watcher will now ignore the common Jekyll-related folders (`_site`, `_includes`, `_layouts`, etc.) when regenerating.
+- Updated all the outdated dependencies.
+- Updated to the newest versions of the Web Dev tools.
+- Changed how the Google font weights & styles are detected by downloading the actual CSS file.
+
+### Fixed
+
+- Fixed some CSS collisions with user CSS and Patternbot CSS that caused mis-aligned text, weird colours, etc.
+- Hex & RGBA colours will always be displayed in lowercase.
+- Added a few missing CSS colour names.
+- Fixed some inconsistencies in the capitalization of words in the navigation bar.
+- Fixed a couple bugs in the short hex to long hex generator.
+- Removed the underline from the start screen’s ampersand.
+
+### Removed
+
+- The `typekit` entry inside the main `README.md` has been removed in favour of reading the Typekit CSS file directly.
 
 ---
 
