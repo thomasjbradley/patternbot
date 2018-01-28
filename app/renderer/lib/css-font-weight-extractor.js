@@ -7,16 +7,17 @@ const getDefaultFontWeights = require(`${__dirname}/css-font-defaults`);
 
 module.exports = function (fontUrl) {
   return new Promise((resolve, reject) => {
-    const isTypekit = /https\:\/\/use\.typekit\.net\/[^\.\/]+\.css/;
     let weights = {};
 
-    if (!isTypekit.test(fontUrl)) resolve(weights);
-
     https.get(fontUrl, (res) => {
-      if (res.statusCode !== 200) resolve(weights);
-      if (/text\/css/i.test(res.headers['content-type'])) resolve(weights);
+      let rawData = '';
 
-      res.on('data', (rawData) => {
+      if (res.statusCode !== 200) return resolve(weights);
+      if (!/text\/css/i.test(res.headers['content-type'])) return resolve(weights);
+
+      res.on('data', (d) => { rawData += d });
+
+      res.on('end', () => {
         let data = rawData.toString('utf8');
         const code = css.parse(data);
         let cssFontObj;
@@ -70,7 +71,7 @@ module.exports = function (fontUrl) {
         resolve(weights);
       });
     }).on('error', (e) => {
-      console.log('Typekit font extractor error', e);
+      console.log('Font extractor error', e);
       resolve(weights);
     });
   });

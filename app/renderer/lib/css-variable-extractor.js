@@ -5,8 +5,7 @@ const css = require('css');
 const S = require('string');
 const hexRgb = require('hex-rgb');
 const rgbHex = require('rgb-hex');
-const extractGoogleFontWeights = require(`${__dirname}/css-font-extractor-google`);
-const extractTypekitFontWeights = require(`${__dirname}/css-font-extractor-typekit`);
+const extractFontWeights = require(`${__dirname}/css-font-weight-extractor`);
 const getDefaultFontWeights = require(`${__dirname}/css-font-defaults`);
 
 const cssColorNames = require(`${__dirname}/css-colour-names.json`);
@@ -68,11 +67,6 @@ const extractColours = function (cssProps) {
 
     resolve(colours);
   });
-};
-
-const extractFontWeights = function (fontUrl) {
-  if (/google/i.test(fontUrl)) return extractGoogleFontWeights(fontUrl);
-  if (/typekit/i.test(fontUrl)) return extractTypekitFontWeights(fontUrl);
 };
 
 const parseFont = function (declaration, weightsAndStyles, comments) {
