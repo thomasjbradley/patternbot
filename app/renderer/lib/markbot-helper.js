@@ -29,7 +29,7 @@ const copyRoot = function (folderpath) {
 
 const copyCommon = function (folderpath) {
   return new Promise((resolve, reject) => {
-    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.commonFolder}`)) resolve();
+    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.commonFolder}`)) return resolve();
 
     markbotFiles.forEach((file) => {
       fse.copySync(`${markbotFolders.common}/${file}`, `${folderpath}${appPkg.config.commonFolder}/${file}`);
@@ -41,7 +41,7 @@ const copyCommon = function (folderpath) {
 
 const copyImages = function (folderpath) {
   return new Promise((resolve, reject) => {
-    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.imagesFolder}`)) resolve();
+    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.imagesFolder}`)) return resolve();
 
     markbotFiles.forEach((file) => {
       fse.copySync(`${markbotFolders.images}/${file}`, `${folderpath}${appPkg.config.imagesFolder}/${file}`);
@@ -53,7 +53,7 @@ const copyImages = function (folderpath) {
 
 const copyPages = function (folderpath) {
   return new Promise((resolve, reject) => {
-    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.pagesFolder}`)) resolve();
+    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.pagesFolder}`)) return resolve();
 
     markbotFiles.forEach((file) => {
       fse.copySync(`${markbotFolders.pages}/${file}`, `${folderpath}${appPkg.config.pagesFolder}/${file}`);
@@ -65,7 +65,7 @@ const copyPages = function (folderpath) {
 
 const copyPatterns = function (folderpath) {
   return new Promise((resolve, reject) => {
-    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.patternsFolder}`)) resolve();
+    if (!fse.pathExistsSync(`${folderpath}${appPkg.config.patternsFolder}`)) return resolve();
 
     markbotFiles.forEach((file) => {
       fse.copySync(`${markbotFolders.patterns}/${file}`, `${folderpath}${appPkg.config.patternsFolder}/${file}`);
