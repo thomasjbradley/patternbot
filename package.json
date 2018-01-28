@@ -59,7 +59,7 @@
     "rgb-hex": "^2.1.0",
     "string": "^3.3.3",
     "strip-js": "^1.0.6",
-    "uglify-js": "^3.3.8"
+    "uglify-js": "^3.3.9"
   },
   "devDependencies": {
     "electron": "1.7.11",
