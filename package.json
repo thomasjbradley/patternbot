@@ -9,7 +9,7 @@
   "private": true,
   "main": "patternbot.js",
   "config": {
-    "patternLibFilename": "pattern-library.html",
+    "patternLibFilename": "index.html",
     "commonFolder": "/common",
     "commonParsableFilenames": {
       "modulifier": "modules.css",
