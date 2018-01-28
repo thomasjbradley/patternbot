@@ -122,7 +122,7 @@ a:hover {
   width: 1em;
 
   background-size: cover;
-  border: 3px solid currentcolor;
+  border: 2px solid currentcolor;
   border-radius: 50%;
   opacity: .7;
   transform: translateY(-50%);
@@ -154,6 +154,12 @@ a:hover {
 .nav-show-all[aria-pressed="true"]:active {
   background-color: transparent;
   color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
+}
+
+.nav-show-all:hover .nav-show-all-wrap::before,
+.nav-show-all:focus .nav-show-all-wrap::before,
+.nav-show-all:active .nav-show-all-wrap::before {
+  opacity: 1;
 }
 
 .main {
