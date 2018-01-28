@@ -6,6 +6,7 @@
 html {
   font-size: 100%;
   line-height: 1.3;
+  font-display: swap;
 }
 
 a {
@@ -130,9 +131,19 @@ thead th {
   width: 100%;
 }
 
+.wrapper-no-center {
+  max-width: 52em;
+  width: 100%;
+}
+
 .max-length {
   margin-left: auto;
   margin-right: auto;
+  max-width: 36em;
+  width: 100%;
+}
+
+.max-length-no-center {
   max-width: 36em;
   width: 100%;
 }
@@ -157,6 +168,26 @@ pre,
 table,
 caption {
   margin: 0 0 1.3rem;
+}
+
+.tenamega {
+  font-size: 2.0408rem;
+  line-height: 2.925rem;
+}
+
+.tenakilo {
+  font-size: 1.9127rem;
+  line-height: 2.6rem;
+}
+
+.tena {
+  font-size: 1.7926rem;
+  line-height: 2.6rem;
+}
+
+.nina {
+  font-size: 1.68rem;
+  line-height: 2.275rem;
 }
 
 .yotta {
@@ -232,15 +263,14 @@ select {
   height: calc(1.3rem + .1625rem + .1625rem);
 }
 
-input[type="color"] {
+[type="color"] {
   width: calc(1.3rem + .1625rem + .1625rem);
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+[type="checkbox"],
+[type="radio"] {
   display: inline-block;
   height: auto;
-  width: auto;
 }
 
 .push {
@@ -365,7 +395,8 @@ table th {
 
 .island-eighth,
 .island-1-8,
-input,
+input:not([type="checkbox"]),
+input:not([type="radio"]),
 textarea {
   padding: .1625rem;
 }
@@ -442,6 +473,26 @@ legend {
   table,
   caption {
     margin: 0 0 1.4rem;
+  }
+
+  .tenamega {
+    font-size: 3.6532rem;
+    line-height: 4.9rem;
+  }
+
+  .tenakilo {
+    font-size: 3.2473rem;
+    line-height: 4.55rem;
+  }
+
+  .tena {
+    font-size: 2.8865rem;
+    line-height: 3.85rem;
+  }
+
+  .nina {
+    font-size: 2.5658rem;
+    line-height: 3.5rem;
   }
 
   .yotta {
@@ -537,15 +588,14 @@ legend {
     height: calc(1.4rem + .175rem + .175rem);
   }
 
-  input[type="color"] {
+  [type="color"] {
     width: calc(1.4rem + .175rem + .175rem);
   }
 
-  input[type="checkbox"],
-  input[type="radio"] {
+  [type="checkbox"],
+  [type="radio"] {
     display: inline-block;
     height: auto;
-    width: auto;
   }
 
   .push {
@@ -670,7 +720,8 @@ legend {
 
   .island-eighth,
   .island-1-8,
-  input,
+  input:not([type="checkbox"]),
+  input:not([type="radio"]),
   textarea {
     padding: .175rem;
   }
@@ -751,6 +802,26 @@ legend {
     margin: 0 0 1.5rem;
   }
 
+  .tenamega {
+    font-size: 3.6532rem;
+    line-height: 4.875rem;
+  }
+
+  .tenakilo {
+    font-size: 3.2473rem;
+    line-height: 4.5rem;
+  }
+
+  .tena {
+    font-size: 2.8865rem;
+    line-height: 4.125rem;
+  }
+
+  .nina {
+    font-size: 2.5658rem;
+    line-height: 3.375rem;
+  }
+
   .yotta {
     font-size: 2.2807rem;
     line-height: 3rem;
@@ -844,15 +915,14 @@ legend {
     height: calc(1.5rem + .1875rem + .1875rem);
   }
 
-  input[type="color"] {
+  [type="color"] {
     width: calc(1.5rem + .1875rem + .1875rem);
   }
 
-  input[type="checkbox"],
-  input[type="radio"] {
+  [type="checkbox"],
+  [type="radio"] {
     display: inline-block;
     height: auto;
-    width: auto;
   }
 
   .push {
@@ -977,7 +1047,8 @@ legend {
 
   .island-eighth,
   .island-1-8,
-  input,
+  input:not([type="checkbox"]),
+  input:not([type="radio"]),
   textarea {
     padding: .1875rem;
   }
@@ -1058,6 +1129,26 @@ legend {
     margin: 0 0 1.5rem;
   }
 
+  .tenamega {
+    font-size: 3.6532rem;
+    line-height: 4.875rem;
+  }
+
+  .tenakilo {
+    font-size: 3.2473rem;
+    line-height: 4.5rem;
+  }
+
+  .tena {
+    font-size: 2.8865rem;
+    line-height: 4.125rem;
+  }
+
+  .nina {
+    font-size: 2.5658rem;
+    line-height: 3.375rem;
+  }
+
   .yotta {
     font-size: 2.2807rem;
     line-height: 3rem;
@@ -1151,15 +1242,14 @@ legend {
     height: calc(1.5rem + .1875rem + .1875rem);
   }
 
-  input[type="color"] {
+  [type="color"] {
     width: calc(1.5rem + .1875rem + .1875rem);
   }
 
-  input[type="checkbox"],
-  input[type="radio"] {
+  [type="checkbox"],
+  [type="radio"] {
     display: inline-block;
     height: auto;
-    width: auto;
   }
 
   .push {
@@ -1284,7 +1374,8 @@ legend {
 
   .island-eighth,
   .island-1-8,
-  input,
+  input:not([type="checkbox"]),
+  input:not([type="radio"]),
   textarea {
     padding: .1875rem;
   }
