@@ -7,6 +7,9 @@ const getDefaultFontWeights = require(`${__dirname}/css-font-defaults`);
 
 let cachedFontUrls = {};
 
+const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 const parseCssWeights = function (data) {
   const code = css.parse(data);
   let weights = {};
@@ -66,10 +69,10 @@ module.exports = function (fontUrl) {
     if (!fontUrl) return resolve({});
 
     if (cachedFontUrls[fontUrl]) {
-      console.log('Using cached font CSS file…');
+      if (DEBUG) console.log('Using cached font CSS file…');
       return resolve(cachedFontUrls[fontUrl]);
     } else {
-      console.log('Downloading font CSS file…');
+      if (DEBUG) console.log('Downloading font CSS file…');
       https.get(fontUrl, (res) => {
         let rawData = '';
 
@@ -85,7 +88,7 @@ module.exports = function (fontUrl) {
           return resolve(weights);
         });
       }).on('error', (e) => {
-        console.log('Font CSS download error', e);
+        if (DEBUG) console.log('Font CSS download error', e);
         resolve({});
       });
     }

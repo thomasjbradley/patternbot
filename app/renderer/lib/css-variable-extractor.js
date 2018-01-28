@@ -10,6 +10,9 @@ const getDefaultFontWeights = require(`${__dirname}/css-font-defaults`);
 
 const cssColorNames = require(`${__dirname}/css-colour-names.json`);
 
+const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 const colourToHex = function (color) {
   if (/^\#/.test(color)) return color;
   if (cssColorNames[color]) return cssColorNames[color];
@@ -105,7 +108,7 @@ const extractFonts = function (cssProps, fontUrl) {
 
       resolve(fonts);
     }).catch((e) => {
-      console.log('Font weight extraction error', e);
+      if (DEBUG) console.log('Font weight extraction error', e);
       resolve(fonts);
     });
   });
@@ -139,7 +142,7 @@ const parse = function (filepath, readme) {
         cssVars.fonts = extractionResults[1];
         resolve(cssVars);
       }).catch((e) => {
-        console.log('CSS variable extraction error', e);
+        if (DEBUG) console.log('CSS variable extraction error', e);
         resolve(cssVars);
       });
     });
