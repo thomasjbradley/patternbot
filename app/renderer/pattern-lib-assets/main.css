@@ -153,6 +153,7 @@ a:hover {
 .nav-show-all[aria-pressed="true"]:focus,
 .nav-show-all[aria-pressed="true"]:active {
   background-color: transparent;
+  color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
 }
 
 .main {
