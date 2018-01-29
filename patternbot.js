@@ -12,6 +12,8 @@ const DEBUG = !!(env === 'development');
 
 const appPkg = require(`${__dirname}/package.json`);
 
+require('electron-debug')({ showDevTools: true });
+
 let mainWindow;
 
 const bindMenus = function () {
@@ -31,8 +33,6 @@ const createMainWindow = function (next) {
 
   mainWindow.loadURL(`file://${__dirname}/app/renderer/windows/main/main.html`);
   bindMenus();
-
-  if (env === 'development') mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function () {
     mainWindow = null;

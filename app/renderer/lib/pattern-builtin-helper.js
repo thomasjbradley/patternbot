@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const fse = require('fs-extra');
+const rimraf = require('rimraf');
 const glob = require('glob');
 const path = require('path');
 const merge = require('merge-objects');
@@ -36,7 +36,7 @@ const copyFilesByExtension = function (builtin, folderpath, ext) {
   files.forEach(function (file) {
     let filename = path.parse(file).base;
 
-    fse.copySync(file, `${folderpath}/${filename}`)
+    fs.writeFileSync(`${folderpath}/${filename}`, fs.readFileSync(file));
   });
 };
 
@@ -50,7 +50,7 @@ const copyCommonFiles = function (builtin, folderpath) {
 
     if(filename.ext === '.css' && !filename.base.match(/\.min\.css$/)) return;
 
-    fse.copySync(file, `${folderpath}/${filename.base}`);
+    fs.writeFileSync(`${folderpath}/${filename.base}`, fs.readFileSync(file));
   });
 };
 
@@ -58,7 +58,8 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
 
-  fse.emptyDirSync(folder);
+  rimraf.sync(folder);
+  fs.mkdirSync(folder);
 
   patterns.forEach(function (file) {
     let templateData = {
@@ -74,7 +75,8 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
     filename = path.parse(file).base;
 
     templateData.pattern = templateHelper.renderString(patternData, templateData);
-    fse.outputFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
+
+    fs.writeFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
   });
 
   copyFilesByExtension(builtin, folder, '.min.css');

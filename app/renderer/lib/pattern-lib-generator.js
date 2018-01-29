@@ -54,11 +54,7 @@ const savePatternLib = function (folderpath, patternLibString, commonInfo) {
 const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     readmeParser.parse(folderpath).then((readme) => {
-      // let readme = readmes[0];
-
       cssCommonParser.parseAll(patternLibFiles, readme).then((commonInfo) => {
-        // let commonInfo = commonInfos[0];
-
         Promise.all([
           optimizedAssetsReader.readAll(),
           patternParserQueue.parseAllBuiltins('brand', null, (readme.attributes.brand) ? readme.attributes.brand : null),

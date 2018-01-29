@@ -51,15 +51,16 @@ const filterAndSortFiles = function (everyFile, ext, limiter) {
   });
 };
 
-const readFile = function (filepath, options = {}) {
+const readFile = function (folderpath, filepath, options = {}) {
   return new Promise(function (resolve, reject) {
-    let theFilePath = filepath.slice(0);
+    let theFilePath = `${folderpath}/${filepath}`;
 
     fs.readFile(theFilePath, 'utf8', function (err, data) {
       let name = formatName(path.parse(theFilePath).name);
 
       if (options.readmeReplace) {
         options.readmeReplace.forEach((item) => {
+          if (!item.search || !item.replace) return;
           data = data.replace(item.search, item.replace);
         });
       }
@@ -75,12 +76,12 @@ const readFile = function (filepath, options = {}) {
 };
 
 const parseFilesWithExtension = function (folderpath, ext, parser, limiter = null, options = {}) {
-  return new Promise(function (resolve, reject) {
-    dir.files(folderpath, function (err, everyFile) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(folderpath, (err, everyFile) => {
       let files = filterAndSortFiles(everyFile, ext, limiter);
 
       Promise
-        .all(files.map((file) => readFile(file, options)))
+        .all(files.map((file) => { return readFile(folderpath, file, options) }))
         .then(function (allFiles) {
           let patterns = [];
 
