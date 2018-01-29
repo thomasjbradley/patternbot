@@ -10,6 +10,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - PNG logos are now support along with SVG.
+- Patternbot is now much more forgiving about missing content in `README.md` and `theme.css`.
 
 ### Changed
 

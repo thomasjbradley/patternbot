@@ -1,18 +1,31 @@
 'use strict';
 
+const env = process.env.NODE_ENV;
+const DEBUG = !!(env === 'development');
+
 const modulifierParser = require(`${__dirname}/modulifier-parser`);
 const gridifierParser = require(`${__dirname}/gridifier-parser`);
 const typografierParser = require(`${__dirname}/typografier-parser`);
 const cssVariableExtractor = require(`${__dirname}/css-variable-extractor`);
 
+const defaultCommonCss = {
+  modulifier: undefined,
+  modulifierUrl: undefined,
+  gridifier: undefined,
+  gridifierUrl: undefined,
+  typografier: undefined,
+  typografierUrl: undefined,
+  theme: undefined,
+};
+
 const parseAll = function (patternLibFiles, readme) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     Promise.all([
       modulifierParser.parse(patternLibFiles.commonParsable.modulifier),
       gridifierParser.parse(patternLibFiles.commonParsable.gridifier),
       typografierParser.parse(patternLibFiles.commonParsable.typografier),
       cssVariableExtractor.parse(patternLibFiles.commonParsable.theme, readme),
-    ]).then(function (all) {
+    ]).then((all) => {
       resolve({
         modulifier: all[0].settings,
         modulifierUrl: all[0].url,
@@ -22,6 +35,9 @@ const parseAll = function (patternLibFiles, readme) {
         typografierUrl: all[2].url,
         theme: all[3],
       });
+    }).catch((e) => {
+      if (DEBUG) console.log('CSS common parser error', e);
+      resolve(defaultCommonCss);
     });
   });
 };

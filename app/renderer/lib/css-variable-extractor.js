@@ -125,6 +125,9 @@ const parse = function (filepath, readme) {
         colours: {},
         fonts: {},
       };
+      let extractionPromises = [];
+      let extractColoursPromise;
+      let extractFontsPromise;
 
       if (!code || !code.stylesheet || !code.stylesheet.rules) return resolve({});
 
@@ -134,12 +137,15 @@ const parse = function (filepath, readme) {
 
       if (!cssVarsObj || !cssVarsObj[0] || !cssVarsObj[0].declarations) return resolve({});
 
-      Promise.all([
-        extractColours(cssVarsObj[0].declarations),
-        extractFonts(cssVarsObj[0].declarations, (readme.attributes.fontUrl) ? readme.attributes.fontUrl : false),
-      ]).then((extractionResults) => {
+      extractionPromises.push(extractColours(cssVarsObj[0].declarations));
+
+      if (readme.attributes.fontUrl) {
+        extractionPromises.push(extractFonts(cssVarsObj[0].declarations, (readme.attributes.fontUrl) ? readme.attributes.fontUrl : false));
+      }
+
+      Promise.all(extractionPromises).then((extractionResults) => {
         cssVars.colours = extractionResults[0];
-        cssVars.fonts = extractionResults[1];
+        if (extractionResults[1]) cssVars.fonts = extractionResults[1];
         resolve(cssVars);
       }).catch((e) => {
         if (DEBUG) console.log('CSS variable extraction error', e);

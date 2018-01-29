@@ -6,6 +6,10 @@
   --font-patternbot-code: "Source Code Pro", monospace;
 }
 
+html {
+  font-family: var(--font-patternbot-primary);
+}
+
 .patternbot-no-wrap {
   white-space: nowrap;
 }

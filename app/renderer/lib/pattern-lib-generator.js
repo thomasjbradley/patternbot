@@ -55,9 +55,16 @@ const generate = function (folderpath, patternLibFiles) {
   return new Promise(function (resolve, reject) {
     readmeParser.parse(folderpath).then((readme) => {
       cssCommonParser.parseAll(patternLibFiles, readme).then((commonInfo) => {
+        if (readme) commonInfo.readme = readme;
+
         Promise.all([
           optimizedAssetsReader.readAll(),
-          patternParserQueue.parseAllBuiltins('brand', null, (readme.attributes.brand) ? readme.attributes.brand : null),
+
+          patternParserQueue.parseAllBuiltins(
+            'brand',
+            builtInHelper.getLimiters('brand', commonInfo),
+            (readme.attributes.brand) ? readme.attributes.brand : null
+          ),
 
           patternParserQueue.parseAllBuiltins(
             'typography',
@@ -116,23 +123,24 @@ const generate = function (folderpath, patternLibFiles) {
           let iconsPatterns = all[6];
           let userPatterns = all[7];
 
-          if (readme) commonInfo.readme = readme;
           if (assets) commonInfo.assets = assets;
           if (icons) commonInfo.icons = icons;
 
-          if (fontColorContrast(hexFullLength(readme.attributes.backgroundColour)) === '#000000') {
-            commonInfo.interfaceColours = {
-              primary: 0,
-              opposite: 255,
-            };
-          } else {
-            commonInfo.interfaceColours = {
-              primary: 255,
-              opposite: 0,
-            };
+          commonInfo.interfaceColours = {
+            primary: 0,
+            opposite: 255,
+          };
+
+          if (readme.attributes.backgroundColour) {
+            if (fontColorContrast(hexFullLength(readme.attributes.backgroundColour)) !== '#000000') {
+              commonInfo.interfaceColours = {
+                primary: 255,
+                opposite: 0,
+              };
+            }
           }
 
-          if (commonInfo.theme && brandPatterns.length && patternLibFiles.commonParsable.theme) {
+          if (brandPatterns.length) {
             patternLibInfo.patterns = patternLibInfo.patterns.concat(patternRenderer.renderAll(brandPatterns, {hideCode: true, hideNav: true, commonInfo: commonInfo}));
             builtInHelper.copy(folderpath, 'brand', patternLibFiles, commonInfo);
           }

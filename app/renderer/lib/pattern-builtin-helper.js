@@ -55,6 +55,10 @@ const copyCommonFiles = function (builtin, folderpath) {
   });
 };
 
+const getLimiters = function (builtin, commonInfo) {
+  return require(`${__dirname}/${builtin}-limiter-generator`)(commonInfo);
+};
+
 const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
@@ -88,4 +92,5 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
 module.exports = {
   getPath: getPath,
   copy: copy,
+  getLimiters: getLimiters,
 };
