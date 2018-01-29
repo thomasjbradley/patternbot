@@ -21,13 +21,6 @@
     "imagesParsableFilenames": {
       "icons": "icons.svg"
     },
-    "imagesUsableFilenames": {
-      "logo": "logo.svg",
-      "logo-256": "logo-256.svg",
-      "logo-64": "logo-64.svg",
-      "logo-32": "logo-32.svg",
-      "logo-16": "logo-16.svg"
-    },
     "patternsFolder": "/patterns",
     "pagesFolder": "/pages"
   },

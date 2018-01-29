@@ -51,12 +51,15 @@ const findLogos = function (folderpath, imagesFolder) {
       size32: false,
       size16: false,
     };
+    const logoFilesExts = '(svg|png)';
+    const logoFilesNames = '(logo|logo-256|logo-64|logo-32|logo-16)';
+    const logoGlob = `${folderpath}${imagesFolder}/?${logoFilesNames}.?${logoFilesExts}`;
 
-    glob(`${folderpath}${imagesFolder}/?(logo|logo-256|logo-64|logo-32|logo-16).svg`, function (err, logos) {
+    glob(logoGlob, function (err, logos) {
       if (err) return resolve();
 
       logos.forEach(function (logo) {
-        if (/logo(-256)?\.svg/.test(logo)) {
+        if (/logo(-256)?/.test(logo)) {
           logoSizes.sizeLarge = logo;
           logoSizes.sizeLargeLocal = path.parse(logo).base;
         }
