@@ -7,6 +7,10 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The number of font sizes Typografier specifies is incorrect—it was made more general.
+
 ### Changed
 
 - The font size samples are now cannot wrap to prevent very large font scales to break the whole layout.

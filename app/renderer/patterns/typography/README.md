@@ -21,7 +21,7 @@ font-sizes:
   hidePopOutButton: true
   hideCode: true
   desc: |
-    There are 10 font-sizes available based on a typographic scale. The font-sizes and line-heights increase as the screen gets wider to better use the available space.
+    There are multiple font-sizes available based on a typographic scale. The font-sizes and line-heights increase as the screen gets wider to better use the available space.
 headings:
   hideCode: true
 links:
