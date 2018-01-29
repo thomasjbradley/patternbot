@@ -20,6 +20,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 - The number of font sizes Typografier specifies is incorrect—it was made more general.
 - Fixed an error creating folders inside the `patterns` folder when `patterns` didn’t exist.
+- Patterns that are completely `position: fixed`, like nav bars, now render properly in Patternbot.
 
 ---
 

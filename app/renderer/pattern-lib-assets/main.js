@@ -110,7 +110,7 @@
         iframe.src = iframe.dataset.src;
 
         iFrameResize({
-          heightCalculationMethod: 'max',
+          heightCalculationMethod: 'lowestElement',
           autoResize: false,
         }, iframe);
       }
