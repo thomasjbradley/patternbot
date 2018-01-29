@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const rimraf = require('rimraf');
+const mkdirp = require('mkdirp');
 const glob = require('glob');
 const path = require('path');
 const merge = require('merge-objects');
@@ -59,7 +60,7 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
 
   rimraf.sync(folder);
-  fs.mkdirSync(folder);
+  mkdirp.sync(folder);
 
   patterns.forEach(function (file) {
     let templateData = {
