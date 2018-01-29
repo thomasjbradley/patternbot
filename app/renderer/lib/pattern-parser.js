@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const dir = require('node-dir');
 const merge = require('merge-objects');
 const S = require('string');
 const fontColorContrast = require('font-color-contrast');
