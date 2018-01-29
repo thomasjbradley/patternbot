@@ -6,6 +6,10 @@
   --font-patternbot-code: "Source Code Pro", monospace;
 }
 
+.patternbot-no-wrap {
+  white-space: nowrap;
+}
+
 .patternbot-list-group {
   background-color: transparent;
   text-align: left;

@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- The font size samples are now cannot wrap to prevent very large font scales to break the whole layout.
+
+---
+
 ## [2.0.0] — 2018-01-28
 
 ### Added
