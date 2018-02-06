@@ -32,8 +32,12 @@ const colourToRgba = function (color) {
   }
 
   if (/^\#/.test(color)) {
-    rgb = hexRgb(color);
-    return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, 1)`;
+    try {
+      rgb = hexRgb(color);
+      return `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, 1)`;
+    } catch (e) {
+      return false;
+    }
   }
 
   return false;

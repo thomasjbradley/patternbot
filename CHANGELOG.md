@@ -13,6 +13,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - Patternbot is now more flexible with camel case capitalization inside the `README.md`
 - The 64 pixel logo was being chosen as large instead of the 256 pixel logo.
 - There’s a 10 second timeout on downloading font CSS files to prevent apparent interface hangs.
+- Fixed an error when an improperly formatted hex number was trying to be converted to RGB.
 
 ---
 
