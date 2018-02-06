@@ -79,7 +79,7 @@ module.exports = function (fontUrl) {
       return resolve(cachedFontUrls[fontUrl]);
     } else {
       if (DEBUG) console.log('Downloading font CSS file…');
-      https.get(fontUrl, (res) => {
+      let req = https.get(fontUrl, (res) => {
         let rawData = '';
 
         if (res.statusCode !== 200) return resolve({});
@@ -93,7 +93,14 @@ module.exports = function (fontUrl) {
           cachedFontUrls[fontUrl] = weights;
           return resolve(weights);
         });
-      }).on('error', (e) => {
+      });
+
+      req.setTimeout(10*1000, () => {
+        if (DEBUG) console.log('Font CSS timeout error');
+        resolve({});
+      });
+
+      req.on('error', (e) => {
         if (DEBUG) console.log('Font CSS download error', e);
         resolve({});
       });
