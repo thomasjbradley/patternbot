@@ -11,6 +11,7 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 - Patternbot is now more flexible when if finds validation errors in the `README.md` or in `theme.css`
 - Patternbot is now more flexible with camel case capitalization inside the `README.md`
+- The 64 pixel logo was being chosen as large instead of the 256 pixel logo.
 
 ---
 
