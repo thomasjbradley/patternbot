@@ -7,6 +7,10 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Made the loading process for each iframe a little more clear by adding loading spinners.
+
 ### Fixed
 
 - Patternbot is now more flexible when if finds validation errors in the `README.md` or in `theme.css`

@@ -88,7 +88,6 @@
   NAVIGATION TABS
   ================================================
 */
-
 (function () {
   'use strict';
 
@@ -112,6 +111,14 @@
         iFrameResize({
           heightCalculationMethod: 'lowestElement',
           autoResize: false,
+          resizedCallback: function (opts) {
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                opts.iframe.previousElementSibling.setAttribute('hidden', true);
+                opts.iframe.style.opacity = 1;
+              });
+            });
+          },
         }, iframe);
       }
     });

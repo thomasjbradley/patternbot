@@ -175,6 +175,7 @@ a:hover {
   width: 100%;
 
   border: 0;
+  opacity: 0;
 }
 
 .pattern {
@@ -335,4 +336,32 @@ a:hover {
 
   border-left: 1px solid rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .1);
   border-right: 0;
+}
+
+.patternbot-iframe-loading-gears {
+  color: currentcolor;
+}
+
+.patternbot-iframe-loading-gears-top {
+  opacity: .5;
+  animation: spin 2s linear infinite;
+  transform-origin: 80.8px 80.8px;
+}
+
+.patternbot-iframe-loading-gears-bottom {
+  opacity: .7;
+  animation: spin 2s linear reverse infinite;
+  transform-origin: 176.3px 176.3px;
+}
+
+@keyframes spin {
+
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+
 }
