@@ -119,7 +119,7 @@ const parse = function (filepath, readme) {
     if (!filepath) return resolve([]);
 
     fs.readFile(filepath, 'utf8', function (err, data) {
-      const code = css.parse(data);
+      let code;
       let cssVarsObj = false;
       let cssVars = {
         colours: {},
@@ -129,13 +129,19 @@ const parse = function (filepath, readme) {
       let extractColoursPromise;
       let extractFontsPromise;
 
-      if (!code || !code.stylesheet || !code.stylesheet.rules) return resolve({});
+      try {
+        code = css.parse(data);
+      } catch (e) {
+        return resolve(cssVars);
+      }
+
+      if (!code || !code.stylesheet || !code.stylesheet.rules) return resolve(cssVars);
 
       cssVarsObj = code.stylesheet.rules.filter(function (item) {
         return (item.selectors && item.selectors[0] && item.selectors[0] === ':root');
       });
 
-      if (!cssVarsObj || !cssVarsObj[0] || !cssVarsObj[0].declarations) return resolve({});
+      if (!cssVarsObj || !cssVarsObj[0] || !cssVarsObj[0].declarations) return resolve(cssVars);
 
       extractionPromises.push(extractColours(cssVarsObj[0].declarations));
 

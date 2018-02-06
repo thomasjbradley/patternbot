@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Patternbot is now more flexible when if finds validation errors in the `README.md` or in `theme.css`
+
+---
+
 ## [2.1.0] — 2018-01-29
 
 ### Added

@@ -11,9 +11,15 @@ const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
 
 const parseCssWeights = function (data) {
-  const code = css.parse(data);
+  let code;
   let weights = {};
   let cssFontObj;
+
+  try {
+    code = css.parse(data);
+  } catch (e) {
+    return resolve(weights);
+  }
 
   if (!code || !code.stylesheet || !code.stylesheet.rules) return resolve(weights);
 
