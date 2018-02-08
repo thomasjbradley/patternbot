@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Patternbot better handles incorrect YAML syntax within README files.
+
+---
+
 ## [2.1.1] — 2018-02-06
 
 ### Changed

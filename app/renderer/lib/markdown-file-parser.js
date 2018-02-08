@@ -3,7 +3,23 @@
 const marked = require('marked');
 const frontMatter = require('front-matter');
 
-module.exports = function (data) {
+const getDefault = function (readme) {
+  if (!readme) {
+    readme = {
+      attributes: {},
+      body: '',
+    };
+  }
+
+  if (!readme.attributes) readme.attributes = {};
+  if (!readme.body) readme.body = '';
+
+  if (typeof readme.attributes !== 'object') readme.attributes = {};
+
+  return readme;
+};
+
+const parse = function (data) {
   let readme = {
     attributes: {},
     body: '',
@@ -12,14 +28,19 @@ module.exports = function (data) {
   try {
     readme = frontMatter(data);
   } catch (e) {
-    return readme;
+    return getDefault(readme);
   }
 
   try {
     readme.body = marked(readme.body);
   } catch (e) {
-    return readme;
+    return getDefault(readme);
   }
 
-  return readme;
+  return getDefault(readme);
+};
+
+module.exports = {
+  parse: parse,
+  default: getDefault,
 };

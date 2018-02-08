@@ -7,11 +7,9 @@ const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
 
 const README_FILENAME = 'README.md';
 
-const defaultReadme = {
-  attributes: {},
-};
-
 const normalizeSpelling = function (readme) {
+  if (Object.keys(readme.attributes).length <= 0) return readme;
+
   if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
 
   if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
@@ -33,10 +31,10 @@ const parse = function (folderpath) {
   return new Promise((resolve, reject) => {
     const readmepath = `${folderpath}/${README_FILENAME}`;
 
-    if (!fileExists.check(readmepath)) return resolve(defaultReadme);
+    if (!fileExists.check(readmepath)) return resolve(markdownFileParser.default());
 
     fs.readFile(readmepath, 'utf8', (err, data) => {
-      let readme = markdownFileParser(data);
+      let readme = markdownFileParser.parse(data);
 
       readme = normalizeSpelling(readme);
 

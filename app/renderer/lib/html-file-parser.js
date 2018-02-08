@@ -35,10 +35,14 @@ const escapeTags = function (data) {
   return htmlEscape(data);
 };
 
-module.exports = function (data) {
+const parse = function (data) {
   [stripHiddenCode, stripHtmlWrapper, stripScriptTags, beautifyHtml, escapeTags].forEach(function (processor) {
     data = processor(data);
   });
 
   return data;
+};
+
+module.exports = {
+  parse: parse,
 };

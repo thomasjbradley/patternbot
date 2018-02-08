@@ -85,7 +85,7 @@ const parseFilesWithExtension = function (folderpath, ext, parser, limiter = nul
           let patterns = [];
 
           allFiles.forEach(function (item) {
-            item.content = parser(item.content);
+            item.content = parser.parse(item.content);
             item.localPath = getLocalPath(folderpath, item.path);
             patterns.push(item);
           });
