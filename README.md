@@ -16,8 +16,8 @@ My aim is not to replace the wonderful tools that exist, but simplify them into 
 
 Download the latest version of Patternbot below:
 
-### [⬇ Download for MacOS](https://github.com/thomasjbradley/patternbot/releases/download/v2.1.1/Patternbot-2.1.1.dmg)
-### [⬇ Download for Windows](https://github.com/thomasjbradley/patternbot/releases/download/v2.1.1/Patternbot-Setup-2.1.1.exe)
+### [⬇ Download for MacOS](https://github.com/thomasjbradley/patternbot/releases/download/v2.1.2/Patternbot-2.1.2.dmg)
+### [⬇ Download for Windows](https://github.com/thomasjbradley/patternbot/releases/download/v2.1.2/Patternbot-Setup-2.1.2.exe)
 
 ---
 
