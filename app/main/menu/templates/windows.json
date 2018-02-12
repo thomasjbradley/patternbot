@@ -23,7 +23,7 @@
       },
       {
         "label": "Browse Pattern Library",
-        "id": "browser-pattern-library",
+        "id": "browse-pattern-library",
         "enabled": false,
         "accelerator": "CmdOrCtrl+B",
         "command": "app:browser-pattern-library"

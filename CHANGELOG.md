@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed a typo in the menu IDs on Windows.
+
+---
+
 ## [2.1.2] — 2018-02-08
 
 ### Fixed
