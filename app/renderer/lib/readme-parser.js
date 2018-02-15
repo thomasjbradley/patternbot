@@ -8,7 +8,7 @@ const readmePropertyVariants = require(`${__dirname}/readme-property-variants`);
 
 const README_FILENAME = 'README.md';
 
-const normalizeSpelling = function (readme) {
+const normalizeProperties = function (readme) {
   if (Object.keys(readme.attributes).length <= 0) return readme;
 
   Object.keys(readmePropertyVariants).forEach((prop) => {
@@ -31,7 +31,7 @@ const parse = function (folderpath) {
     fs.readFile(readmepath, 'utf8', (err, data) => {
       let readme = markdownFileParser.parse(data);
 
-      readme = normalizeSpelling(readme);
+      readme = normalizeProperties(readme);
 
       resolve(readme);
     });
