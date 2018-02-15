@@ -1,0 +1,28 @@
+{
+  "outputFile": [
+    "outputfile",
+    "output-file"
+  ],
+  "fontUrl": [
+    "font-url",
+    "fonturl",
+    "fontURL"
+  ],
+  "backgroundColour": [
+    "background-color",
+    "background-colour",
+    "backgroundcolor",
+    "backgroundcolour",
+    "backgroundColor"
+  ],
+  "colours": [
+    "colors"
+  ],
+  "accentColour": [
+    "accent-color",
+    "accent-colour",
+    "accentcolor",
+    "accentcolour",
+    "accentColor"
+  ]
+}

@@ -4,25 +4,20 @@ const fs = require('fs');
 
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
 const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
+const readmePropertyVariants = require(`${__dirname}/readme-property-variants`);
 
 const README_FILENAME = 'README.md';
 
 const normalizeSpelling = function (readme) {
   if (Object.keys(readme.attributes).length <= 0) return readme;
 
-  if (readme.attributes.colors) readme.attributes.colours = readme.attributes.colors;
+  Object.keys(readmePropertyVariants).forEach((prop) => {
+    readmePropertyVariants[prop].forEach((propVariant) => {
+      if (readme.attributes[propVariant]) readme.attributes[prop] = readme.attributes[propVariant];
+    });
+  });
 
   if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
-  if (readme.attributes.backgroundColor) readme.attributes.backgroundColour = readme.attributes.backgroundColor;
-  if (readme.attributes.backgroundcolor) readme.attributes.backgroundColour = readme.attributes.backgroundcolor;
-  if (readme.attributes.backgroundcolour) readme.attributes.backgroundColour = readme.attributes.backgroundcolour;
-
-  if (readme.attributes.accentColor) readme.attributes.accentColour = readme.attributes.accentColor;
-  if (readme.attributes.accentcolor) readme.attributes.accentColour = readme.attributes.accentcolor;
-  if (readme.attributes.accentcolour) readme.attributes.accentColour = readme.attributes.accentcolour;
-
-  if (readme.attributes.fontURL) readme.attributes.fontUrl = readme.attributes.fontURL;
-  if (readme.attributes.fonturl) readme.attributes.fontUrl = readme.attributes.fonturl;
 
   return readme
 };
