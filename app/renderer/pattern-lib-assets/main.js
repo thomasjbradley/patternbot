@@ -110,7 +110,8 @@
 
         iFrameResize({
           heightCalculationMethod: 'lowestElement',
-          autoResize: false,
+          // autoResize: false,
+          minHeight: (iframe.dataset.minHeight) ? parseInt(iframe.dataset.minHeight, 10) : 0,
           resizedCallback: function (opts) {
             requestAnimationFrame(function () {
               requestAnimationFrame(function () {

@@ -28,5 +28,13 @@
   "desc": [
     "description",
     "descriptions"
+  ],
+  "height": [
+    "min-height",
+    "minheight",
+    "minHeight",
+    "minimum-height",
+    "minimumheight",
+    "minimumHeight"
   ]
 }
