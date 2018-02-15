@@ -99,6 +99,20 @@ const parseFilesWithExtension = function (folderpath, ext, parser, limiter = nul
   });
 };
 
+const normalizeProperties = function (readme) {
+  Object.keys(readmePropertyVariants).forEach((prop) => {
+    readmePropertyVariants[prop].forEach((propVariant) => {
+      if (readme[propVariant]) readme[prop] = readme[propVariant];
+    });
+  });
+
+  if (readme.width) readme.width = parseInt(readme.width, 10);
+  if (readme.height) readme.height = parseInt(readme.height, 10);
+  if (readme.padding && typeof readme.padding === 'number') readme.padding = `${readme.padding}px`;
+
+  return readme;
+};
+
 const setUpReadme = function (patternHtml, patternMd, html, readme) {
   let finalReadme = {};
 
@@ -112,11 +126,7 @@ const setUpReadme = function (patternHtml, patternMd, html, readme) {
     finalReadme = merge(finalReadme, patternMd.content.attributes[html.name]);
   }
 
-  Object.keys(readmePropertyVariants).forEach((prop) => {
-    readmePropertyVariants[prop].forEach((propVariant) => {
-      if (finalReadme[propVariant]) finalReadme[prop] = finalReadme[propVariant];
-    });
-  });
+  finalReadme = normalizeProperties(finalReadme);
 
   if (finalReadme.backgroundColour) {
     if (cssColorNames[finalReadme.backgroundColour]) finalReadme.backgroundColour = cssColorNames[finalReadme.backgroundColour];

@@ -85,7 +85,7 @@
         <div class="gutter{{#unless readme.notResizable}}-2{{/unless}} pad-t-1-2 pad-b-1-2">
           <div class="resizeable-pattern relative" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}">
             <i class="icon i-32 patternbot-iframe-loading-gears absolute pin-c"><svg><use xlink:href="#patternbot-iframe-loading-gears"></use></svg></i>
-            <iframe data-src="{{localPath}}" scrolling="no" onload="resizeIframe(this)" {{#if readme.backgroundColour}}data-inject-css=":root { --color-patternbot-interface:{{readme.interfaceColours.primary}}; --color-patternbot-interface-opposite:{{readme.interfaceColours.opposite}}; --color-patternbot-background:{{readme.backgroundColour}}; }"{{/if}} {{#if readme.height}}data-min-height="{{readme.height}}"{{/if}}></iframe>
+            <iframe data-src="{{localPath}}" scrolling="no" onload="resizeIframe(this)" {{#if readme.backgroundColour}}data-inject-css=":root { --color-patternbot-interface:{{readme.interfaceColours.primary}}; --color-patternbot-interface-opposite:{{readme.interfaceColours.opposite}}; --color-patternbot-background:{{readme.backgroundColour}}; } {{#if readme.padding}}body { padding:{{readme.padding}}; }{{/if}}"{{/if}} {{#if readme.height}}data-min-height="{{readme.height}}"{{/if}}></iframe>
             {{# unless readme.notResizable}}
               <div class="resizeable-pattern-length">
                 <div class="resize-handle resize-handle-left" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.3);{{/if}}">
