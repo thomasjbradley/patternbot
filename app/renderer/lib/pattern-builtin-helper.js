@@ -1,8 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
+const fse = require('fs-extra');
 const glob = require('glob');
 const path = require('path');
 const merge = require('merge-objects');
@@ -63,30 +62,36 @@ const copy = function (folderpath, builtin, commonFiles, commonInfo, limiter) {
   const patterns = listAll(builtin);
   const folder = `${folderpath}/${appPkg.config.patternsFolder}/${builtin}`;
 
-  rimraf.sync(folder);
-  mkdirp.sync(folder);
+  fse.mkdirp(folder, (err) => {
+    if (err) return false;
 
-  patterns.forEach(function (file) {
-    let templateData = {
-      commonFiles: commonFiles,
-      commonInfo: commonInfo,
-    };
-    let patternData;
-    let filename;
+    fse.emptydir(folder, (err) => {
+      if (err) return false;
 
-    if (limiter && limiter.indexOf(path.parse(file).name.replace(/^[\d-]*/, '')) <= -1) return;
+      patterns.forEach(function (file) {
+        let templateData = {
+          commonFiles: commonFiles,
+          commonInfo: commonInfo,
+        };
+        let patternData;
+        let filename;
 
-    patternData = fs.readFileSync(file, 'utf8');
-    filename = path.parse(file).base;
+        if (limiter && limiter.indexOf(path.parse(file).name.replace(/^[\d-]*/, '')) <= -1) return;
 
-    templateData.pattern = templateHelper.renderString(patternData, templateData);
+        patternData = fs.readFileSync(file, 'utf8');
+        filename = path.parse(file).base;
 
-    fs.writeFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
+        templateData.pattern = templateHelper.renderString(patternData, templateData);
+
+        fs.writeFileSync(`${folder}/${filename}`, templateHelper.render(`${builtin}.html`, templateData));
+      });
+
+      copyFilesByExtension(builtin, folder, '.min.css');
+      copyFilesByExtension(builtin, folder, '.svg');
+      copyCommonFiles(builtin, folder);
+    });
   });
 
-  copyFilesByExtension(builtin, folder, '.min.css');
-  copyFilesByExtension(builtin, folder, '.svg');
-  copyCommonFiles(builtin, folder);
 };
 
 module.exports = {

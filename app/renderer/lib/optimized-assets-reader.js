@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const promisify = require('es6-promisify');
+const {promisify} = require('es6-promisify');
 const readFile = promisify(fs.readFile);
 
 const assetsFolder = path.resolve(`${__dirname}/../pattern-lib-assets`);

@@ -26,15 +26,16 @@
   },
   "dependencies": {
     "browser-sync": "^2.18.8",
-    "chokidar": "^2.0.0",
+    "chokidar": "^2.0.2",
     "css": "^2.2.1",
     "cssnano": "^3.10.0",
     "electron-debug": "^1.5.0",
     "electron-is": "^2.4.0",
-    "es6-promisify": "^5.0.0",
+    "es6-promisify": "^6.0.0",
     "finalhandler": "^1.0.0",
     "font-color-contrast": "^1.0.3",
     "front-matter": "^2.1.2",
+    "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
     "handlebars": "^4.0.6",
     "hex-rgb": "^2.0.0",
@@ -42,23 +43,21 @@
     "marked": "^0.3.6",
     "merge-objects": "^1.0.5",
     "mime-types": "^2.1.14",
-    "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.2",
     "onchange": "^3.2.1",
     "portfinder": "^1.0.13",
     "postcss-assets": "^5.0.0",
-    "postcss-cli": "^4.1.1",
-    "postcss-import": "^11.0.0",
+    "postcss-cli": "^5.0.0",
+    "postcss-import": "^11.1.0",
     "rgb-hex": "^2.1.0",
-    "rimraf": "^2.6.2",
     "string": "^3.3.3",
     "strip-js": "^1.0.6",
-    "uglify-js": "^3.3.9"
+    "uglify-js": "^3.3.10"
   },
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "1.7.11",
-    "electron-builder": "^19.55.2"
+    "electron": "^1.8.2",
+    "electron-builder": "^20.0.4"
   },
   "scripts": {
     "debug": "NODE_ENV=development electron patternbot.js",
@@ -83,9 +82,10 @@
     "pack-win": "npm run build-css && npm run build-js && build -w --dir",
     "pack": "npm run build-css && npm run build-js && build -mw --dir",
     "pack-bg": "tiffutil -cathidpicheck ./build/background.png ./build/background@2x.png -out ./build/background.tiff",
+    "build-clean": "xattr -cr .",
     "build-mac": "npm run pack-bg && build -m",
     "build-win": "build -w",
-    "build": "npm run build-css && npm run build-js && npm run pack-bg && build -mw"
+    "build": "npm run build-clean && npm run build-css && npm run build-js && npm run pack-bg && build -mw"
   },
   "repository": {
     "type": "git",

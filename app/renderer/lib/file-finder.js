@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const S = require('string');
 const glob = require('glob');
-const promisify = require('es6-promisify');
+const {promisify} = require('es6-promisify');
 const subfiles = promisify(fs.readdir);
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
 
