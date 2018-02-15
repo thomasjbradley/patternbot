@@ -354,6 +354,12 @@ a:hover {
   transform-origin: 176.3px 176.3px;
 }
 
+.patternbot-iframe-loading-gears-single {
+  opacity: .4;
+  animation: spin 2s linear infinite;
+  transform-origin: 128px 128px;
+}
+
 @keyframes spin {
 
   0% {

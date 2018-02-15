@@ -84,7 +84,7 @@
       <div class="pattern-examples pad-t-1-2 pad-b-1-2" style="{{#if readme.backgroundColour}}color:rgb({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}});{{/if}}">
         <div class="gutter{{#unless readme.notResizable}}-2{{/unless}} pad-t-1-2 pad-b-1-2">
           <div class="resizeable-pattern relative" style="{{#if readme.width}}width:{{readme.width}}px{{/if}}">
-            <i class="icon i-48 patternbot-iframe-loading-gears absolute pin-c"><svg><use xlink:href="#patternbot-iframe-loading-gears"></use></svg></i>
+            <i class="icon i-32 patternbot-iframe-loading-gears absolute pin-c"><svg><use xlink:href="#patternbot-iframe-loading-gears"></use></svg></i>
             <iframe data-src="{{localPath}}" scrolling="no" onload="resizeIframe(this)" {{#if readme.backgroundColour}}data-inject-css=":root { --color-patternbot-interface:{{readme.interfaceColours.primary}}; --color-patternbot-interface-opposite:{{readme.interfaceColours.opposite}}; --color-patternbot-background:{{readme.backgroundColour}}; }"{{/if}}></iframe>
             {{# unless readme.notResizable}}
               <div class="resizeable-pattern-length">
