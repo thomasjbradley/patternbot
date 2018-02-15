@@ -8,7 +8,7 @@ const rgbHex = require('rgb-hex');
 const extractFontWeights = require(`${__dirname}/css-font-weight-extractor`);
 const getDefaultFontWeights = require(`${__dirname}/css-font-defaults`);
 
-const cssColorNames = require(`${__dirname}/css-colour-names.json`);
+const cssColorNames = require(`${__dirname}/css-colour-names`);
 
 const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');

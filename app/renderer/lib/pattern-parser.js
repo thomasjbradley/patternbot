@@ -6,6 +6,7 @@ const merge = require('merge-objects');
 const S = require('string');
 const fontColorContrast = require('font-color-contrast');
 const readmePropertyVariants = require(`${__dirname}/readme-property-variants`);
+const cssColorNames = require(`${__dirname}/css-colour-names`);
 const classify = require(`${__dirname}/../../shared/classify`);
 const htmlFileParser = require(`${__dirname}/html-file-parser`);
 const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
@@ -118,6 +119,8 @@ const setUpReadme = function (patternHtml, patternMd, html, readme) {
   });
 
   if (finalReadme.backgroundColour) {
+    if (cssColorNames[finalReadme.backgroundColour]) finalReadme.backgroundColour = cssColorNames[finalReadme.backgroundColour];
+
     if (fontColorContrast(hexFullLength(finalReadme.backgroundColour)) === '#000000') {
       finalReadme.interfaceColours = {
         primary: 0,

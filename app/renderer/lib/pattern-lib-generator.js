@@ -14,6 +14,7 @@ const patternRenderer = require(`${__dirname}/pattern-renderer`);
 const iconParser = require(`${__dirname}/icon-parser`);
 const hexFullLength = require(`${__dirname}/hex-full-length`);
 const markbotHelper = require(`${__dirname}/markbot-helper`);
+const cssColorNames = require(`${__dirname}/css-colour-names`);
 
 const env = process.env.NODE_ENV;
 const DEBUG = !!(env === 'development');
@@ -132,6 +133,8 @@ const generate = function (folderpath, patternLibFiles) {
           };
 
           if (readme.attributes.backgroundColour) {
+            if (cssColorNames[readme.attributes.backgroundColour]) readme.attributes.backgroundColour = cssColorNames[readme.attributes.backgroundColour];
+
             if (fontColorContrast(hexFullLength(readme.attributes.backgroundColour)) !== '#000000') {
               commonInfo.interfaceColours = {
                 primary: 255,
