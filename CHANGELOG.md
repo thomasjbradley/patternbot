@@ -5,11 +5,25 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [Unreleased]
+## [2.2.0] — 2018-02-15
+
+### Added
+
+- Colours inside the readmes can now be specified as CSS colour keywords, not just hex values.
+- All readme properties now have alternative spellings, including dashed versions, for simple CSS-like consistency.
+- Added a new `height` property that can be specified for individual patterns to force the `<iframe>` to a minimum height.
+- Added a new `padding` property that can be specified for individual patterns to force their `<body>` tag to be padded—very use for patterns that include drop shadows.
+- All colours specified inside readmes can now be specified using the CSS variables syntax, e.g. `--color-primary`
+
+### Changed
+
+- Moved to a single iframe loading gear instead of two because it’s less busy.
+- Allow CSS-like dashed property names in readmes, e.g. `background-color` instead of just `backgroundColor`
 
 ### Fixed
 
 - Fixed a typo in the menu IDs on Windows.
+- Fixed the auto-rebuild system on Windows by changing from deleting folders to just emptying them.
 
 ---
 
