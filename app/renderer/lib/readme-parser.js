@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const objIterator = require('object-recursive-iterator');
 
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
 const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
@@ -38,6 +39,25 @@ const parse = function (folderpath) {
   });
 };
 
+const iterateReadmeAttributes = function (attrs, colours) {
+  objIterator.forAll(attrs, (path, key, obj) => {
+    if (['backgroundColour', 'accentColour'].includes(key)) {
+      if (/^(var\()?\-\-/.test(obj[key])) obj[key] = colours[obj[key].replace(/var\(/g, '').replace(/\)/g, '')];
+    }
+  });
+
+  return attrs;
+};
+
+const convertVarColours = function (readme, colours) {
+  readme = iterateReadmeAttributes(readme, colours);
+
+  if (readme.attributes) readme.attributes = iterateReadmeAttributes(readme.attributes, colours);
+
+  return readme;
+};
+
 module.exports = {
   parse: parse,
+  convertVarColours: convertVarColours,
 };

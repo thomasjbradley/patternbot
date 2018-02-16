@@ -5,6 +5,7 @@ const path = require('path');
 const merge = require('merge-objects');
 const S = require('string');
 const fontColorContrast = require('font-color-contrast');
+const readmeParser = require(`${__dirname}/readme-parser`);
 const readmePropertyVariants = require(`${__dirname}/readme-property-variants`);
 const cssColorNames = require(`${__dirname}/css-colour-names`);
 const classify = require(`${__dirname}/../../shared/classify`);
@@ -99,7 +100,7 @@ const parseFilesWithExtension = function (folderpath, ext, parser, limiter = nul
   });
 };
 
-const normalizeProperties = function (readme) {
+const normalizeProperties = function (readme, commonInfo) {
   Object.keys(readmePropertyVariants).forEach((prop) => {
     readmePropertyVariants[prop].forEach((propVariant) => {
       if (readme[propVariant]) readme[prop] = readme[propVariant];
@@ -110,10 +111,12 @@ const normalizeProperties = function (readme) {
   if (readme.height) readme.height = parseInt(readme.height, 10);
   if (readme.padding && typeof readme.padding === 'number') readme.padding = `${readme.padding}px`;
 
+  if (commonInfo && commonInfo.theme && commonInfo.theme.coloursRaw) readme = readmeParser.convertVarColours(readme, commonInfo.theme.coloursRaw);
+
   return readme;
 };
 
-const setUpReadme = function (patternHtml, patternMd, html, readme) {
+const setUpReadme = function (patternHtml, patternMd, html, readme, options = {}) {
   let finalReadme = {};
 
   if (!(patternMd && patternMd.content && patternMd.content.attributes && patternMd.content.attributes[html.name])) return;
@@ -126,7 +129,7 @@ const setUpReadme = function (patternHtml, patternMd, html, readme) {
     finalReadme = merge(finalReadme, patternMd.content.attributes[html.name]);
   }
 
-  finalReadme = normalizeProperties(finalReadme);
+  finalReadme = normalizeProperties(finalReadme, (options.commonInfo) ? options.commonInfo : null);
 
   if (finalReadme.backgroundColour) {
     if (cssColorNames[finalReadme.backgroundColour]) finalReadme.backgroundColour = cssColorNames[finalReadme.backgroundColour];
@@ -165,7 +168,7 @@ const getInfo = function (folderpath, limiter, readme, options = {}) {
       patternInfo.html = all[1];
 
       patternInfo.html.forEach((html, i) => {
-        patternInfo.html[i].readme = setUpReadme(patternInfo.html[i], (patternInfo.md[0]) ? patternInfo.md[0] : null, html, readme);
+        patternInfo.html[i].readme = setUpReadme(patternInfo.html[i], (patternInfo.md[0]) ? patternInfo.md[0] : null, html, readme, options);
       });
 
       resolve(patternInfo);

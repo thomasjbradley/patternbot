@@ -97,7 +97,9 @@ const generate = function (folderpath, patternLibFiles) {
 
           iconParser.parseAll(patternLibFiles.imagesParsable.icons),
           patternParserQueue.parseAllBuiltins('icons', null, (readme.attributes.icons) ? readme.attributes.icons : null),
-          patternParserQueue.parseAll(patternLibFiles.patterns),
+          patternParserQueue.parseAll(patternLibFiles.patterns, null, null, {
+            commonInfo: commonInfo,
+          }),
         ]).then(function (all) {
           let patternLibInfo = getDefaultPatterLibInfo(patternLibFiles);
 
@@ -126,6 +128,8 @@ const generate = function (folderpath, patternLibFiles) {
 
           if (assets) commonInfo.assets = assets;
           if (icons) commonInfo.icons = icons;
+
+          if (commonInfo.theme && commonInfo.theme.coloursRaw) readme = readmeParser.convertVarColours(readme, commonInfo.theme.coloursRaw);
 
           commonInfo.interfaceColours = {
             primary: 0,

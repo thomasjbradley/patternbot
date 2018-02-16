@@ -44,6 +44,7 @@
     "merge-objects": "^1.0.5",
     "mime-types": "^2.1.14",
     "npm-run-all": "^4.1.2",
+    "object-recursive-iterator": "^1.0.2",
     "onchange": "^3.2.1",
     "portfinder": "^1.0.13",
     "postcss-assets": "^5.0.0",

@@ -56,20 +56,25 @@ const parseColour = function (declaration) {
 const extractColours = function (cssProps) {
   return new Promise((resolve, reject) => {
     let colours = {
-      primary: [],
-      secondary: [],
-      neutral: [],
-      accent: [],
+      parsed: {
+        primary: [],
+        secondary: [],
+        neutral: [],
+        accent: [],
+      },
+      raw: {},
     };
 
     cssProps.forEach(function (dec) {
       if (dec.type !== 'declaration' || !dec.property.match(/\-\-color/)) return;
 
-      if (dec.property.match(/\-\-color\-primary/)) return colours.primary.push(parseColour(dec));
-      if (dec.property.match(/\-\-color\-secondary/)) return colours.secondary.push(parseColour(dec));
-      if (dec.property.match(/\-\-color\-neutral/)) return colours.neutral.push(parseColour(dec));
+      colours.raw[dec.property] = dec.value;
 
-      return colours.accent.push(parseColour(dec));
+      if (dec.property.match(/\-\-color\-primary/)) return colours.parsed.primary.push(parseColour(dec));
+      if (dec.property.match(/\-\-color\-secondary/)) return colours.parsed.secondary.push(parseColour(dec));
+      if (dec.property.match(/\-\-color\-neutral/)) return colours.parsed.neutral.push(parseColour(dec));
+
+      return colours.parsed.accent.push(parseColour(dec));
     });
 
     resolve(colours);
@@ -91,9 +96,12 @@ const parseFont = function (declaration, weightsAndStyles, comments) {
 const extractFonts = function (cssProps, fontUrl) {
   return new Promise((resolve, reject) => {
     let fonts = {
-      primary: {},
-      secondary: {},
-      accent: [],
+      parsed: {
+        primary: {},
+        secondary: {},
+        accent: [],
+      },
+      raw: {},
     };
 
     extractFontWeights(fontUrl).then((availableWeights) => {
@@ -102,12 +110,14 @@ const extractFonts = function (cssProps, fontUrl) {
 
         if (dec.type !== 'declaration' || !dec.property.match(/\-\-font/)) return;
 
+        fonts.raw[dec.property] = dec.value;
+
         if (cssProps[i + 1] && cssProps[i + 1].type === 'comment') comments = cssProps[i + 1].comment;
 
-        if (dec.property.match(/\-\-font\-primary/)) return fonts.primary = parseFont(dec, availableWeights, comments);
-        if (dec.property.match(/\-\-font\-secondary/)) return fonts.secondary = parseFont(dec, availableWeights, comments);
+        if (dec.property.match(/\-\-font\-primary/)) return fonts.parsed.primary = parseFont(dec, availableWeights, comments);
+        if (dec.property.match(/\-\-font\-secondary/)) return fonts.parsed.secondary = parseFont(dec, availableWeights, comments);
 
-        return fonts.accent.push(parseFont(dec, availableWeights));
+        return fonts.parsed.accent.push(parseFont(dec, availableWeights));
       });
 
       resolve(fonts);
@@ -154,8 +164,12 @@ const parse = function (filepath, readme) {
       }
 
       Promise.all(extractionPromises).then((extractionResults) => {
-        cssVars.colours = extractionResults[0];
-        if (extractionResults[1]) cssVars.fonts = extractionResults[1];
+        cssVars.colours = extractionResults[0].parsed;
+        cssVars.coloursRaw = extractionResults[0].raw;
+        if (extractionResults[1]) {
+          cssVars.fonts = extractionResults[1].parsed;
+          cssVars.fontsRaw = extractionResults[1].raw;
+        }
         resolve(cssVars);
       }).catch((e) => {
         if (DEBUG) console.log('CSS variable extraction error', e);
