@@ -11,6 +11,7 @@ module.exports = [
   'patterns/modules/*',
   'patterns/typography',
   'patterns/typography/*',
+  'common/patternbot*',
   // Jekyll folders
   '_site',
   '_site/*',

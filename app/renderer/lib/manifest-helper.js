@@ -2,7 +2,9 @@
 
 const fs = require('fs');
 
-const generate = function (folderpath, filename, commonInfo, patternLibFiles, userPatterns) {
+let appPkg = require(`${__dirname}/../../../package.json`);
+
+const generate = function (folderpath, commonInfo, patternLibFiles, userPatterns) {
   let manifest = {};
 
   return new Promise((resolve, reject) => {
@@ -33,9 +35,11 @@ const generate = function (folderpath, filename, commonInfo, patternLibFiles, us
       });
     });
 
-    fs.writeFile(`${folderpath}/${filename}`, JSON.stringify(manifest, null, 2), (e) => {
+    manifest.config = JSON.parse(JSON.stringify(appPkg.config));
+
+    // fs.writeFile(`${folderpath}/${appPkg.config.manifestFilename}`, JSON.stringify(manifest, null, 2), (e) => {
       return resolve(manifest);
-    });
+    // });
   });
 };
 
