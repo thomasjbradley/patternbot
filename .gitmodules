@@ -1,0 +1,3 @@
+[submodule "patternbot-includes"]
+	path = patternbot-includes
+	url = git@github.com:thomasjbradley/patternbot-includes.git
