@@ -126,7 +126,7 @@
   };
 
   var switchTabs = function (link) {
-    var openLinks = document.querySelectorAll('[role="tab"][aria-selected="true"');
+    var openLinks = document.querySelectorAll('[role="tab"][aria-selected="true"]');
     var openTabs = document.querySelectorAll('[role="tabpanel"]:not([hidden])');
     var newTab = document.getElementById(link.getAttribute('aria-controls'));
 

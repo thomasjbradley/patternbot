@@ -59,7 +59,8 @@ code {
   padding: 0 .4em .15em;
 
   background-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .05);
-  border: 1px solid rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .05);
+  border: 1px solid transparent;
+  border-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .05);
   border-radius: 4px;
 }
 
@@ -185,11 +186,11 @@ code {
 
 .patternbot-tool-btn {
   display: flex;
+  left: 100%;
   min-height: 1.4em;
   min-width: 1.2em;
   padding: 1px 2px 2px;
   position: absolute;
-  right: -25px;
   top: 50%;
   transform: translateY(-50%);
 
