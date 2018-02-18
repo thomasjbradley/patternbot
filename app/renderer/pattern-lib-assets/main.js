@@ -148,6 +148,8 @@
     link.setAttribute('aria-selected', true);
     window.location.hash = link.getAttribute('href');
 
+    requestAnimationFrame(function () { window.scrollTo(0, 0); });
+
     loadAllVisibleIframes();
   };
 
@@ -202,7 +204,7 @@
     showAllTabs();
   } else {
     if (window.location.hash) {
-      possibleInitialTab = document.querySelector('[role="tab"][href="' + window.location.hash + '"]');
+      possibleInitialTab = document.querySelector('[role="tab"][href="' + window.location.hash.split(/\-\-/)[0] + '"]');
 
       if (possibleInitialTab) {
         switchTabs(possibleInitialTab);

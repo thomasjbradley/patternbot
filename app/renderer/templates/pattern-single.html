@@ -5,7 +5,7 @@
       <nav class="pattern-nav">
         <ol class="list-group-inline push-1-4 pad-b-1-4">
           {{#each patterns}}
-            <li><a href="#{{../name}}-{{name}}">{{namePretty}}</a></li>
+            <li><a href="#{{../name}}--{{name}}">{{namePretty}}</a></li>
           {{/each}}
         </ol>
       </nav>
@@ -49,7 +49,7 @@
   {{desc}}
 
   {{#each patterns}}
-    <div class="pattern-details" id="{{../name}}-{{name}}" style="{{#if readme.backgroundColour}}background-color:{{readme.backgroundColour}};{{/if}}">
+    <div class="pattern-details" id="{{../name}}--{{name}}" style="{{#if readme.backgroundColour}}background-color:{{readme.backgroundColour}};{{/if}}">
       {{#if ../showSubHeadings}}
         <div class="pattern-toolbar pattern-toolbar-inner relative gutter pad-t-1-4 pad-b-1-4" style="{{#if readme.backgroundColour}}border-color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.1); color:rgba({{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},{{readme.interfaceColours.primary}},.9);{{/if}}">
           <h3 class="pattern-name tera push-1-8">{{namePretty}}</h3>
