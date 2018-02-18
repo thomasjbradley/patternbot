@@ -14,6 +14,7 @@ const patternRenderer = require(`${__dirname}/pattern-renderer`);
 const iconParser = require(`${__dirname}/icon-parser`);
 const hexFullLength = require(`${__dirname}/hex-full-length`);
 const markbotHelper = require(`${__dirname}/markbot-helper`);
+const manifestHelper = require(`${__dirname}/manifest-helper`);
 const cssColorNames = require(`${__dirname}/css-colour-names`);
 
 const env = process.env.NODE_ENV;
@@ -190,7 +191,11 @@ const generate = function (folderpath, patternLibFiles) {
 
           savePatternLib(folderpath, renderPatternLib(patternLibFiles, patternLibInfo, commonInfo), commonInfo);
 
-          markbotHelper.copyAll(folderpath, patternLibFiles).then(resolve);
+          markbotHelper.copyAll(folderpath, patternLibFiles).then(() => {
+            manifestHelper.generate(folderpath, appPkg.config.manifestFilename, commonInfo, patternLibFiles, userPatterns).then((manifest) => {
+              resolve();
+            });
+          });
         });
       });
     });

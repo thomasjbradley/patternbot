@@ -10,6 +10,7 @@
   "main": "patternbot.js",
   "config": {
     "patternLibFilename": "index.html",
+    "manifestFilename": ".patternbot-manifest.json",
     "commonFolder": "/common",
     "commonParsableFilenames": {
       "modulifier": "modules.css",
