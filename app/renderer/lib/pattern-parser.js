@@ -53,13 +53,23 @@ const filterAndSortFiles = function (everyFile, ext, limiter) {
   });
 };
 
-const readFile = function (folderpath, filepath, options = {}) {
+const constructFile = function (folderpath, filepath, options = {}) {
   return new Promise(function (resolve, reject) {
     let theFilePath = `${folderpath}/${filepath}`;
+    let name = formatName(path.parse(theFilePath).name);
 
-    fs.readFile(theFilePath, 'utf8', function (err, data) {
-      let name = formatName(path.parse(theFilePath).name);
+    resolve({
+      name: name,
+      namePretty: S(name).humanize().s,
+      path: theFilePath,
+      localPath: getLocalPath(folderpath, theFilePath),
+    });
+  });
+};
 
+const readFile = function (fileObj, options = {}) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(fileObj.path, 'utf8', (err, data) => {
       if (options.readmeReplace) {
         options.readmeReplace.forEach((item) => {
           if (!item.search || !item.replace) return;
@@ -67,11 +77,19 @@ const readFile = function (folderpath, filepath, options = {}) {
         });
       }
 
-      resolve({
-        name: name,
-        namePretty: S(name).humanize().s,
-        path: theFilePath,
-        content: data,
+      fileObj.content = data;
+      resolve(fileObj);
+    });
+  });
+};
+
+const findFilesWithExtension = function (folderpath, ext, limiter = null, options = {}) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(folderpath, (err, everyFile) => {
+      let files = filterAndSortFiles(everyFile, ext, limiter);
+
+      Promise.all(files.map((file) => constructFile(folderpath, file, options))).then((allFiles) => {
+        resolve(allFiles);
       });
     });
   });
@@ -79,23 +97,17 @@ const readFile = function (folderpath, filepath, options = {}) {
 
 const parseFilesWithExtension = function (folderpath, ext, parser, limiter = null, options = {}) {
   return new Promise((resolve, reject) => {
-    fs.readdir(folderpath, (err, everyFile) => {
-      let files = filterAndSortFiles(everyFile, ext, limiter);
+    findFilesWithExtension(folderpath, ext, limiter, options).then((everyFile) => {
+      Promise.all(everyFile.map((fileObj) => readFile(fileObj, options))).then((allFiles) => {
+        let patterns = [];
 
-      Promise
-        .all(files.map((file) => { return readFile(folderpath, file, options) }))
-        .then(function (allFiles) {
-          let patterns = [];
+        allFiles.forEach((item) => {
+          item.content = parser.parse(item.content);
+          patterns.push(item);
+        });
 
-          allFiles.forEach(function (item) {
-            item.content = parser.parse(item.content);
-            item.localPath = getLocalPath(folderpath, item.path);
-            patterns.push(item);
-          });
-
-          resolve(patterns);
-        })
-      ;
+        resolve(patterns);
+      });
     });
   });
 };
@@ -162,10 +174,12 @@ const getInfo = function (folderpath, limiter, readme, options = {}) {
 
     Promise.all([
       parseFilesWithExtension(theFolderPath, '.md', markdownFileParser, null, options),
-      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter),
+      parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter, options),
+      findFilesWithExtension(theFolderPath, '.css', limiter, options),
     ]).then(function (all) {
       patternInfo.md = all[0];
       patternInfo.html = all[1];
+      patternInfo.css = all[2];
 
       patternInfo.html.forEach((html, i) => {
         patternInfo.html[i].readme = setUpReadme(patternInfo.html[i], (patternInfo.md[0]) ? patternInfo.md[0] : null, html, readme, options);
