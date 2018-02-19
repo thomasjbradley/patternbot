@@ -5,6 +5,27 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- CSS files inside patterns are now found and gathered into a list.
+- A complete manifest is now generated, but I decided that it wasn’t helpful to write it out to a file.
+- Add the new Patternbot includes template system for use within pages.
+- The secondary font is now used on the coloured headings in the pattern library for more brand visibility.
+- Made the final pattern library responsive.
+
+### Changed
+
+- Adjusted the build process to remove all MacOS extended attributes files before building.
+
+### Fixed
+
+- Fixed the navigation in Safari
+- Fixed the code borders in Safari
+
+---
+
 ## [2.2.0] — 2018-02-15
 
 ### Added
