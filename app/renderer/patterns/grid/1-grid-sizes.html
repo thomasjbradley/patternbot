@@ -19,27 +19,29 @@
 
 <hr class="patternbot-hr">
 
-{{#each commonInfo.gridifier}}
-  <h2 class="patternbot-font-primary patternbot-color-body giga normal">Sizes available at “{{prefix}}”</h2>
-  {{#times columns}}
-    <ol class="patternbot-grid-display grid {{#if @last}}push{{/if}}" style="min-width: 320px; {{#if mq}}max-width: {{mq}}em{{else}}max-width: 320px{{/if}}">
-      {{#if @first}}
-        <li class="unit {{prefix}}-1">
-          <div class="patternbot-grid-display-inner island-1-4" {{#if ../commonInfo.readme.attributes.accentColour}}style="border-color: {{../commonInfo.readme.attributes.accentColour}}"{{/if}}>
-            <code class="micro">.{{prefix}}-1</code>
-          </div>
-        </li>
-      {{else}}
-        {{#loop @index}}
-          <li class="unit {{../prefix}}-1-{{@index}}">
-            <div class="patternbot-grid-display-inner island-1-4" {{#if ../../commonInfo.readme.attributes.accentColour}}style="border-color: {{../../commonInfo.readme.attributes.accentColour}}"{{/if}}>
-              <code class="micro">.{{../prefix}}-1-{{@index}}</code>
+<div class="patternbot-grid-wrap pad-b">
+  {{#each commonInfo.gridifier}}
+    <h2 class="patternbot-font-primary patternbot-color-body giga normal">Sizes available at “{{prefix}}”</h2>
+    {{#times columns}}
+      <ol class="patternbot-grid-display {{#if @last}}push{{/if}}" style="min-width: 320px; {{#if mq}}width: {{mq}}em{{else}}width: 320px{{/if}}">
+        {{#if @first}}
+          <li style="width: 100%">
+            <div class="patternbot-grid-display-inner island-1-4" {{#if ../commonInfo.readme.attributes.accentColour}}style="border-color: {{../commonInfo.readme.attributes.accentColour}}"{{/if}}>
+              <code class="micro">.{{prefix}}-1</code>
             </div>
           </li>
-        {{/loop}}
-      {{/if}}
-    </ol>
-  {{/times}}
+        {{else}}
+          {{#loop @index}}
+            <li style="width: calc(100% / {{@index}})">
+              <div class="patternbot-grid-display-inner island-1-4" {{#if ../../commonInfo.readme.attributes.accentColour}}style="border-color: {{../../commonInfo.readme.attributes.accentColour}}"{{/if}}>
+                <code class="micro">.{{../prefix}}-1-{{@index}}</code>
+              </div>
+            </li>
+          {{/loop}}
+        {{/if}}
+      </ol>
+    {{/times}}
 
-  <hr class="patternbot-hr">
-{{/each}}
+    <hr class="patternbot-hr">
+  {{/each}}
+</div>

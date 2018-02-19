@@ -253,3 +253,53 @@
     btn.addEventListener('click', toggleCodeSample);
   });
 }());
+
+/*
+  ================================================
+  TOGGLE NAVIGATION
+  ================================================
+*/
+(function () {
+  'use strict';
+
+  var navBtn = document.querySelector('.nav-btn');
+  var nav = document.getElementById('nav');
+
+  var showNav = function () {
+    nav.setAttribute('aria-hidden', false);
+    navBtn.setAttribute('aria-expanded', true);
+    navBtn.setAttribute('aria-label', 'Close nav');
+  };
+
+  var hideNav = function () {
+    nav.setAttribute('aria-hidden', true);
+    navBtn.setAttribute('aria-expanded', false);
+    navBtn.setAttribute('aria-label', 'Open nav');
+  };
+
+  var toggleNav = function () {
+    if (nav.getAttribute('aria-hidden') === 'true') {
+      showNav();
+    } else {
+      hideNav();
+    }
+  };
+
+  var toggleBasedOnScreen = function () {
+    if (window.matchMedia('(min-width: 38em)').matches) {
+      showNav();
+    } else {
+      hideNav();
+    }
+  };
+
+  navBtn.addEventListener('click', toggleNav);
+
+  nav.addEventListener('click', function (e) {
+    if (e.target.matches('a, button')) toggleNav();
+  });
+
+  window.matchMedia('(min-width: 38em)').addEventListener('change', toggleBasedOnScreen);
+
+  toggleBasedOnScreen();
+}());

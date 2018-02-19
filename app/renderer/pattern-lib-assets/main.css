@@ -1,3 +1,7 @@
+:root {
+  --nav-width-m: 12rem;
+}
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9);
@@ -7,6 +11,7 @@ html {
 body {
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 3.1em;
 }
 
 a {
@@ -27,32 +32,96 @@ a:hover {
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: row;
   min-height: 100vh;
   max-width: 100vw;
   width: 100vw;
 }
 
-.masthead {
-  min-width: 12em;
-  overflow-x: hidden;
-  width: 12em;
-
-  border-right: 1px solid rgba(var(--color-patternbot-interface),var(--color-patternbot-interface),var(--color-patternbot-interface),.2);
-
-  color: var(--color-patternbot-interface);
-}
-
-.masthead-inner {
-  height: 100vh;
+.masthead-s {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   position: fixed;
-  width: 12em;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
 
-  overflow-y: auto;
+  background-color: var(--color-patternbot-interface-background);
+  border-bottom: 1px solid rgba(var(--color-patternbot-interface),var(--color-patternbot-interface),var(--color-patternbot-interface),.2);
+
+  color: rgb(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
 }
 
-.masthead hr {
+.nav-btn {
+  margin: 0 .6em;
+  height: 32px;
+  padding: 0;
+  position: relative;
+  width: 32px;
+
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  opacity: .8;
+
+  color: rgb(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
+}
+
+.nav-btn:hover {
+  background-color: transparent;
+  color: rgb(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
+}
+
+.nav-btn svg {
+  height: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+}
+
+.nav-icon-close {
+  opacity: 0;
+}
+
+.nav-btn[aria-expanded="true"] .nav-icon-close {
+  opacity: 1;
+}
+
+.nav-btn[aria-expanded="true"] .nav-icon-open {
+  opacity: 0;
+}
+
+.masthead-m {
+  height: 100vh;
+  padding-top: 4.1em;
+  position: fixed;
+  right: 100vw;
+  top: 0;
+  z-index: 999;
+  width: calc(100vw - 3em);
+
+  background-color: var(--color-patternbot-interface-background);
+  border-right: 1px solid rgba(var(--color-patternbot-interface),var(--color-patternbot-interface),var(--color-patternbot-interface),.2);
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: right .2s ease;
+
+  color: rgb(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
+}
+
+.masthead-m h1,
+.masthead-m h1 + hr {
+  display: none;
+}
+
+.masthead-m[aria-hidden="false"] {
+  right: 3em;
+}
+
+.masthead-m hr {
   border-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .2);
   border-width: 1px;
 }
@@ -61,7 +130,7 @@ a:hover {
   background-image: none;
   border: 0;
 
-  color: var(--color-patternbot-interface);
+  color: rgb(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
   text-decoration: none;
 }
 
@@ -77,6 +146,11 @@ a:hover {
 .nav a:active span,
 .nav a:hover span {
   border-bottom-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
+}
+
+.nav button *,
+.nav a * {
+  pointer-events: none
 }
 
 .nav .icon {
@@ -163,8 +237,7 @@ a:hover {
 }
 
 .main {
-  flex-grow: 1;
-  width: calc(100% - 12em);
+  width: 100vw;
 }
 
 .main iframe {
@@ -266,6 +339,7 @@ a:hover {
 
 .pattern-code code {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pattern-tool-btn {
@@ -368,6 +442,39 @@ a:hover {
 
   100% {
     transform: rotate(360deg);
+  }
+
+}
+
+@media only screen and (min-width: 38em) {
+
+  body {
+    padding-top: 0;
+  }
+
+  .wrapper {
+    padding-left: var(--nav-width-m);
+  }
+
+  .masthead-s {
+    display: none;
+  }
+
+  .masthead-m {
+    left: 0;
+    min-width: var(--nav-width-m);
+    padding-top: 0;
+    right: auto;
+    width: var(--nav-width-m);
+  }
+
+  .masthead-m h1,
+  .masthead-m h1 + hr {
+    display: block;
+  }
+
+  .main {
+    width: calc(100vw - var(--nav-width-m));
   }
 
 }

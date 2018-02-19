@@ -2,10 +2,6 @@
   color: var(--color-patternbot-primary);
 }
 
-.patternbot-brand-desc :last-child {
-  margin-bottom: 0;
-}
-
 .patternbot-color-swatches {
   position: relative;
 }
@@ -63,4 +59,12 @@
 
 .patternbot-color-swatch-labels * {
   color: var(--color-patternbot-primary);
+}
+
+@media only screen and (min-width: 38em) {
+
+ .patternbot-brand-desc :last-child {
+    margin-bottom: 0;
+  }
+
 }

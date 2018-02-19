@@ -10,6 +10,7 @@
     :root {
       --color-patternbot-interface: {{common.interfaceColours.primary}};
       --color-patternbot-interface-opposite: {{common.interfaceColours.opposite}};
+      --color-patternbot-interface-background: {{common.readme.attributes.backgroundColour}};
       {{#if common.theme.fonts.primary}}
         --font-patternbot-primary: {{{common.theme.fonts.primary.raw}}}, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
       {{/if}}
@@ -22,7 +23,7 @@
     {{/if}}
 
     body {
-      background-color: {{common.readme.attributes.backgroundColour}};
+      background-color: var(--color-patternbot-interface-background);
     }
   </style>
   {{#if common.readme.attributes.fontUrl}}
@@ -32,6 +33,12 @@
 <body>
 
   <svg hidden>
+    <symbol id="nav-icon" viewBox="0 0 256 256">
+      <path d="M8.5 26.9h239v35.8H8.5zm0 83.7h239v35.8H8.5zm0 83.6h239V230H8.5z"/>
+    </symbol>
+    <symbol id="nav-icon-close" viewBox="0 0 256 256">
+      <path d="M199.776 226.088L30.779 57.091l25.385-25.385 168.997 168.997zm25.426-168.767L56.205 226.318 30.82 200.933 199.817 31.936z"/>
+    </symbol>
     <symbol id="icon-pop-out" viewBox="0 0 256 256">
       <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="30" points="87 21 234 21 234 168"/>
       <line x1="173" x2="173" y1="81" y2="81" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="30"/>
@@ -66,120 +73,133 @@
 
   <div class="wrapper">
 
-    <header class="masthead">
-      <div class="masthead-inner">
-        <h1 class="tera gutter pad-t pad-b push-0" style="color: {{#if common.readme.attributes.accentColour}}{{common.readme.attributes.accentColour}}{{else}}{{#with (lookup common.theme.colours.primary 0)}}{{hex}}{{/with}}{{/if}}; {{#if common.theme.fonts.secondary}}font-family: {{common.theme.fonts.secondary.raw}};{{/if}}">
-          {{#if common.readme.attributes.name}}
-            {{common.readme.attributes.name}}
-            <span class="block normal mega pad-t-1-4">Pattern Library</span>
-          {{else}}
-            Pattern Library
-          {{/if}}
-        </h1>
-        <hr>
-        <h2 class="italic kilo normal gutter push-1-2">Patterns</h2>
-        <nav class="nav mega">
-          <ul class="list-group" role="tablist">
+    <header class="masthead-s">
+      <button class="nav-btn" aria-controls="nav" aria-expanded="false" aria-label="Open nav">
+        <svg class="nav-icon-open"><use xlink:href="#nav-icon"></use></svg>
+        <svg class="nav-icon-close"><use xlink:href="#nav-icon-close"></use></svg>
+      </button>
+      <h1 class="kilo pad-t-1-8 pad-b-1-8 push-0" style="color: {{#if common.readme.attributes.accentColour}}{{common.readme.attributes.accentColour}}{{else}}{{#with (lookup common.theme.colours.primary 0)}}{{hex}}{{/with}}{{/if}}; {{#if common.theme.fonts.secondary}}font-family: {{common.theme.fonts.secondary.raw}};{{/if}}">
+        {{#if common.readme.attributes.name}}
+          {{common.readme.attributes.name}}
+          <span class="block normal milli">Pattern Library</span>
+        {{else}}
+          Pattern Library
+        {{/if}}
+      </h1>
+    </header>
+
+    <header class="masthead-m" aria-hidden="true" id="nav">
+      <h1 class="tera gutter pad-t pad-b push-0" style="color: {{#if common.readme.attributes.accentColour}}{{common.readme.attributes.accentColour}}{{else}}{{#with (lookup common.theme.colours.primary 0)}}{{hex}}{{/with}}{{/if}}; {{#if common.theme.fonts.secondary}}font-family: {{common.theme.fonts.secondary.raw}};{{/if}}">
+        {{#if common.readme.attributes.name}}
+          {{common.readme.attributes.name}}
+          <span class="block normal mega pad-t-1-4">Pattern Library</span>
+        {{else}}
+          Pattern Library
+        {{/if}}
+      </h1>
+      <hr>
+      <h2 class="italic kilo normal gutter push-1-2">Patterns</h2>
+      <nav class="nav mega">
+        <ul class="list-group" role="tablist">
+          <li role="presentation">
+            <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="brand" href="#brand">
+              <div class="relative">
+                <span>Brand</span>
+                <i class="icon i-18 absolute pin-cr">
+                  <svg><use xlink:href="#icon-active" /></svg>
+                </i>
+              </div>
+            </a>
+          </li>
+          {{#if common.typografier}}
             <li role="presentation">
-              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="brand" href="#brand">
+              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="typography" href="#typography">
                 <div class="relative">
-                  <span>Brand</span>
+                  <span>Typography</span>
                   <i class="icon i-18 absolute pin-cr">
                     <svg><use xlink:href="#icon-active" /></svg>
                   </i>
                 </div>
               </a>
             </li>
-            {{#if common.typografier}}
-              <li role="presentation">
-                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="typography" href="#typography">
-                  <div class="relative">
-                    <span>Typography</span>
-                    <i class="icon i-18 absolute pin-cr">
-                      <svg><use xlink:href="#icon-active" /></svg>
-                    </i>
-                  </div>
-                </a>
-              </li>
-            {{/if}}
-            {{#if common.gridifier}}
-              <li role="presentation">
-                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="grid" href="#grid">
-                  <div class="relative">
-                    <span>Grid</span>
-                    <i class="icon i-18 absolute pin-cr">
-                      <svg><use xlink:href="#icon-active" /></svg>
-                    </i>
-                  </div>
-                </a>
-              </li>
-            {{/if}}
-            {{#if common.modulifier}}
-              <li role="presentation">
-                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="modules" href="#modules">
-                  <div class="relative">
-                    <span>Modules</span>
-                    <i class="icon i-18 absolute pin-cr">
-                      <svg><use xlink:href="#icon-active" /></svg>
-                    </i>
-                  </div>
-                </a>
-              </li>
-            {{/if}}
-            {{#if common.icons}}
-              <li role="presentation">
-                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="icons" href="#icons">
-                  <div class="relative">
-                    <span>Icons</span>
-                    <i class="icon i-18 absolute pin-cr">
-                      <svg><use xlink:href="#icon-active" /></svg>
-                    </i>
-                  </div>
-                </a>
-              </li>
-            {{/if}}
-            {{#each patterns}}
-              {{#unless opts.hideNav}}
-                <li role="presentation">
-                  <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="{{name}}" href="#{{name}}">
-                    <div class="relative">
-                      <span>{{namePretty}}</span>
-                      <i class="icon i-18 absolute pin-cr">
-                        <svg><use xlink:href="#icon-active" /></svg>
-                      </i>
-                    </div>
-                  </a>
-                </li>
-              {{/unless}}
-            {{/each}}
-            <li class="pad-t-1-2" role="presentation">
-              <button class="nav-show-all gutter pad-t-1-4 pad-b-1-4 block kilo" id="nav-show-all" aria-pressed="false" title="Show all patterns" aria-label="Show all patterns">
-                <span class="nav-show-all-wrap relative block">Show all</span>
-              </button>
+          {{/if}}
+          {{#if common.gridifier}}
+            <li role="presentation">
+              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="grid" href="#grid">
+                <div class="relative">
+                  <span>Grid</span>
+                  <i class="icon i-18 absolute pin-cr">
+                    <svg><use xlink:href="#icon-active" /></svg>
+                  </i>
+                </div>
+              </a>
             </li>
+          {{/if}}
+          {{#if common.modulifier}}
+            <li role="presentation">
+              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="modules" href="#modules">
+                <div class="relative">
+                  <span>Modules</span>
+                  <i class="icon i-18 absolute pin-cr">
+                    <svg><use xlink:href="#icon-active" /></svg>
+                  </i>
+                </div>
+              </a>
+            </li>
+          {{/if}}
+          {{#if common.icons}}
+            <li role="presentation">
+              <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="icons" href="#icons">
+                <div class="relative">
+                  <span>Icons</span>
+                  <i class="icon i-18 absolute pin-cr">
+                    <svg><use xlink:href="#icon-active" /></svg>
+                  </i>
+                </div>
+              </a>
+            </li>
+          {{/if}}
+          {{#each patterns}}
+            {{#unless opts.hideNav}}
+              <li role="presentation">
+                <a class="gutter pad-t-1-4 pad-b-1-4 block" role="tab" aria-controls="{{name}}" href="#{{name}}">
+                  <div class="relative">
+                    <span>{{namePretty}}</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-active" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
+            {{/unless}}
+          {{/each}}
+          <li class="pad-t-1-2" role="presentation">
+            <button class="nav-show-all gutter pad-t-1-4 pad-b-1-4 block kilo" id="nav-show-all" aria-pressed="false" title="Show all patterns" aria-label="Show all patterns">
+              <span class="nav-show-all-wrap relative block">Show all</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      {{#if files.pages}}
+        <hr>
+        <h2 class="italic kilo normal gutter push-1-2">Pages</h2>
+        <nav class="nav mega">
+          <ul class="list-group">
+            {{#each files.pages}}
+              <li>
+                <a class="gutter pad-t-1-4 pad-b-1-4 block page-pop" href="pages/{{name}}" target="_blank">
+                  <div class="relative">
+                    <span>{{namePretty}}</span>
+                    <i class="icon i-18 absolute pin-cr">
+                      <svg><use xlink:href="#icon-pop-out" /></svg>
+                    </i>
+                  </div>
+                </a>
+              </li>
+            {{/each}}
           </ul>
         </nav>
-        {{#if files.pages}}
-          <hr>
-          <h2 class="italic kilo normal gutter push-1-2">Pages</h2>
-          <nav class="nav mega">
-            <ul class="list-group">
-              {{#each files.pages}}
-                <li>
-                  <a class="gutter pad-t-1-4 pad-b-1-4 block page-pop" href="pages/{{name}}" target="_blank">
-                    <div class="relative">
-                      <span>{{namePretty}}</span>
-                      <i class="icon i-18 absolute pin-cr">
-                        <svg><use xlink:href="#icon-pop-out" /></svg>
-                      </i>
-                    </div>
-                  </a>
-                </li>
-              {{/each}}
-            </ul>
-          </nav>
-        {{/if}}
-      </div>
+      {{/if}}
     </header>
 
     <main class="main">
