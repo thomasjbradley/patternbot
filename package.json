@@ -81,6 +81,8 @@
     "build-js-pattern-lib": "uglifyjs app/renderer/pattern-lib-assets/main.js -c -m --lint -o app/renderer/pattern-lib-assets/pattern-lib.min.js",
     "build-js": "npm run build-js-pattern-lib",
     "watch-css": "onchange '**/*.css' -e '**/*.min.css' -- npm run build-css",
+    "watch-js": "onchange 'app/renderer/pattern-lib-assets/main.js' -- npm run build-js",
+    "watch": "npm-run-all --parallel watch-*",
     "pack-files": "xattr -cr .",
     "pack-bg": "tiffutil -cathidpicheck ./build/background.png ./build/background@2x.png -out ./build/background.tiff",
     "pack-mac": "npm run build-css && npm run build-js && npm run pack-files && build -m --dir",
