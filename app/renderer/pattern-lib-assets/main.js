@@ -303,3 +303,28 @@
 
   toggleBasedOnScreen();
 }());
+
+/*
+  ================================================
+  COPY INCLUDE BUTTONS
+  ================================================
+*/
+(function () {
+  'use strict';
+
+  var copyBtns = document.querySelectorAll('.pattern-include-btn');
+
+  if (!copyBtns) return;
+
+  if (Clipboard.isSupported()) {
+    [].forEach.call(copyBtns, function (btn) {
+      btn.removeAttribute('hidden');
+    });
+
+    new Clipboard('.pattern-include-btn', {
+      text: function (trigger) {
+        return '<script type="application/json" data-pattern="' + trigger.dataset.copyIncludePattern + '"></script>';
+      }
+    });
+  }
+}());
