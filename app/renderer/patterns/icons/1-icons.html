@@ -1,6 +1,6 @@
-<ul class="patternbot-icon-display patternbot-list-group list-group-inline">
+<ul class="patternbot-icon-display patternbot-list-group list-group-inline {{#if commonInfo.readme.attributes.icons.icons.backgroundColor}}patternbot-icon-display-has-bg{{/if}}">
   {{#each commonInfo.icons}}
-    <li>
+    <li class="pad-b-1-2" style="{{#with (lookup ../commonInfo.readme.attributes.icons.icons this) as |iconInfo|}}background-color:{{iconInfo.backgroundColour}}; color:rgb({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}});{{/with}}">
       <div class="text-center">
         <div class="patternbot-icon-display-left island-1-2">
           <i class="icon i-128 block">
@@ -23,11 +23,17 @@
         <i class="icon i-24 patternbot-color-body">
           <svg><use xlink:href="../../images/icons.svg#{{this}}" /></svg>
         </i>
-        <span class="icon-label ib"><code class="micro">#{{this}}</code></span>
+        <span class="icon-label ib">
+          <code class="micro" style="{{#with (lookup ../commonInfo.readme.attributes.icons.icons this) as |iconInfo|}}background-color:rgba({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},.05); border-color:rgba({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},.05); color:rgb({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}});{{/with}}">
+            #{{this}}
+          </code>
+        </span>
         <span class="icon-label ib">
           <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy icon: {{this}}" aria-label="Copy icon: {{this}}" data-clipboard-text="&lt;i class=&quot;icon i-18&quot;&gt;&lt;svg&gt;&lt;use xlink:href=&quot;images/icons.svg#{{this}}&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/i&gt;" hidden>
             <i class="icon i-18 patternbot-color-body">
-              <svg><use xlink:href="#icon-copy"></use></svg>
+              <svg>
+                <use xlink:href="#icon-copy"  style="{{#with (lookup ../commonInfo.readme.attributes.icons.icons this) as |iconInfo|}}fill:rgb({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}}); stroke:rgb({{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}},{{iconInfo.interfaceColours.primary}});{{/with}}"></use>
+              </svg>
             </i>
           </button>
         </span>

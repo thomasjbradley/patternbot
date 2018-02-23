@@ -4,6 +4,7 @@
 
 .patternbot-icon-display > li {
   margin-bottom: 1.3rem;
+  border-radius: 3px;
 }
 
 .patternbot-icon-display-left,
@@ -21,13 +22,13 @@
   width: 64px;
 }
 
-.patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-left,
-.patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-right .icon:nth-child(2) {
+.patternbot-icon-display:not(.patternbot-icon-display-has-bg) > li:nth-child(odd) .patternbot-icon-display-left,
+.patternbot-icon-display:not(.patternbot-icon-display-has-bg) > li:nth-child(even) .patternbot-icon-display-right .icon:nth-child(2) {
   color: var(--color-primary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9));
 }
 
-.patternbot-icon-display > li:nth-child(even) .patternbot-icon-display-left,
-.patternbot-icon-display > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
+.patternbot-icon-display:not(.patternbot-icon-display-has-bg) > li:nth-child(even) .patternbot-icon-display-left,
+.patternbot-icon-display:not(.patternbot-icon-display-has-bg) > li:nth-child(odd) .patternbot-icon-display-right .icon:nth-child(2) {
   color: var(--color-secondary, rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .9));
 }
 

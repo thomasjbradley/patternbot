@@ -14,10 +14,12 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 - Add the new Patternbot includes template system for use within pages.
 - The secondary font is now used on the coloured headings in the pattern library for more brand visibility.
 - Made the final pattern library responsive.
+- Added the ability to customize the `background-color` of a single icon if it *must* be a specific colour.
 
 ### Changed
 
 - Adjusted the build process to remove all MacOS extended attributes files before building.
+- When the `background-color` of the icons section is changed, the icons default to their own colours, they aren’t customized to match the brand.
 
 ### Fixed
 

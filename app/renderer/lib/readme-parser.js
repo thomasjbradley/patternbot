@@ -2,6 +2,8 @@
 
 const fs = require('fs');
 const objIterator = require('object-recursive-iterator');
+const fontColorContrast = require('font-color-contrast');
+const hexFullLength = require(`${__dirname}/hex-full-length`);
 
 const fileExists = require(`${__dirname}/../../shared/file-exists`);
 const markdownFileParser = require(`${__dirname}/markdown-file-parser`);
@@ -12,15 +14,39 @@ const README_FILENAME = 'README.md';
 const normalizeProperties = function (readme) {
   if (Object.keys(readme.attributes).length <= 0) return readme;
 
-  Object.keys(readmePropertyVariants).forEach((prop) => {
-    readmePropertyVariants[prop].forEach((propVariant) => {
-      if (readme.attributes[propVariant]) readme.attributes[prop] = readme.attributes[propVariant];
+  objIterator.forAll(readme.attributes, (path, key, obj) => {
+    Object.keys(readmePropertyVariants).forEach((prop) => {
+      readmePropertyVariants[prop].forEach((propVariant) => {
+        if (obj[propVariant]) obj[prop] = obj[propVariant];
+      });
     });
   });
 
   if (!readme.attributes.backgroundColour) readme.attributes.backgroundColour = '#fff';
 
   return readme
+};
+
+const addInterfaceColours = function (readme) {
+  if (!readme) return readme;
+
+  objIterator.forAll(readme, (path, key, obj) => {
+    if (obj.backgroundColour) {
+      obj.interfaceColours = {
+        primary: 0,
+        opposite: 255,
+      };
+
+      if (fontColorContrast(hexFullLength(obj.backgroundColour)) !== '#000000') {
+        obj.interfaceColours = {
+          primary: 255,
+          opposite: 0,
+        };
+      }
+    }
+  });
+console.log(readme)
+  return readme;
 };
 
 const parse = function (folderpath) {
@@ -54,6 +80,8 @@ const convertVarColours = function (readme, colours) {
   readme = iterateReadmeAttributes(readme, colours);
 
   if (readme.attributes) readme.attributes = iterateReadmeAttributes(readme.attributes, colours);
+
+  readme.attributes = addInterfaceColours(readme.attributes);
 
   return readme;
 };
