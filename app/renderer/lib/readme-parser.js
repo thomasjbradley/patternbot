@@ -40,6 +40,7 @@ const parse = function (folderpath) {
 };
 
 const iterateReadmeAttributes = function (attrs, colours) {
+  // Replace CSS variables with their hex equivalents
   objIterator.forAll(attrs, (path, key, obj) => {
     if (['backgroundColour', 'accentColour'].includes(key)) {
       if (/^(var\()?\-\-/.test(obj[key])) obj[key] = colours[obj[key].replace(/var\(/g, '').replace(/\)/g, '')];
