@@ -15,15 +15,11 @@ body {
 }
 
 a {
-  border-bottom: .1em solid rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface), .4);
+  border-bottom: .1em solid currentcolor;
 
-  color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));;
+  color: currentcolor;
   font-weight: bold;
   text-decoration: none;
-}
-
-a:hover {
-  border-bottom-color: rgba(var(--color-patternbot-interface), var(--color-patternbot-interface), var(--color-patternbot-interface));
 }
 
 .max-length {
