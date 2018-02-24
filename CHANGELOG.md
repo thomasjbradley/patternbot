@@ -23,8 +23,9 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- Fixed the navigation in Safari
-- Fixed the code borders in Safari
+- Fixed a bug that caused duplicate brand folders to show and many unnecessary regenerations.
+- Fixed the navigation in Safari.
+- Fixed the code borders in Safari.
 
 ---
 
