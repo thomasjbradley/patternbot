@@ -12,25 +12,26 @@ const appPkg = require(`${__dirname}/../../../package.json`);
 const patternLibFilesDefaults = require(`${__dirname}/pattern-lib-files`);
 
 let patternLibFiles = {};
+let ignorableFolders = [];
 
-const getIgnorableFolders = function () {
-  let folders = [];
+const getIgnorableFolders = function (builtInPatternsPath) {
+  return new Promise((resolve, reject) => {
+    subfiles(builtInPatternsPath).then((folders) => {
+      folders.forEach((folder) => {
+        if (/^\./.test(folder)) return;
 
-  if (patternLibFiles.commonParsable.modulifier) folders.push('modules');
-  if (patternLibFiles.commonParsable.gridifier) folders.push('grid');
-  if (patternLibFiles.commonParsable.typografier) folders.push('typography');
-  if (patternLibFiles.commonParsable.theme) folders.push('brand');
-  if (patternLibFiles.imagesParsable.icons) folders.push('icons');
+        ignorableFolders.push(folder);
+      });
 
-  return folders;
+      resolve(ignorableFolders);
+    });
+  });
 };
 
 const shouldIncludeDirectory = function (folderpath, file) {
-  const ignorables = getIgnorableFolders();
-
   return (
     fs.statSync(path.join(folderpath, file)).isDirectory()
-    && (ignorables.length < 1 || ignorables.indexOf(file) < 0)
+    && !ignorableFolders.includes(file)
   );
 };
 
@@ -136,6 +137,7 @@ const find = function (folderpath) {
 
   return new Promise(function (resolve, reject) {
     Promise.all([
+      getIgnorableFolders(`${__dirname}/../patterns`),
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.modulifier}`, 'commonParsable.modulifier'),
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.gridifier}`, 'commonParsable.gridifier'),
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.typografier}`, 'commonParsable.typografier'),

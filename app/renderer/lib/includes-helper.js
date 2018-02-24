@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const fse = require('fs-extra');
 const path = require('path');
 
 let appPkg = require(`${__dirname}/../../../package.json`);
@@ -28,6 +29,7 @@ const generate = function (folderpath, manifest) {
         '}());',
       ];
 
+      fse.ensureDir(`${folderpath}${appPkg.config.commonFolder}`);
       fs.writeFile(outPath, outFileBits.join('\n'), (e) => {
         resolve();
       });

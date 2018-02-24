@@ -90,7 +90,10 @@ const addFolder = function (folderpath, next) {
     cwd: folderpath,
   });
 
-  watcher.on('all', (evt, path) => {
+  watcher.on('all', (evt, watchpath) => {
+    if (watchpath.length <= 0) return;
+    if (evt === 'addDir' && ['patterns', 'common', 'untitled folder'].includes(watchpath.toLowerCase())) return;
+
     generate(() => {
       browserSync.reload();
     });
