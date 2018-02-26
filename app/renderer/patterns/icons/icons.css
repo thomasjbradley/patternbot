@@ -3,7 +3,6 @@
 }
 
 .patternbot-icon-display > li {
-  margin-bottom: 1.3rem;
   border-radius: 3px;
 }
 
@@ -35,12 +34,4 @@
 .patternbot-icon-display .patternbot-tool-btn {
   position: static;
   transform: none;
-}
-
-@media only screen and (min-width: 38em) {
-
-  .patternbot-icon-display > li {
-    margin-bottom: 0;
-  }
-
 }
