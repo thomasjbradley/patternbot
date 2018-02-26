@@ -5,6 +5,15 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [3.0.1] — 2018-02-26
+
+### Fixed
+
+- The pattern padding was only working if a background colour was also specified.
+- Removed the responsive margin-bottom from and made it always a margin for better support with icon background colours.
+
+---
+
 ## [3.0.0] — 2018-02-24
 
 ### Added
