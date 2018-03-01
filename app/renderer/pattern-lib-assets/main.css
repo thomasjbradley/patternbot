@@ -11,7 +11,6 @@ html {
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  padding-top: 3.1em;
 }
 
 a {
@@ -238,6 +237,7 @@ a {
 
 .main iframe {
   display: block;
+  height: 10px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
@@ -248,7 +248,7 @@ a {
 }
 
 .pattern {
-
+  padding-top: 3.1em;
 }
 
 .pattern-toolbar {
@@ -373,6 +373,7 @@ a {
   margin-left: auto;
   margin-right: auto;
   max-width: 100% !important;
+  min-height: 60px;
 }
 
 .resizeable-pattern-length {
@@ -444,10 +445,6 @@ a {
 
 @media only screen and (min-width: 38em) {
 
-  body {
-    padding-top: 0;
-  }
-
   .wrapper {
     padding-left: var(--nav-width-m);
   }
@@ -471,6 +468,10 @@ a {
 
   .main {
     width: calc(100vw - var(--nav-width-m));
+  }
+
+  .pattern {
+    padding-top: 0;
   }
 
 }

@@ -191,16 +191,19 @@
     if (areAllPatternsShowing()) {
       this.setAttribute('aria-pressed', false);
       localStorage.setItem('show-all-patterns', false);
+      document.body.classList.remove('patternbot-showing-all-patterns');
       switchToFirstTab();
     } else {
       this.setAttribute('aria-pressed', true);
       localStorage.setItem('show-all-patterns', true);
+      document.body.classList.add('patternbot-showing-all-patterns');
       showAllTabs();
     }
   });
 
   if (localStorage.getItem('show-all-patterns') == 'true') {
     showAllBtn.setAttribute('aria-pressed', true);
+    document.body.classList.add('patternbot-showing-all-patterns');
     showAllTabs();
   } else {
     if (window.location.hash) {
