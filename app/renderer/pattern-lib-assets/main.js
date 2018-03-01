@@ -92,7 +92,7 @@
   'use strict';
 
   var tablist = document.querySelectorAll('[role="tablist"] a');
-  var showAllBtn = document.getElementById('nav-show-all');
+  var showAllBtn = document.getElementById('patternbot-nav-show-all');
   var possibleInitialTab;
 
   var areAllPatternsShowing = function () {
@@ -263,7 +263,7 @@
   'use strict';
 
   var navBtn = document.querySelector('.nav-btn');
-  var nav = document.getElementById('nav');
+  var nav = document.getElementById('patternbot-nav');
 
   var showNav = function () {
     nav.setAttribute('aria-hidden', false);

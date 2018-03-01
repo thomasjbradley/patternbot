@@ -88,7 +88,7 @@
       </h1>
     </header>
 
-    <header class="masthead-m" aria-hidden="true" id="nav">
+    <header class="masthead-m" aria-hidden="true" id="patternbot-nav">
       <h1 class="tera gutter pad-t pad-b push-0" style="color: {{#if common.readme.attributes.accentColour}}{{common.readme.attributes.accentColour}}{{else}}{{#with (lookup common.theme.colours.primary 0)}}{{hex}}{{/with}}{{/if}}; {{#if common.theme.fonts.secondary}}font-family: {{common.theme.fonts.secondary.raw}};{{/if}}">
         {{#if common.readme.attributes.name}}
           {{common.readme.attributes.name}}
@@ -174,7 +174,7 @@
             {{/unless}}
           {{/each}}
           <li class="pad-t-1-2" role="presentation">
-            <button class="nav-show-all gutter pad-t-1-4 pad-b-1-4 block kilo" id="nav-show-all" aria-pressed="false" title="Show all patterns" aria-label="Show all patterns">
+            <button class="nav-show-all gutter pad-t-1-4 pad-b-1-4 block kilo" id="patternbot-nav-show-all" aria-pressed="false" title="Show all patterns" aria-label="Show all patterns">
               <span class="nav-show-all-wrap relative block">Show all</span>
             </button>
           </li>
