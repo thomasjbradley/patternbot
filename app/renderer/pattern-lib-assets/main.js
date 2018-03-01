@@ -1,3 +1,5 @@
+var patternbot = {};
+
 /*
   ================================================
   IFRAME CSS & JS INJECTION
@@ -22,8 +24,8 @@
   var injectCss = function (iframe) {
     var style = document.createElement('style');
 
-    if (iframe.dataset.injectCss) {
-      style.innerHTML = iframe.dataset.injectCss;
+    if (iframe.dataset.injectCss.trim().length > 0) {
+      style.innerHTML = iframe.dataset.injectCss.trim();
       iframe.contentWindow.document.body.classList.add('custom-bg-colors-used');
     } else {
       style.innerHTML = defaultCssToInject;
@@ -32,12 +34,12 @@
     iframe.contentWindow.document.head.appendChild(style);
   };
 
-  var resizeIframe = function (iframe) {
+  var injectAssetsIntoIframe = function (iframe) {
     injectJs(iframe);
     injectCss(iframe);
   };
 
-  window.resizeIframe = resizeIframe;
+  patternbot.injectAssetsIntoIframe = injectAssetsIntoIframe;
 }());
 
 /*
@@ -106,9 +108,9 @@
 
     [].forEach.call(visibleIframes, function (iframe) {
       if (!iframe.src) {
-        iframe.src = iframe.dataset.src;
-
         iframe.addEventListener('load', function (e) {
+          patternbot.injectAssetsIntoIframe(e.target);
+
           iFrameResize({
             heightCalculationMethod: 'grow',
             // autoResize: false,
@@ -119,7 +121,9 @@
               opts.iframe.style.opacity = 1;
             },
           }, e.target);
-        })
+        });
+
+        iframe.src = iframe.dataset.src;
       }
     });
   };
