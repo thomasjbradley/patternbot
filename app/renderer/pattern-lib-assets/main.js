@@ -108,19 +108,18 @@
       if (!iframe.src) {
         iframe.src = iframe.dataset.src;
 
-        iFrameResize({
-          heightCalculationMethod: 'lowestElement',
-          // autoResize: false,
-          minHeight: (iframe.dataset.minHeight) ? parseInt(iframe.dataset.minHeight, 10) : 0,
-          resizedCallback: function (opts) {
-            requestAnimationFrame(function () {
-              requestAnimationFrame(function () {
-                opts.iframe.previousElementSibling.setAttribute('hidden', true);
-                opts.iframe.style.opacity = 1;
-              });
-            });
-          },
-        }, iframe);
+        iframe.addEventListener('load', function (e) {
+          iFrameResize({
+            heightCalculationMethod: 'grow',
+            // autoResize: false,
+            minHeight: (e.target.dataset.minHeight) ? parseInt(e.target.dataset.minHeight, 10) : 0,
+            resizedCallback: function (opts) {
+              opts.iframe.previousElementSibling.setAttribute('hidden', true);
+              opts.iframe.parentNode.style.minHeight = 0;
+              opts.iframe.style.opacity = 1;
+            },
+          }, e.target);
+        })
       }
     });
   };
