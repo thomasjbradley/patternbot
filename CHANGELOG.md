@@ -5,12 +5,23 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed a regression in the previous version caused by the iframe’s injected CSS.
+- Fixed a bug when the pattern had exactly the same ID as Patternbot’s primary navigation.
+- Fixed spacing around loading gears and patterns on small screens.
+- Changed the iframe height calculation to another method to fix a few bugs where iframes were too high.
+
+---
+
 ## [3.0.1] — 2018-02-26
 
 ### Fixed
 
 - The pattern padding was only working if a background colour was also specified.
-- Removed the responsive margin-bottom from and made it always a margin for better support with icon background colours.
+- Removed the responsive margin-bottom from icons and made it a permanent margin for better support with icon background colours.
 
 ---
 
