@@ -7,6 +7,10 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.0.2] — 2018-03-01
 
+### Changed
+
+- Relaxed the pages Markbot requirements in the root directory to match those in the pages directory.
+
 ### Fixed
 
 - Fixed a regression in the previous version caused by the iframe’s injected CSS.

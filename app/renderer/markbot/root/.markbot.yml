@@ -2,7 +2,6 @@ inherit:
   - naming-restrict-live
   - git-2
   - html
-  - css-order-modules-grid-type-theme
   - css
 
 allFiles:
