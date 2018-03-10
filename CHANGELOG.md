@@ -5,6 +5,18 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [3.0.3] — 2018-03-10
+
+### Changed
+
+- Updated to the newest version of Patternbot Includes.
+
+### Fixed
+
+- Added a little more padding to the left & right sides of icons for when they have background colours.
+
+---
+
 ## [3.0.2] — 2018-03-01
 
 ### Changed
