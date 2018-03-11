@@ -5,6 +5,19 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [3.0.4] — 2018-03-11
+
+### Changed
+
+- Added the `meta generator` tag to all pattern libraries.
+- Added the `meta description` tag to all pattern libraries.
+
+### Fixed
+
+- Removed an extraneous `console.log` call.
+
+---
+
 ## [3.0.3] — 2018-03-10
 
 ### Changed
