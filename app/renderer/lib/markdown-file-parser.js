@@ -32,6 +32,8 @@ const parse = function (data) {
   }
 
   try {
+    readme.bodyRaw = readme.body;
+    readme.bodyBasic = readme.body.trim().replace(/[\n\r]/g, ' ').replace(/\s+/g, ' ');
     readme.body = marked(readme.body);
   } catch (e) {
     return getDefault(readme);

@@ -45,6 +45,7 @@ const renderPatternLib = function (patternLibFiles, patternLibInfo, commonInfo) 
     files: patternLibFiles,
     patterns: patternLibInfo.patterns,
     common: commonInfo,
+    pkg: appPkg,
   });
 };
 
