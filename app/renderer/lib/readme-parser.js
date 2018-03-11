@@ -45,7 +45,7 @@ const addInterfaceColours = function (readme) {
       }
     }
   });
-console.log(readme)
+
   return readme;
 };
 
