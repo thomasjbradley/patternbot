@@ -5,6 +5,15 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [3.0.5] — 2018-03-19
+
+### Fixed
+
+- Fixed a bug in Safari related to the browser not supporting `addEventListener` on `matchMedia`
+- FIxed a bug when pattern HTML files are named with sorting numbers, the Patternbot include copy button wasn’t copying the correct filename
+
+---
+
 ## [3.0.4] — 2018-03-11
 
 ### Changed
