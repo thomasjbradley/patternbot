@@ -61,6 +61,7 @@ const constructFile = function (folderpath, filepath, options = {}) {
     resolve({
       name: name,
       namePretty: S(name).humanize().s,
+      filename: path.parse(theFilePath).name,
       path: theFilePath,
       localPath: getLocalPath(folderpath, theFilePath),
     });
