@@ -305,7 +305,16 @@ var patternbot = {};
     if (e.target.matches('a, button')) toggleNav();
   });
 
-  window.matchMedia('(min-width: 38em)').addEventListener('change', toggleBasedOnScreen);
+  try {
+    window.matchMedia('(min-width: 38em)').addEventListener('change', toggleBasedOnScreen);
+  } catch (e) {
+    var windowResizeTimer;
+
+    window.addEventListener('resize', function () {
+      clearTimeout(windowResizeTimer);
+      setTimeout(toggleBasedOnScreen, 100);
+    });
+  }
 
   toggleBasedOnScreen();
 }());
