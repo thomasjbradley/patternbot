@@ -3,6 +3,7 @@
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
+const crypto = require('crypto');
 
 let appPkg = require(`${__dirname}/../../../package.json`);
 
@@ -12,8 +13,8 @@ const generate = function (folderpath, manifest) {
     const outPath = path.resolve(`${folderpath}${appPkg.config.commonFolder}/${appPkg.config.includesFilename}`);
 
     fs.readFile(includesJsPath, 'utf8', (e, patternBotIncludesFunction) => {
-      const manifestTmpFilename = `patternManifest_${Date.now()}`;
       const manifestJson = JSON.stringify(manifest, null, 2);
+      const manifestHash = crypto.createHash('sha1').update(manifestJson).digest('hex');
       const outFileBits = [
         '(function () {',
         patternBotIncludesFunction,
@@ -21,11 +22,11 @@ const generate = function (folderpath, manifest) {
         '/** ',
         ' * Patternbot library manifest',
         ` * ${folderpath}`,
-        ` * @version ${Date.now()}`,
+        ` * @version ${manifestHash}`,
         ' */',
-        `const ${manifestTmpFilename} = ${manifestJson};`,
+        `const patternManifest_${manifestHash} = ${manifestJson};`,
         '',
-        `patternBotIncludes(${manifestTmpFilename});`,
+        `patternBotIncludes(patternManifest_${manifestHash});`,
         '}());',
       ];
 
