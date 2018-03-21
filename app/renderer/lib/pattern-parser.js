@@ -19,6 +19,8 @@ const patternInfoDefaults = {
   path: '',
   html: {},
   md: {},
+  css: [],
+  js: [],
 };
 
 const formatName = function (name) {
@@ -177,10 +179,12 @@ const getInfo = function (folderpath, limiter, readme, options = {}) {
       parseFilesWithExtension(theFolderPath, '.md', markdownFileParser, null, options),
       parseFilesWithExtension(theFolderPath, '.html', htmlFileParser, limiter, options),
       findFilesWithExtension(theFolderPath, '.css', limiter, options),
+      findFilesWithExtension(theFolderPath, '.js', limiter, options),
     ]).then(function (all) {
       patternInfo.md = all[0];
       patternInfo.html = all[1];
       patternInfo.css = all[2];
+      patternInfo.js = all[3];
 
       patternInfo.html.forEach((html, i) => {
         patternInfo.html[i].readme = setUpReadme(patternInfo.html[i], (patternInfo.md[0]) ? patternInfo.md[0] : null, html, readme, options);

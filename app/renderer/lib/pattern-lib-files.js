@@ -13,4 +13,5 @@ module.exports = {
   logos: [],
   patterns: [],
   pages: [],
+  js: [],
 };

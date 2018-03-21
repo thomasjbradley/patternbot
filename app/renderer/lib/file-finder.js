@@ -44,6 +44,25 @@ const findParseableFile = function (folderpath, filepath, patternLibKey) {
   });
 };
 
+const findJavaScriptFiles = function (folderpath) {
+  return new Promise((resolve, reject) => {
+    glob(`${folderpath}/*.js`, (err, allJs) => {
+      if (err) return resolve();
+
+      allJs.forEach((js) => {
+        if (/patternbot(\.min)?\.js$/.test(js)) return;
+        patternLibFiles.js.push({
+          path: js,
+          filename: path.basename(js),
+        });
+      });
+
+      patternLibFiles.js.sort();
+      resolve();
+    })
+  });
+}
+
 const findLogos = function (folderpath, imagesFolder) {
   return new Promise(function (resolve, reject) {
     let logoSizes = {
@@ -133,7 +152,7 @@ const findSubFiles = function (folderpath, subdir, patternLibKey) {
 };
 
 const find = function (folderpath) {
-  patternLibFiles = Object.assign({}, patternLibFilesDefaults);
+  patternLibFiles = JSON.parse(JSON.stringify(patternLibFilesDefaults));
 
   return new Promise(function (resolve, reject) {
     Promise.all([
@@ -143,14 +162,12 @@ const find = function (folderpath) {
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.typografier}`, 'commonParsable.typografier'),
       findParseableFile(folderpath, `${appPkg.config.commonFolder}/${appPkg.config.commonParsableFilenames.theme}`, 'commonParsable.theme'),
       findParseableFile(folderpath, `${appPkg.config.imagesFolder}/${appPkg.config.imagesParsableFilenames.icons}`, 'imagesParsable.icons'),
+      findLogos(folderpath, appPkg.config.imagesFolder),
+      findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
+      findSubFiles(folderpath, appPkg.config.pagesFolder, 'pages'),
+      findJavaScriptFiles(`${folderpath}/${appPkg.config.commonFolder}`),
     ]).then(function () {
-      Promise.all([
-        findLogos(folderpath, appPkg.config.imagesFolder),
-        findSubDirectories(folderpath, appPkg.config.patternsFolder, 'patterns'),
-        findSubFiles(folderpath, appPkg.config.pagesFolder, 'pages'),
-      ]).then(function () {
-        resolve(patternLibFiles);
-      });
+      resolve(patternLibFiles);
     });
   });
 };

@@ -5,6 +5,14 @@ Patternbot adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Patternbot will now find all the JavaScript files within each pattern and add them to the manifest.
+
+---
+
 ## [3.0.5] — 2018-03-19
 
 ### Fixed
